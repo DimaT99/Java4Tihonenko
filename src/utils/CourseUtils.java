@@ -9,7 +9,7 @@ public class CourseUtils {
     Student student;
     Teacher teacher;
     Lection lection;
-    void createUtils() {
+    void createCourse() {
         Course course = new Course();
         System.out.println();
     }

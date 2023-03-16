@@ -9,10 +9,13 @@ public class LectionUtils {
     Additional additional;
 
 
-    public void createUtils() {
+    public void createLection() {
         Lection lection = new Lection();
         Lection lection1 = new Lection();
         Lection lection2 = new Lection();
+        Lection lection3 = new Lection();
+        Lection lection4 = new Lection();
+
         Lection.sayCount();
     }
 
