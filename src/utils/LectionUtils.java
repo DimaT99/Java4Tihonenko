@@ -9,7 +9,7 @@ public class LectionUtils {
     Additional additional;
 
 
-    public void createLection() {
+    public void createUtils() {
         Lection lection = new Lection();
         Lection lection1 = new Lection();
         Lection lection2 = new Lection();
