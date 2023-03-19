@@ -9,8 +9,12 @@ public class CourseUtils {
     Student student;
     Teacher teacher;
     Lection lection;
-    void createCourse() {
-        Course course = new Course();
-        System.out.println();
+
+    private Course course;
+
+    public CourseUtils(Course course) {
+        this.course = course;
+        System.out.println(course);
     }
+
 }

@@ -1,23 +1,20 @@
 package utils;
 
 import entity.Additional;
+import entity.Course;
 import entity.Homework;
 import entity.Lection;
 
 public class LectionUtils {
+    Course course;
     Homework homework;
     Additional additional;
 
+private Lection lection;
 
-    public void createUtils() {
-        Lection lection = new Lection();
-        Lection lection1 = new Lection();
-        Lection lection2 = new Lection();
-        Lection lection3 = new Lection();
-        Lection lection4 = new Lection();
-
-        Lection.sayCount();
+    public LectionUtils(Lection lection) {
+        this.lection = lection;
+        System.out.println(lection);
     }
-
 
 }
