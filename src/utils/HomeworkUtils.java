@@ -3,7 +3,7 @@ package utils;
 import entity.Homework;
 
 public class HomeworkUtils {
-    void createUtils() {
+    void createHomework() {
         Homework homework = new Homework();
         System.out.println();
     }

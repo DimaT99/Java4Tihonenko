@@ -4,7 +4,7 @@ import entity.Student;
 
 public class StudentUtils {
     public class createUtils {
-           void createUtils() {
+           void createStudent() {
             Student student = new Student();
             System.out.println();
         }

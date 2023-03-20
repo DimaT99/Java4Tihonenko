@@ -14,6 +14,8 @@ public class LectionUtils {
         Lection lection1 = new Lection();
         Lection lection2 = new Lection();
         Lection lection3 = new Lection();
+        Lection lection4 = new Lection();
+
         Lection.sayCount();
     }
 
