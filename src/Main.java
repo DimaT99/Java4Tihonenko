@@ -20,8 +20,12 @@ public class Main {
         Lection lection5 = new Lection(course2Id, 5, "Lection 5");
         Lection lection6 = new Lection(course2Id, 6, "Lection 6");
 
-
         Lection.sayCount();
         System.out.println(lection6.courseId);
+
+        CourseUtils courseUtils = new CourseUtils();
+        courseUtils.ScannerWithSwitch();
+        LectionUtils lectionUtils = new LectionUtils();
+        lectionUtils.createLectionConsole();
     }
 }
