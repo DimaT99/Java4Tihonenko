@@ -1,11 +1,17 @@
 package entity;
 
 public class Course {
+    public static int count;
     private int id;
     private String name;
 
     public Course(int id) {
         this.id = id;
+        count++;
+    }
+
+    public Course() {
+        count++;
     }
 
     public int getId() {
@@ -24,6 +30,11 @@ public class Course {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                '}';
+    }
 }
 
