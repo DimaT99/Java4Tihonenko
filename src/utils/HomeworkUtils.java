@@ -1,10 +1,14 @@
 package utils;
 
 import entity.Homework;
+import entity.HomeworkRepo;
 
 public class HomeworkUtils {
-    void createHomework() {
+    public void createHomework() {
         Homework homework = new Homework();
-        System.out.println();
+        HomeworkRepo homeworkRepo = new HomeworkRepo();
+        homeworkRepo.createHomeworkMas();
+        HomeworkRepo.homeworks[0] = homework;
+        System.out.println(HomeworkRepo.homeworks[0]);
     }
 }
