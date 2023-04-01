@@ -23,14 +23,14 @@ public class CourseUtils {
     public void createCourse() {
 
         Course course = new Course(1, "Course");
-        course.setId(Course.count);
+        course.setId(Course.getCount());
         course.setName("Course");
-        if (Course.count == 1) {
+        if (Course.getCount() == 1) {
             CourseRepo courseRepo = new CourseRepo();
             courseRepo.createCourseMas();
             CourseRepo.getCourses()[0] = course;
         } else {
-            Course[] courses = Arrays.copyOf(CourseRepo.getCourses(), Course.count);
+            Course[] courses = Arrays.copyOf(CourseRepo.getCourses(), Course.getCount());
             for (int i = CourseRepo.getCourses().length; i < courses.length; i++) {
                 courses[i] = course;
                 CourseRepo courseRepo = new CourseRepo();

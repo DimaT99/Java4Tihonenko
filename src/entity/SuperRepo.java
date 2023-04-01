@@ -6,6 +6,7 @@ public class SuperRepo {
     public static SuperRepo[] getSuperRepos() {
         return superRepos;
     }
+
     public void getAll() {
         getSuperRepos();
         System.out.println(superRepos);
@@ -19,9 +20,18 @@ public class SuperRepo {
 
     public void getByld() {
         for (int i = 0; i < superRepos.length; i++) {
-            SuperRepo superRepo = superRepos[i];
+            if (superRepos == null) {
+                System.out.println(0);
+                return;
+            } else {
+                SchoolSuper schoolSuper = new SchoolSuper();
+                SuperRepo superRepo = superRepos[i];
+                if (schoolSuper.getId() == 2) {
+                    System.out.println(superRepo);
+                }
+            }
+            System.out.println(superRepos[1]);
         }
-        System.out.println(superRepos[1]);
     }
 
     public void deleteByld() {

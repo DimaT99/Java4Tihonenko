@@ -9,6 +9,9 @@ public class SchoolSuper {
         this.name = name;
     }
 
+    public SchoolSuper() {
+    }
+
     public int getId() {
         return id;
     }

@@ -27,11 +27,11 @@ public class LectionUtils {
             if (j == 3) {
                 break;
             }
-            Lection lection = new Lection(1, "Lecture");
+            Lection lection = new Lection();
             lection.setCourseId(CourseRepo.getCourses()[0].getId());
-            lection.setId(Lection.count);
-            lection.setName("Lecture" + Lection.count);
-            if (Lection.count == 1) {
+            lection.setId(Lection.getCount());
+            lection.setName("Lecture" + Lection.getCount());
+            if (Lection.getCount() == 1) {
                 LectionRepo lectionRepo = new LectionRepo();
                 lectionRepo.createLectionMas();
                 LectionRepo.getLections()[0] = lection;

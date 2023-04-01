@@ -2,13 +2,11 @@ package entity;
 
 import utils.LectionUtils;
 
-import java.util.Arrays;
-
 public class LectionRepo extends SuperRepo {
     private static Lection[] lections;
 
     public void createLectionMas() {
-        lections = new Lection[Lection.count];
+        lections = new Lection[Lection.getCount()];
     }
 
     public static Lection[] getLections() {
@@ -30,10 +28,18 @@ public class LectionRepo extends SuperRepo {
 
     @Override
     public void getByld() {
-        for (int i = 0; i < lections.length; i++) {
-            Lection lection = lections[i];
+        if (lections == null) {
+            System.out.println(0);
+            return;
+        } else {
+            for (int i = 0; i < lections.length; i++) {
+                Lection lection = lections[i];
+                if (lection.getId() == 2) {
+                    System.out.println(lection);
+                }
+            }
+            System.out.println(lections[1]);
         }
-        System.out.println(lections[1]);
     }
 
     @Override
