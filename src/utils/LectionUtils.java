@@ -27,28 +27,29 @@ public class LectionUtils {
             if (j == 3) {
                 break;
             }
-            Lection lection = new Lection();
-            lection.courseId = CourseRepo.courses[0].getId();
+            Lection lection = new Lection(1, "Lecture");
+            lection.setCourseId(CourseRepo.getCourses()[0].getId());
             lection.setId(Lection.count);
-            lection.setName("Lection" + Lection.count);
+            lection.setName("Lecture" + Lection.count);
             if (Lection.count == 1) {
                 LectionRepo lectionRepo = new LectionRepo();
                 lectionRepo.createLectionMas();
-                LectionRepo.lections[0] = lection;
+                LectionRepo.getLections()[0] = lection;
             } else {
-                Lection[] lections = Arrays.copyOf(LectionRepo.lections, (LectionRepo.lections.length * 3) / 2 + 1);
-                for (int i = LectionRepo.lections.length; i < lections.length; i++) {
+                Lection[] lections = Arrays.copyOf(LectionRepo.getLections(), (LectionRepo.getLections().length * 3) / 2 + 1);
+                for (int i = LectionRepo.getLections().length; i < lections.length; i++) {
                     lections[i] = lection;
-                    LectionRepo.lections = lections;
-                    System.out.println(lections.length);
-                }
-                for (int i = 0; i < LectionRepo.lections.length; i++) {
-                    System.out.println("Index i = " + lections[i]);
+                    LectionRepo lectionRepo = new LectionRepo();
+                    lectionRepo.createLectionMas();
+                    for (int a = 0; a < LectionRepo.getLections().length; a++) {
+                        LectionRepo.getLections()[a] = lections[a];
+                    }
                 }
             }
         }
-
+        for (int i = 0; i < LectionRepo.getLections().length; i++) {
+            System.out.println("Index " + i + " " + LectionRepo.getLections()[i]);
+        }
     }
-
 }
 

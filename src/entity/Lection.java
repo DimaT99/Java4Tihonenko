@@ -1,11 +1,24 @@
 package entity;
 
-public class Lection {
-    public int courseId;
+public class Lection extends SchoolSuper {
+    private int courseId;
 
     public static int count;
     private int id;
     private String name;
+
+    public Lection(int id, String name) {
+        super(id, name);
+        count++;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 
     public int getId() {
         return id;
@@ -23,7 +36,7 @@ public class Lection {
         this.name = name;
     }
 
-    public Lection(int courseId, int id, String name) {
+   /* public Lection(int courseId, int id, String name) {
         this.courseId = courseId;
         this.id = id;
         this.name = name;
@@ -32,7 +45,7 @@ public class Lection {
 
     public Lection() {
         count++;
-    }
+    }*/
 
     public static void sayCount() {
         System.out.println(count);

@@ -5,10 +5,12 @@ import entity.StudentRepo;
 
 public class StudentUtils {
     public void createStudent() {
-        Student student = new Student();
+        Student student = new Student(1, "Student");
+        student.setId(1);
+        student.setName("Student");
         StudentRepo studentRepo = new StudentRepo();
         studentRepo.createStudentMas();
-        StudentRepo.students[0] = student;
-        System.out.println(StudentRepo.students[0]);
+        StudentRepo.getStudents()[0] = student;
+        System.out.println(StudentRepo.getStudents()[0]);
     }
 }

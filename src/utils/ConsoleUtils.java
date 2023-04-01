@@ -24,11 +24,11 @@ public class ConsoleUtils {
                 System.out.println("3. Student");
                 System.out.println("4. Lecture");
                 System.out.println("5. Output of created objects");
-                System.out.println("6. Exit");
+                System.out.println("6. Overridden methods");
+                System.out.println("7. Exit");
 
                 category = scanner.nextInt();
-            } while (category < 1 || category > 6);
-
+            } while (category < 1 || category > 7);
             switch (category) {
                 case 1:
                     System.out.println("Category Course");
@@ -55,6 +55,10 @@ public class ConsoleUtils {
                     outputObject();
                     break;
                 case 6:
+                    System.out.println("Overridden methods");
+                    overrideMethods();
+                    break;
+                case 7:
                     stop = false;
                     break;
                 default:
@@ -79,66 +83,106 @@ public class ConsoleUtils {
         switch (category) {
             case 1:
                 System.out.println("Created objects Course");
-                if (CourseRepo.courses == null) {
+                if (CourseRepo.getCourses() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < CourseRepo.courses.length; i++) {
-                        System.out.println(CourseRepo.courses[i].getId());
+                    for (int i = 0; i < CourseRepo.getCourses().length; i++) {
+                        System.out.println(CourseRepo.getCourses()[i].getId());
                     }
                 }
                 break;
             case 2:
                 System.out.println("Created objects Teacher");
-                if (TeacherRepo.teachers == null) {
+                if (TeacherRepo.getTeachers() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < TeacherRepo.teachers.length; i++) {
-                        //System.out.println(TeacherRepo.teachers[i].getId());
+                    for (int i = 0; i < TeacherRepo.getTeachers().length; i++) {
+                        System.out.println(TeacherRepo.getTeachers()[i].getId());
                     }
                 }
                 break;
             case 3:
                 System.out.println("Created objects Student");
-                if (StudentRepo.students == null) {
+                if (StudentRepo.getStudents() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < StudentRepo.students.length; i++) {
-                        //System.out.println(StudentRepo.students[i].getId());
+                    for (int i = 0; i < StudentRepo.getStudents().length; i++) {
+                        System.out.println(StudentRepo.getStudents()[i].getId());
                     }
                 }
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
-                if (LectionRepo.lections == null) {
+                if (LectionRepo.getLections() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < LectionRepo.lections.length; i++) {
-                        System.out.println(LectionRepo.lections[i].getId());
+                    for (int i = 0; i < LectionRepo.getLections().length; i++) {
+                        System.out.println(LectionRepo.getLections()[i].getId());
                     }
                 }
                 break;
             case 5:
                 System.out.println("Created objects Homework");
-                if (HomeworkRepo.homeworks == null) {
+                if (HomeworkRepo.getHomeworks() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < HomeworkRepo.homeworks.length; i++) {
-                       //System.out.println(HomeworkRepo.homeworks[i].getId());
+                    for (int i = 0; i < HomeworkRepo.getHomeworks().length; i++) {
+                        System.out.println(HomeworkRepo.getHomeworks()[i].getId());
                     }
                 }
                 break;
             case 6:
                 System.out.println("Created objects Additional");
-                if (AdditionalRepo.additionals == null) {
+                if (AdditionalRepo.getAdditionals() == null) {
                     System.out.println(0);
                 } else {
-                for (int i = 0; i < AdditionalRepo.additionals.length; i++) {
-                    //System.out.println(AdditionalRepo.additionals[i].getId());
-                }}
+                    for (int i = 0; i < AdditionalRepo.getAdditionals().length; i++) {
+                        System.out.println(AdditionalRepo.getAdditionals()[i].getId());
+                    }
+                }
                 break;
             default:
                 System.out.println("Incorrect symbol");
         }
     }
-}
+    public void overrideMethods() {
 
+        int category;
+        final Scanner scanner2 = new Scanner(System.in);
+        System.out.println("Select the category, please use only numbers from 1 to 4");
+        System.out.println("1. Return an array");
+        System.out.println("2. Add a new lecture");
+        System.out.println("3. Open the selected lecture");
+        System.out.println("4. Delete the selected lecture");
+
+        category = scanner2.nextInt();
+
+        switch (category) {
+            case 1:
+                System.out.println("Return an array");
+                LectionRepo lectionRepo = new LectionRepo();
+                lectionRepo.getAll();
+
+                break;
+            case 2:
+                System.out.println("Add a new lecture");
+                LectionRepo lectionRepo1 = new LectionRepo();
+                lectionRepo1.add();
+
+                break;
+            case 3:
+                System.out.println("Open the selected lecture");   //select id2
+                LectionRepo lectionRepo2 = new LectionRepo();
+                lectionRepo2.getByld();
+                break;
+            case 4:
+                System.out.println("Delete the selected lecture");   //delete id2
+                LectionRepo lectionRepo3 = new LectionRepo();
+                lectionRepo3.deleteByld();
+                break;
+
+            default:
+                System.out.println("Incorrect symbol");
+        }
+    }
+}

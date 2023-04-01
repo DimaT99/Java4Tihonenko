@@ -5,11 +5,11 @@ import entity.AdditionalRepo;
 
 public class AdditionalUtils {
     public void createAdditional() {
-        Additional additional = new Additional();
+        Additional additional = new Additional(1, "Additional");
         AdditionalRepo additionalRepo = new AdditionalRepo();
         additionalRepo.createAdditionalMas();
-        AdditionalRepo.additionals[0] = additional;
-        System.out.println(AdditionalRepo.additionals[0]);
+        AdditionalRepo.getAdditionals()[0] = additional;
+        System.out.println(AdditionalRepo.getAdditionals()[0]);
     }
 
 }
