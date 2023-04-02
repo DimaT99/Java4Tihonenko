@@ -5,10 +5,11 @@ import entity.HomeworkRepo;
 
 public class HomeworkUtils {
     public void createHomework() {
-        Homework homework = new Homework();
+        Homework homework = new Homework(1, "Homework");
+        homework.setId(1);
         HomeworkRepo homeworkRepo = new HomeworkRepo();
         homeworkRepo.createHomeworkMas();
-        HomeworkRepo.homeworks[0] = homework;
-        System.out.println(HomeworkRepo.homeworks[0]);
+        HomeworkRepo.getHomeworks()[0] = homework;
+        System.out.println(HomeworkRepo.getHomeworks()[0]);
     }
 }

@@ -1,7 +1,11 @@
 package entity;
 
-public class StudentRepo {
-    public static Student[] students;
+public class StudentRepo extends SuperRepo{
+    private static Student[] students;
+
+    public static Student[] getStudents() {
+        return students;
+    }
 
     public void createStudentMas() {
         students = new Student[1];

@@ -1,47 +1,42 @@
 package entity;
 
-public class Course extends SchoolSuper {
-    private static int count;
+public class SchoolSuper {
     private int id;
     private String name;
-    public Course(int id, String name) {
-        super(id, name);
-        count++;
+
+    public SchoolSuper(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public static int getCount() {
-        return count;
+    public SchoolSuper() {
     }
 
-    public static void setCount(int count) {
-        Course.count = count;
-    }
-
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
-        return "Course{" +
+        return "SchoolSuper{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
-}
 
+    public void createObject() {
+        SchoolSuper schoolSuper = new SchoolSuper(1, "SchoolSuper");
+    }
+}
