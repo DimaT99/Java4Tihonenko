@@ -9,6 +9,10 @@ public class Course extends SchoolSuper {
         count++;
     }
 
+    public Course() {
+        count++;
+    }
+
     public static int getCount() {
         return count;
     }

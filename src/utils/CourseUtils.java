@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class CourseUtils {
     Student student;
     Teacher teacher;
-    Lection lection;
+    Lecture lecture;
 
     public Course course;
 
