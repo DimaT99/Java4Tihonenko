@@ -8,6 +8,6 @@ public class StudentRepo extends SuperRepo{
     }
 
     public void createStudentMas() {
-        students = new Student[1];
+        students = new Student[Student.getCount()];
     }
 }

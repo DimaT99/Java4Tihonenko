@@ -10,8 +10,11 @@ public class ConsoleUtils {
         CourseUtils courseUtils1 = new CourseUtils();
         courseUtils1.createCourse();
 
-        LectionUtils lectionUtils1 = new LectionUtils();
-        lectionUtils1.createLection();
+        TeacherUtils teacherUtils1 = new TeacherUtils();
+        teacherUtils1.createTeacher();
+
+        LectureUtils lectureUtils1 = new LectureUtils();
+        lectureUtils1.createLecture();
 
         Scanner scanner = new Scanner(System.in);
         int category;
@@ -47,8 +50,8 @@ public class ConsoleUtils {
                     break;
                 case 4:
                     System.out.println("Category Lecture");
-                    LectionUtils lectionUtils = new LectionUtils();
-                    lectionUtils.createLection();
+                    LectureUtils lectureUtils = new LectureUtils();
+                    lectureUtils.createLecture();
                     break;
                 case 5:
                     System.out.println("Output of created objects");
@@ -113,11 +116,11 @@ public class ConsoleUtils {
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
-                if (LectionRepo.getLections() == null) {
+                if (LectureRepo.getLectures() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < LectionRepo.getLections().length; i++) {
-                        System.out.println(LectionRepo.getLections()[i].getId());
+                    for (int i = 0; i < LectureRepo.getLectures().length; i++) {
+                        System.out.println(LectureRepo.getLectures()[i].getId());
                     }
                 }
                 break;
@@ -145,6 +148,7 @@ public class ConsoleUtils {
                 System.out.println("Incorrect symbol");
         }
     }
+
     public void overrideMethods() {
 
         int category;
@@ -160,25 +164,25 @@ public class ConsoleUtils {
         switch (category) {
             case 1:
                 System.out.println("Return an array");
-                LectionRepo lectionRepo = new LectionRepo();
-                lectionRepo.getAll();
+                LectureRepo lectureRepo = new LectureRepo();
+                lectureRepo.getAll();
 
                 break;
             case 2:
                 System.out.println("Add a new lecture");
-                LectionRepo lectionRepo1 = new LectionRepo();
-                lectionRepo1.add();
+                LectureRepo lectureRepo1 = new LectureRepo();
+                lectureRepo1.add();
 
                 break;
             case 3:
                 System.out.println("Open the selected lecture");   //select id2
-                LectionRepo lectionRepo2 = new LectionRepo();
-                lectionRepo2.getByld();
+                LectureRepo lectureRepo2 = new LectureRepo();
+                lectureRepo2.getByld();
                 break;
             case 4:
                 System.out.println("Delete the selected lecture");   //delete id2
-                LectionRepo lectionRepo3 = new LectionRepo();
-                lectionRepo3.deleteByld();
+                LectureRepo lectureRepo3 = new LectureRepo();
+                lectureRepo3.deleteByld();
                 break;
 
             default:

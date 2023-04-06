@@ -3,9 +3,20 @@ package entity;
 public class Teacher extends SchoolSuper {
     private int id;
     private String name;
+    private static int count;
+    public Person person;
+
+    public static int getCount() {
+        return count;
+    }
 
     public Teacher(int id, String name) {
         super(id, name);
+        count++;
+    }
+
+    public Teacher() {
+        count++;
     }
 
     public int getId() {
@@ -29,6 +40,7 @@ public class Teacher extends SchoolSuper {
         return "Teacher{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", person=" + person +
                 '}';
     }
 }

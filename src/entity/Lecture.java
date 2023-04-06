@@ -1,22 +1,24 @@
 package entity;
 
-public class Lection extends SchoolSuper {
+public class Lecture extends SchoolSuper {
     private int courseId;
     private static int count;
     private int id;
     private String name;
+    private int personId;
 
     public static int getCount() {
         return count;
     }
 
     public static void setCount(int count) {
-        Lection.count = count;
+        Lecture.count = count;
     }
 
-    public Lection(int courseId, int id, String name) {
+    public Lecture(int id, String name, int courseId, int personId) {
         super(id, name);
         this.courseId = courseId;
+        this.personId = personId;
         count++;
     }
 
@@ -40,7 +42,7 @@ public class Lection extends SchoolSuper {
         this.name = name;
     }
 
-    public Lection() {
+    public Lecture() {
         count++;
     }
 
@@ -56,13 +58,21 @@ public class Lection extends SchoolSuper {
         System.out.println(count);
     }
 
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
     @Override
     public String toString() {
-        return "Lection{" +
+        return "Lecture{" +
                 "courseId=" + courseId +
                 ", id=" + id +
                 ", name='" + name + '\'' +
+                ", personId=" + personId +
                 '}';
     }
 }

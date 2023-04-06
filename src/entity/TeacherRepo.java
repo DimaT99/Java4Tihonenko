@@ -8,7 +8,7 @@ public class TeacherRepo extends SuperRepo {
     }
 
     public void createTeacherMas() {
-        teachers = new Teacher[1];
+        teachers = new Teacher[Teacher.getCount()];
     }
 
     @Override
