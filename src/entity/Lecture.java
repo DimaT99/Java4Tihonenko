@@ -5,6 +5,7 @@ public class Lecture extends SchoolSuper {
     private static int count;
     private int id;
     private String name;
+    private String description;
     private int personId;
 
     public static int getCount() {
@@ -15,9 +16,10 @@ public class Lecture extends SchoolSuper {
         Lecture.count = count;
     }
 
-    public Lecture(int id, String name, int courseId, int personId) {
+    public Lecture(int id, String name, int courseId, String description, int personId) {
         super(id, name);
         this.courseId = courseId;
+        this.description = description;
         this.personId = personId;
         count++;
     }
@@ -66,12 +68,21 @@ public class Lecture extends SchoolSuper {
         this.personId = personId;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Lecture{" +
                 "courseId=" + courseId +
                 ", id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", personId=" + personId +
                 '}';
     }

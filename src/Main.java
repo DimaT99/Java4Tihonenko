@@ -5,5 +5,6 @@ public class Main {
 
         ConsoleUtils consoleUtils = new ConsoleUtils();
         consoleUtils.ScannerWithSwitch();
+
     }
 }
