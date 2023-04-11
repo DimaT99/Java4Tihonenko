@@ -32,6 +32,8 @@ public class LectureUtils {
             lecture.setId(Lecture.getCount());
             lecture.setPersonId(Teacher.getCount());
             lecture.setName("Lecture" + Lecture.getCount());
+            lecture.setDescription("Description" + Lecture.getCount());
+
             if (Lecture.getCount() == 1) {
                 LectureRepo lectureRepo = new LectureRepo();
                 lectureRepo.createLectureMas();
