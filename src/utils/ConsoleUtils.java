@@ -59,7 +59,7 @@ public class ConsoleUtils {
                     break;
                 case 6:
                     System.out.println("Overridden methods");
-                    overrideMethods();
+                    //overrideMethods();
                     break;
                 case 7:
                     stop = false;
@@ -86,41 +86,45 @@ public class ConsoleUtils {
         switch (category) {
             case 1:
                 System.out.println("Created objects Course");
-                if (CourseRepo.getCourses() == null) {
+                Repo<Course> courseRepo = new Repo<>();
+                if (courseRepo.getEntityArray() == null) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < CourseRepo.getCourses().length; i++) {
-                        System.out.println(CourseRepo.getCourses()[i].getId());
+                    for (int i = 0; i < courseRepo.size(); i++) {
+                        System.out.println(courseRepo.get(i));
                     }
                 }
                 break;
             case 2:
                 System.out.println("Created objects Teacher");
-                if (TeacherRepo.getTeachers() == null) {
+                Repo<Teacher> teacherRepo = new Repo<>();
+                if (teacherRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < TeacherRepo.getTeachers().length; i++) {
-                        System.out.println(TeacherRepo.getTeachers()[i].getId());
+                    for (int i = 0; i < teacherRepo.size(); i++) {
+                        System.out.println(teacherRepo.get(i));
                     }
                 }
                 break;
             case 3:
                 System.out.println("Created objects Student");
-                if (StudentRepo.getStudents() == null) {
+                Repo<Student> studentRepo = new Repo<>();
+                if (studentRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < StudentRepo.getStudents().length; i++) {
-                        System.out.println(StudentRepo.getStudents()[i].getId());
+                    for (int i = 0; i < studentRepo.size(); i++) {
+                        System.out.println(studentRepo.get(i));
                     }
                 }
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
-                if (LectureRepo.getLectures() == null) {
+                Repo<Lecture> lectureRepo = new Repo<>();
+                if (lectureRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
-                    for (int i = 0; i < LectureRepo.getLectures().length; i++) {
-                        System.out.println(LectureRepo.getLectures()[i].getId());
+                    for (int i = 0; i < lectureRepo.size(); i++) {
+                        System.out.println(lectureRepo.get(i));
                     }
                 }
                 break;
@@ -149,7 +153,7 @@ public class ConsoleUtils {
         }
     }
 
-    public void overrideMethods() {
+    /*public void overrideMethods() {
 
         int category;
         final Scanner scanner2 = new Scanner(System.in);
@@ -188,5 +192,5 @@ public class ConsoleUtils {
             default:
                 System.out.println("Incorrect symbol");
         }
-    }
+    }*/
 }

@@ -8,9 +8,9 @@ public class LectureUtils {
     Course course;
     Homework homework;
     Additional additional;
-
-
+    Repo<Lecture> lectureRepo = new Repo<>();
     private Lecture lecture;
+    private Lecture[] lectures;
 
     public LectureUtils(Lecture lecture) {
         this.lecture = lecture;
@@ -27,32 +27,31 @@ public class LectureUtils {
             if (j == 3) {
                 break;
             }
-            Lecture lecture = new Lecture();
-            lecture.setCourseId(CourseRepo.getCourses()[Course.getCount() - 1].getId());
+            lecture = new Lecture();
+            lecture.setCourseId(Course.getCount());
             lecture.setId(Lecture.getCount());
             lecture.setPersonId(Teacher.getCount());
             lecture.setName("Lecture" + Lecture.getCount());
             lecture.setDescription("Description" + Lecture.getCount());
-
-            if (Lecture.getCount() == 1) {
-                LectureRepo lectureRepo = new LectureRepo();
-                lectureRepo.createLectureMas();
-                LectureRepo.getLectures()[0] = lecture;
+            if (lectureRepo.isEmpty()) {
+                lectures = new Lecture[Lecture.getCount()];
+                lectureRepo.addAll(lectures);
+                lectureRepo.add(0, lecture);
             } else {
-                Lecture[] lectures = Arrays.copyOf(LectureRepo.getLectures(), (LectureRepo.getLectures().length * 3) / 2 + 1);
-                for (int i = LectureRepo.getLectures().length; i < lectures.length; i++) {
-                    lectures[i] = lecture;
-                    LectureRepo lectureRepo = new LectureRepo();
-                    lectureRepo.createLectureMas();
-                    for (int a = 0; a < LectureRepo.getLectures().length; a++) {
-                        LectureRepo.getLectures()[a] = lectures[a];
-                    }
-                }
+
+                //lectureRepo.add(lecture);        //void add(E element)
+
+                Lecture[] lectures1 = Arrays.copyOf(lectureRepo.getEntityArray(), (lectureRepo.size() * 3) / 2 + 1);
+                lectureRepo.addAll(lectures1);
+                lectureRepo.add(Lecture.getCount() - 1, lecture);
             }
+            lectureRepo.remove(0);
         }
-        for (int i = 0; i < LectureRepo.getLectures().length; i++) {
-            System.out.println("Index " + i + " " + LectureRepo.getLectures()[i]);
+        for (int i = 0; i < lectureRepo.size(); i++) {
+            System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
     }
 }
+
+
 

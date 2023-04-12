@@ -8,7 +8,7 @@ public class CourseUtils {
     Student student;
     Teacher teacher;
     Lecture lecture;
-
+    Repo<Course> courseRepo = new Repo<>();
     public Course course;
 
     public CourseUtils(Course course) {
@@ -25,25 +25,23 @@ public class CourseUtils {
         Course course = new Course(1, "Course");
         course.setId(Course.getCount());
         course.setName("Course");
-        if (Course.getCount() == 1) {
-            CourseRepo courseRepo = new CourseRepo();
-            courseRepo.createCourseMas();
-            CourseRepo.getCourses()[0] = course;
+        if (courseRepo.isEmpty()) {
+            Course[] courses = new Course[Course.getCount()];
+            courses[0] = course;
+            courseRepo.addAll(courses);
         } else {
-            Course[] courses = Arrays.copyOf(CourseRepo.getCourses(), Course.getCount());
-            for (int i = CourseRepo.getCourses().length; i < courses.length; i++) {
+            Course[] courses = Arrays.copyOf(courseRepo.getEntityArray(), (courseRepo.size() * 3) / 2 + 1);
+            for (int i = courseRepo.size(); i < courses.length; i++) {
                 courses[i] = course;
-                CourseRepo courseRepo = new CourseRepo();
-                courseRepo.createCourseMas();
-                for (int j = 0; j < courses.length; j++) {
-                    CourseRepo.getCourses()[j] = courses[j];
+                Course[] courses1 = new Course[Course.getCount()];
+                for (int a = 0; a < courseRepo.size(); a++) {
+                    courses1[a] = courses[a];
                 }
+                courseRepo.addAll(courses1);
             }
         }
-        for (int i = 0; i < CourseRepo.getCourses().length; i++) {
-            System.out.println("Index" + i + " " + CourseRepo.getCourses()[i]);
+        for (int i = 0; i < courseRepo.size(); i++) {
+            System.out.println("Index " + i + " " + courseRepo.get(i));
         }
     }
 }
-
-
