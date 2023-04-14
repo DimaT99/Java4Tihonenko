@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class TeacherUtils {
+    Repo<Teacher> teacherRepo = new Repo<>();
 
     public void createTeacher() {
+
         Teacher teacher = new Teacher();
         teacher.setId(Teacher.getCount());
         teacher.setName("Teacher" + Teacher.getCount());
@@ -21,23 +23,19 @@ public class TeacherUtils {
         person.setEmail(validEmail("email33@gmail.com"));
         teacher.person = person;
 
-        if (Teacher.getCount() == 1) {
-            TeacherRepo teacherRepo = new TeacherRepo();
-            teacherRepo.createTeacherMas();
-            TeacherRepo.getTeachers()[0] = teacher;
+        if (teacherRepo.isEmpty()) {
+            Teacher[] teachers = new Teacher[Teacher.getCount()];
+            teachers[0] = teacher;
+            teacherRepo.addAll(teachers);
         } else {
-            Teacher[] teachers = Arrays.copyOf(TeacherRepo.getTeachers(), TeacherRepo.getTeachers().length + Teacher.getCount());
-            for (int i = TeacherRepo.getTeachers().length; i < teachers.length; i++) {
+            Teacher[] teachers = Arrays.copyOf(teacherRepo.getEntityArray(), (teacherRepo.size() * 3) / 2 + 1);
+            for (int i = teacherRepo.size(); i < teachers.length; i++) {
                 teachers[i] = teacher;
-                TeacherRepo teacherRepo = new TeacherRepo();
-                teacherRepo.createTeacherMas();
-                for (int a = 0; a < TeacherRepo.getTeachers().length; a++) {
-                    TeacherRepo.getTeachers()[a] = teachers[a];
-                }
+                teacherRepo.addAll(teachers);
             }
         }
-        for (int i = 0; i < TeacherRepo.getTeachers().length; i++) {
-            System.out.println("Index " + i + " " + TeacherRepo.getTeachers()[i]);
+        for (int i = 0; i < teacherRepo.size(); i++) {
+            System.out.println("Index " + i + " " + teacherRepo.get(i));
         }
     }
 

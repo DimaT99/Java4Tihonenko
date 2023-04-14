@@ -8,7 +8,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private String phone;
-    private String email = "email@gmail.com";
+    private String email;
 
     public Person(int id, int courseId, EnumRole enumRole, String firstName, String lastName, String phone, String email) {
         this.id = id;
