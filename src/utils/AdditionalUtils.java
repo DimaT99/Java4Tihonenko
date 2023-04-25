@@ -1,11 +1,11 @@
 package utils;
 
 import entity.Additional;
-import entity.AdditionalRepo;
+import repository.AdditionalRepo;
 
 public class AdditionalUtils {
     public void createAdditional() {
-        Additional additional = new Additional(1, "Additional");
+        Additional additional = new Additional();
         AdditionalRepo additionalRepo = new AdditionalRepo();
         additionalRepo.createAdditionalMas();
         AdditionalRepo.getAdditionals()[0] = additional;

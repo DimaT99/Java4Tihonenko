@@ -1,25 +1,15 @@
 package utils;
 
 import entity.*;
+import repository.HomeworkRepo;
+import repository.LectureRepo;
 
 import java.util.Arrays;
 
 public class LectureUtils {
-    Course course;
     Homework homework;
     Additional additional;
-    Repo<Lecture> lectureRepo = new Repo<>();
-    private Lecture lecture;
-    private Lecture[] lectures;
-
-    public LectureUtils(Lecture lecture) {
-        this.lecture = lecture;
-        System.out.println(lecture);
-    }
-
-    public LectureUtils() {
-
-    }
+    LectureRepo lectureRepo = new LectureRepo();
 
     public void createLecture() {
 
@@ -27,26 +17,25 @@ public class LectureUtils {
             if (j == 3) {
                 break;
             }
-            lecture = new Lecture();
+            Lecture lecture = new Lecture();
             lecture.setCourseId(Course.getCount());
             lecture.setId(Lecture.getCount());
             lecture.setPersonId(Teacher.getCount());
             lecture.setName("Lecture" + Lecture.getCount());
             lecture.setDescription("Description" + Lecture.getCount());
+            HomeworkUtils homeworkUtils = new HomeworkUtils();
+            homeworkUtils.createHomework();
+            lecture.setHomeworks(HomeworkRepo.getHomeworks());
             if (lectureRepo.isEmpty()) {
-                lectures = new Lecture[Lecture.getCount()];
-                lectureRepo.addAll(lectures);
-                lectureRepo.add(0, lecture);
+                lectureRepo.createLectureMas();
+                lectureRepo.add(Teacher.getCount() - 1, lecture);
             } else {
-
-                //lectureRepo.add(lecture);        //void add(E element)
-
-                Lecture[] lectures1 = Arrays.copyOf(lectureRepo.getEntityArray(), (lectureRepo.size() * 3) / 2 + 1);
+                Lecture[] lectures1 = Arrays.copyOf(LectureRepo.getLectures(), (lectureRepo.size() * 3) / 2 + 1);
                 lectureRepo.addAll(lectures1);
                 lectureRepo.add(Lecture.getCount() - 1, lecture);
             }
-            lectureRepo.remove(0);
         }
+        lectureRepo.remove(0);
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }

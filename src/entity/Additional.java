@@ -1,12 +1,12 @@
 package entity;
 
-public class Additional extends SchoolSuper {
+public class Additional {
     private int id;
 
-    public Additional(int id, String name) {
-        super(id, name);
+    public Additional() {
     }
-        public int getId() {
+
+    public int getId() {
         return id;
     }
 

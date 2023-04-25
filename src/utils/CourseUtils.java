@@ -1,6 +1,8 @@
 package utils;
 
 import entity.*;
+import repository.CourseRepo;
+import repository.LectureRepo;
 
 import java.util.Arrays;
 
@@ -8,37 +10,20 @@ public class CourseUtils {
     Student student;
     Teacher teacher;
     Lecture lecture;
-    Repo<Course> courseRepo = new Repo<>();
-    public Course course;
-
-    public CourseUtils(Course course) {
-        this.course = course;
-        System.out.println(course);
-    }
-
-    public CourseUtils() {
-
-    }
+    CourseRepo courseRepo = new CourseRepo();
 
     public void createCourse() {
 
-        Course course = new Course(1, "Course");
+        Course course = new Course();
         course.setId(Course.getCount());
-        course.setName("Course");
+        course.setName("Course" + Course.getCount());
         if (courseRepo.isEmpty()) {
-            Course[] courses = new Course[Course.getCount()];
-            courses[0] = course;
-            courseRepo.addAll(courses);
+            courseRepo.createCourseMas();
+            courseRepo.add(Course.getCount() - 1, course);
         } else {
-            Course[] courses = Arrays.copyOf(courseRepo.getEntityArray(), (courseRepo.size() * 3) / 2 + 1);
-            for (int i = courseRepo.size(); i < courses.length; i++) {
-                courses[i] = course;
-                Course[] courses1 = new Course[Course.getCount()];
-                for (int a = 0; a < courseRepo.size(); a++) {
-                    courses1[a] = courses[a];
-                }
-                courseRepo.addAll(courses1);
-            }
+            Course[] courses1 = Arrays.copyOf(CourseRepo.getCourses(), (courseRepo.size() * 3) / 2 + 1);
+            courseRepo.addAll(courses1);
+            courseRepo.add(Course.getCount() - 1, course);
         }
         for (int i = 0; i < courseRepo.size(); i++) {
             System.out.println("Index " + i + " " + courseRepo.get(i));
