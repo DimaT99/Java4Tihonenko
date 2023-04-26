@@ -1,8 +1,10 @@
 package utils;
 
-import entity.*;
+import entity.Course;
+import entity.Lecture;
+import entity.Student;
+import entity.Teacher;
 import repository.CourseRepo;
-import repository.LectureRepo;
 
 import java.util.Arrays;
 

@@ -1,6 +1,5 @@
 package repository;
 
-import entity.Lecture;
 import entity.Student;
 
 import java.util.Arrays;
