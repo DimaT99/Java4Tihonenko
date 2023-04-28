@@ -27,10 +27,20 @@ public class ConsoleUtils {
                 System.out.println("3. Student");
                 System.out.println("4. Lecture");
                 System.out.println("5. Output of created objects");
-                System.out.println("6. Overridden methods");
+                System.out.println("6. Lecture menu");
                 System.out.println("7. Exit");
 
-                category = scanner.nextInt();
+                try {
+                    category = scanner.nextInt();
+                } catch (Exception e) {
+                    StackTraceElement[] stackTrace = e.getStackTrace();
+                    for (StackTraceElement stackTraceElement : stackTrace) {
+                        System.out.println(stackTraceElement);
+                    }
+                    System.out.println("Incorrect symbol. Choose the right category");
+                    scanner = new Scanner(System.in);
+                    category = scanner.nextInt();
+                }
             } while (category < 1 || category > 7);
             switch (category) {
                 case 1:
@@ -58,8 +68,8 @@ public class ConsoleUtils {
                     outputObject();
                     break;
                 case 6:
-                    System.out.println("Overridden methods");
-                    //overrideMethods();
+                    System.out.println("Lecture menu");
+                    lectionJobs();
                     break;
                 case 7:
                     stop = false;
@@ -153,44 +163,46 @@ public class ConsoleUtils {
         }
     }
 
-    /*public void overrideMethods() {
+    public void lectionJobs() {
 
         int category;
-        final Scanner scanner2 = new Scanner(System.in);
+        LectureUtils lectureUtils = new LectureUtils();
+        Scanner scanner2 = new Scanner(System.in);
         System.out.println("Select the category, please use only numbers from 1 to 4");
         System.out.println("1. Return an array");
         System.out.println("2. Add a new lecture");
         System.out.println("3. Open the selected lecture");
         System.out.println("4. Delete the selected lecture");
-
-        category = scanner2.nextInt();
-
+        try {
+            category = scanner2.nextInt();
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Incorrect symbol. Choose the right category");
+            scanner2 = new Scanner(System.in);
+            category = scanner2.nextInt();
+        }
         switch (category) {
             case 1:
                 System.out.println("Return an array");
-                LectureRepo lectureRepo = new LectureRepo();
-                lectureRepo.getAll();
+                lectureUtils.getAll();
 
                 break;
             case 2:
                 System.out.println("Add a new lecture");
-                LectureRepo lectureRepo1 = new LectureRepo();
-                lectureRepo1.add();
+                lectureUtils.add();
 
                 break;
             case 3:
-                System.out.println("Open the selected lecture");   //select id2
-                LectureRepo lectureRepo2 = new LectureRepo();
-                lectureRepo2.getByld();
+                System.out.println("Open the selected lecture");
+                lectureUtils.getByld(1);
                 break;
             case 4:
                 System.out.println("Delete the selected lecture");   //delete id2
-                LectureRepo lectureRepo3 = new LectureRepo();
-                lectureRepo3.deleteByld();
+                lectureUtils.deleteByld();
                 break;
 
             default:
                 System.out.println("Incorrect symbol");
         }
-    }*/
+    }
 }

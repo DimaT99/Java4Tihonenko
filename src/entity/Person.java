@@ -1,5 +1,9 @@
 package entity;
 
+import exception.ValidationException;
+
+import java.util.regex.Pattern;
+
 public class Person {
     private static int count;
     private int id;
@@ -96,5 +100,65 @@ public class Person {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String validEmail(String email) {
+        try {
+            if (Pattern.matches("\\w+@\\w+\\.\\w+", email)) {
+                System.out.println("email ok");
+                return email;
+            } else {
+                System.out.println("Invalid email, please enter a valid email");
+                throw new ValidationException();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "Wrong email";
+    }
+
+    public String validPhone(String phone) {
+        try {
+            if (Pattern.matches("\\d{10}||\\d{3} \\d{3} \\d{2} \\d{2}||\\d{3} \\d{7}", phone)) {
+                System.out.println("phone ok");
+                return phone;
+            } else {
+                System.out.println("Invalid phone, please enter a valid phone");
+                throw new ValidationException();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "Wrong phone";
+    }
+
+    public String validFirstName(String firstName) {
+        try {
+        if (Pattern.matches("\\D+", firstName)) {
+            System.out.println("First name ok");
+            return firstName;
+        } else {
+            System.out.println("Invalid First name, please enter a valid First name");
+            throw new ValidationException();
+        }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "Wrong First name";
+    }
+
+    public String validLastName(String lastName) {
+            try {
+            if (Pattern.matches("\\D+", lastName)) {
+            System.out.println("Last name ok");
+            return lastName;
+        } else {
+            System.out.println("Invalid Last name, please enter a valid Last name");
+                throw new ValidationException();
+        }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        return "Wrong Last name";
     }
 }

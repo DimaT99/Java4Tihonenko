@@ -1,8 +1,10 @@
 package utils;
 
 import entity.*;
+import exception.EntityNotFoundException;
 import repository.HomeworkRepo;
 import repository.LectureRepo;
+import repository.TeacherRepo;
 
 import java.util.Arrays;
 
@@ -35,9 +37,49 @@ public class LectureUtils {
                 lectureRepo.add(Lecture.getCount() - 1, lecture);
             }
         }
-        lectureRepo.remove(0);
+        //lectureRepo.remove(0);
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
+        }
+    }
+
+    public void getAll() {
+        for (int i = 0; i < lectureRepo.size(); i++) {
+            System.out.println(lectureRepo.get(i));
+        }
+    }
+
+    public void add() {
+        LectureUtils lectureUtils = new LectureUtils();
+        lectureUtils.createLecture();
+    }
+
+    public void getByld(int idLection) {
+        try {
+            if (lectureRepo.get(idLection) != null && idLection < lectureRepo.size()) {
+                System.out.println(lectureRepo.get(idLection));
+                //System.out.println(TeacherRepo.getTeachers()[lectureRepo.get(idLection).getClass()]);
+                System.out.println(TeacherRepo.getTeachers()[idLection - 1]);
+            } else {
+                throw new EntityNotFoundException();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteByld() {
+        Lecture[] lectures1 = new Lecture[lectureRepo.size() - 1];     //delete id2
+        for (int i = 0; i < lectures1.length; i++) {
+            if (i >= 1) {
+                lectures1[i] = (Lecture) lectureRepo.get(i + 1); //[i + 1];
+                continue;
+            }
+            lectures1[i] = (Lecture) lectureRepo.get(i);
+        }
+        lectureRepo.addAll(lectures1);
+        for (int i = 0; i < lectureRepo.size(); i++) {
+            System.out.println(lectureRepo.get(i));
         }
     }
 }
