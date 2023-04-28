@@ -1,6 +1,8 @@
-package entity;
+package repository;
 
-public class AdditionalRepo extends SuperRepo{
+import entity.Additional;
+
+public class AdditionalRepo {
     private static Additional[] additionals;
     public void createAdditionalMas() {
         additionals = new Additional[1];

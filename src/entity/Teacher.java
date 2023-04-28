@@ -1,6 +1,6 @@
 package entity;
 
-public class Teacher extends SchoolSuper {
+public class Teacher {
     private int id;
     private String name;
     private static int count;
@@ -10,8 +10,10 @@ public class Teacher extends SchoolSuper {
         return count;
     }
 
-    public Teacher(int id, String name) {
-        super(id, name);
+    public Teacher(int id, String name, Person person) {
+        this.id = id;
+        this.name = name;
+        this.person = person;
         count++;
     }
 

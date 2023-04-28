@@ -1,47 +1,34 @@
 package entity;
 
-public class Lecture extends SchoolSuper {
+public class Lecture {
     private int courseId;
     private static int count;
     private int id;
     private String name;
     private String description;
     private int personId;
+    private Homework[] homeworks;
 
     public static int getCount() {
         return count;
     }
 
-    public static void setCount(int count) {
-        Lecture.count = count;
-    }
-
-    public Lecture(int id, String name, int courseId, String description, int personId) {
-        super(id, name);
+    public Lecture(int courseId, int id, String name, String description, int personId, Homework[] homeworks) {
         this.courseId = courseId;
+        this.id = id;
+        this.name = name;
         this.description = description;
         this.personId = personId;
+        this.homeworks = homeworks;
         count++;
     }
 
-    @Override
-    public int getId() {
-        return id;
+    public Homework[] getHomeworks() {
+        return homeworks;
     }
 
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
+    public void setHomeworks(Homework[] homeworks) {
+        this.homeworks = homeworks;
     }
 
     public Lecture() {
@@ -76,6 +63,21 @@ public class Lecture extends SchoolSuper {
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     @Override
     public String toString() {
         return "Lecture{" +
@@ -84,6 +86,7 @@ public class Lecture extends SchoolSuper {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", personId=" + personId +
+                ", homeworks=" + homeworks +
                 '}';
     }
 }

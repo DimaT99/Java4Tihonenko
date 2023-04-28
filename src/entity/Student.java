@@ -1,12 +1,13 @@
 package entity;
 
-public class Student extends SchoolSuper {
+public class Student {
     private int id;
     private String name;
     private static int count;
 
     public Student(int id, String name) {
-        super(id, name);
+        this.id = id;
+        this.name = name;
         count++;
     }
 

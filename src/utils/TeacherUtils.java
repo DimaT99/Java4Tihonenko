@@ -1,12 +1,13 @@
 package utils;
 
 import entity.*;
+import repository.TeacherRepo;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class TeacherUtils {
-    Repo<Teacher> teacherRepo = new Repo<>();
+    TeacherRepo teacherRepo = new TeacherRepo();
 
     public void createTeacher() {
 
@@ -24,15 +25,12 @@ public class TeacherUtils {
         teacher.person = person;
 
         if (teacherRepo.isEmpty()) {
-            Teacher[] teachers = new Teacher[Teacher.getCount()];
-            teachers[0] = teacher;
-            teacherRepo.addAll(teachers);
+            teacherRepo.createTeacherMas();
+            teacherRepo.add(Teacher.getCount() - 1, teacher);
         } else {
-            Teacher[] teachers = Arrays.copyOf(teacherRepo.getEntityArray(), (teacherRepo.size() * 3) / 2 + 1);
-            for (int i = teacherRepo.size(); i < teachers.length; i++) {
-                teachers[i] = teacher;
-                teacherRepo.addAll(teachers);
-            }
+            Teacher[] teachers1 = Arrays.copyOf(TeacherRepo.getTeachers(), (teacherRepo.size() * 3) / 2 + 1);
+            teacherRepo.addAll(teachers1);
+            teacherRepo.add(Teacher.getCount() - 1, teacher);
         }
         for (int i = 0; i < teacherRepo.size(); i++) {
             System.out.println("Index " + i + " " + teacherRepo.get(i));

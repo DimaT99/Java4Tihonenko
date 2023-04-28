@@ -1,33 +1,26 @@
 package utils;
 
-import entity.Repo;
 import entity.Student;
-import entity.Teacher;
+import repository.StudentRepo;
 
 import java.util.Arrays;
 
 public class StudentUtils {
-    Repo<Student> studentRepo = new Repo<>();
+    StudentRepo studentRepo = new StudentRepo();
 
     public void createStudent() {
         Student student = new Student();
         student.setId(Student.getCount());
         student.setName("Student" + Student.getCount());
         if (studentRepo.isEmpty()) {
-            Student[] students = new Student[Student.getCount()];
-            students[0] = student;
-            studentRepo.addAll(students);
+            studentRepo.createStudentMas();
+            studentRepo.add(Student.getCount() - 1, student);
         } else {
-            Student[] students = Arrays.copyOf(studentRepo.getEntityArray(), (studentRepo.size() * 3) / 2 + 1);
-            for (int i = studentRepo.size(); i < students.length; i++) {
-                students[i] = student;
-                Student[] students1 = new Student[Student.getCount()];
-                for (int a = 0; a < studentRepo.size(); a++) {
-                    students1[a] = students[a];
-                }
-                studentRepo.addAll(students1);
+            Student[] students1 = Arrays.copyOf(StudentRepo.getStudents(), (studentRepo.size() * 3) / 2 + 1);
+            studentRepo.addAll(students1);
+            studentRepo.add(Student.getCount() - 1, student);
+
             }
-        }
         for (int i = 0; i < studentRepo.size(); i++) {
             System.out.println("Index " + i + " " + studentRepo.get(i));
         }

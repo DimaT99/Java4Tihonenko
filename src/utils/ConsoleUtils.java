@@ -1,6 +1,6 @@
 package utils;
 
-import entity.*;
+import repository.*;
 
 import java.util.Scanner;
 
@@ -86,8 +86,8 @@ public class ConsoleUtils {
         switch (category) {
             case 1:
                 System.out.println("Created objects Course");
-                Repo<Course> courseRepo = new Repo<>();
-                if (courseRepo.getEntityArray() == null) {
+                CourseRepo courseRepo = new CourseRepo();
+                if (courseRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
                     for (int i = 0; i < courseRepo.size(); i++) {
@@ -97,7 +97,7 @@ public class ConsoleUtils {
                 break;
             case 2:
                 System.out.println("Created objects Teacher");
-                Repo<Teacher> teacherRepo = new Repo<>();
+                TeacherRepo teacherRepo = new TeacherRepo();
                 if (teacherRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
@@ -108,7 +108,7 @@ public class ConsoleUtils {
                 break;
             case 3:
                 System.out.println("Created objects Student");
-                Repo<Student> studentRepo = new Repo<>();
+                StudentRepo studentRepo = new StudentRepo();
                 if (studentRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
@@ -119,7 +119,7 @@ public class ConsoleUtils {
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
-                Repo<Lecture> lectureRepo = new Repo<>();
+                LectureRepo lectureRepo = new LectureRepo();
                 if (lectureRepo.isEmpty()) {
                     System.out.println(0);
                 } else {
