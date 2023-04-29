@@ -23,7 +23,7 @@ public class TeacherUtils {
         person.setFirstName(person.validFirstName("First name") + Person.getCount());
         person.setLastName(person.validLastName("Last name") + Person.getCount());
         person.setPhone(person.validPhone("null"));   //"000 000 00 00"
-        person.setEmail(person.validEmail(null)); //"email33@gmail.com"
+        person.setEmail(person.validEmail("email33@gmail.com"));
         teacher.person = person;
 
         if (teacherRepo.isEmpty()) {

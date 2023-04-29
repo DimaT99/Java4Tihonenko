@@ -37,7 +37,7 @@ public class LectureUtils {
                 lectureRepo.add(Lecture.getCount() - 1, lecture);
             }
         }
-        //lectureRepo.remove(0);
+        lectureRepo.remove(0);
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
@@ -58,7 +58,6 @@ public class LectureUtils {
         try {
             if (lectureRepo.get(idLection) != null && idLection < lectureRepo.size()) {
                 System.out.println(lectureRepo.get(idLection));
-                //System.out.println(TeacherRepo.getTeachers()[lectureRepo.get(idLection).getClass()]);
                 System.out.println(TeacherRepo.getTeachers()[idLection - 1]);
             } else {
                 throw new EntityNotFoundException();
@@ -72,7 +71,7 @@ public class LectureUtils {
         Lecture[] lectures1 = new Lecture[lectureRepo.size() - 1];     //delete id2
         for (int i = 0; i < lectures1.length; i++) {
             if (i >= 1) {
-                lectures1[i] = (Lecture) lectureRepo.get(i + 1); //[i + 1];
+                lectures1[i] = (Lecture) lectureRepo.get(i + 1);
                 continue;
             }
             lectures1[i] = (Lecture) lectureRepo.get(i);

@@ -62,4 +62,9 @@ public class HomeworkRepo implements Repo {
             System.out.println("This index does not exist");
         }
     }
+
+    @Override
+    public void findAll() {
+        return;
+    }
 }

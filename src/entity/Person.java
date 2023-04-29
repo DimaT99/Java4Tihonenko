@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Person {
     private static int count;
-    private int id;
+    private Integer id;
     private int courseId;
     private EnumRole enumRole;
     private String firstName;

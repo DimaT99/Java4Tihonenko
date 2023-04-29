@@ -62,4 +62,15 @@ public class CourseRepo implements Repo {
             System.out.println("This index does not exist");
         }
     }
+
+    @Override
+    public void findAll() {
+        SimpleIterator simpleIterator = new SimpleIterator(getCourses());
+        Course course;
+        while (simpleIterator.hasNext()) {
+            course = (Course) simpleIterator.next();
+            System.out.println(course);
+        }
+        return;
+    }
 }

@@ -62,4 +62,15 @@ public class StudentRepo implements Repo {
             System.out.println("This index does not exist");
         }
     }
+
+    @Override
+    public void findAll() {
+        SimpleIterator simpleIterator = new SimpleIterator(getStudents());
+        Student student;
+        while (simpleIterator.hasNext()) {
+            student = (Student) simpleIterator.next();
+            System.out.println(student);
+        }
+        return;
+    }
 }

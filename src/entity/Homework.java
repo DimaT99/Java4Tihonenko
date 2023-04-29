@@ -1,7 +1,7 @@
 package entity;
 
 public class Homework {
-    private int id;
+    private Integer id;
     private int lectureId;
     private String task;
     private static int count;

@@ -14,5 +14,5 @@ public interface Repo<E> {
     void add(int index, E element);
 
     void remove(int index);
-
+    void findAll();
 }

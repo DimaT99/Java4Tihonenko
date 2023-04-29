@@ -97,46 +97,22 @@ public class ConsoleUtils {
             case 1:
                 System.out.println("Created objects Course");
                 CourseRepo courseRepo = new CourseRepo();
-                if (courseRepo.isEmpty()) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < courseRepo.size(); i++) {
-                        System.out.println(courseRepo.get(i));
-                    }
-                }
+                courseRepo.findAll();
                 break;
             case 2:
                 System.out.println("Created objects Teacher");
                 TeacherRepo teacherRepo = new TeacherRepo();
-                if (teacherRepo.isEmpty()) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < teacherRepo.size(); i++) {
-                        System.out.println(teacherRepo.get(i));
-                    }
-                }
+                teacherRepo.findAll();
                 break;
             case 3:
                 System.out.println("Created objects Student");
                 StudentRepo studentRepo = new StudentRepo();
-                if (studentRepo.isEmpty()) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < studentRepo.size(); i++) {
-                        System.out.println(studentRepo.get(i));
-                    }
-                }
+                studentRepo.findAll();
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
                 LectureRepo lectureRepo = new LectureRepo();
-                if (lectureRepo.isEmpty()) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < lectureRepo.size(); i++) {
-                        System.out.println(lectureRepo.get(i));
-                    }
-                }
+                lectureRepo.findAll();
                 break;
             case 5:
                 System.out.println("Created objects Homework");
