@@ -2,27 +2,21 @@ package repository;
 
 import entity.Lecture;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LectureRepo implements Repo {
-    private static Lecture[] lectures;
-
-    public static Lecture[] getLectures() {
-        return lectures;
-    }
-
-    public void createLectureMas() {
-        lectures = new Lecture[Lecture.getCount()];
-    }
+    final private static List<Lecture> lectureArrayList = new ArrayList<>();
+    //private static Lecture[] lectures;
 
     @Override
     public int size() {
-        return lectures.length;
+        return lectureArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (lectures == null) {
+        if (lectureArrayList == null) {
             return true;
         }
         return false;
@@ -30,47 +24,33 @@ public class LectureRepo implements Repo {
 
     @Override
     public Object get(int index) {
-        return lectures[index];
-    }
-
-    @Override
-    public void addAll(Object[] element) {
-        lectures = (Lecture[]) element;
+        return lectureArrayList.get(index);
     }
 
     @Override
     public void add(Object element) {
-        if (isEmpty()) {
-            return;
-        } else {
-            Lecture[] lectures1 = Arrays.copyOf(lectures, (size() * 3) / 2 + 1);
-            lectures1[size()] = (Lecture) element;
-            lectures = lectures1;
-        }
+        lectureArrayList.add((Lecture) element);
     }
 
     @Override
     public void add(int index, Object element) {
-        lectures[index] = (Lecture) element;
+        lectureArrayList.set(index, (Lecture) element);
     }
 
     @Override
     public void remove(int index) {
-        if (index < lectures.length) {
-            lectures[index] = null;
-        } else {
-            System.out.println("This index does not exist");
-        }
+        lectureArrayList.remove(lectureArrayList.get(index));
     }
 
     @Override
     public void findAll() {
-        SimpleIterator simpleIterator = new SimpleIterator(getLectures());
+        SimpleIterator simpleIterator = new SimpleIterator(lectureArrayList.toArray());
         Lecture lecture;
         while (simpleIterator.hasNext()) {
             lecture = (Lecture) simpleIterator.next();
             System.out.println(lecture);
         }
+        System.out.println("No lecture");
         return;
     }
 }

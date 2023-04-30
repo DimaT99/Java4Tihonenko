@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 public class Lecture {
     private int courseId;
     private static int count;
@@ -7,28 +9,32 @@ public class Lecture {
     private String name;
     private String description;
     private int personId;
-    private Homework[] homeworks;
+    private List<Homework> homeworkList;
+
+    public List<Homework> getHomeworkList() {
+        return homeworkList;
+    }
+
+    public void setHomeworkList(List<Homework> homeworkList) {
+        this.homeworkList = homeworkList;
+    }
 
     public static int getCount() {
         return count;
     }
 
-    public Lecture(int courseId, int id, String name, String description, int personId, Homework[] homeworks) {
+    public Lecture(int courseId, Integer id, String name, String description, int personId, List<Homework> homeworkList) {
         this.courseId = courseId;
         this.id = id;
         this.name = name;
         this.description = description;
         this.personId = personId;
-        this.homeworks = homeworks;
+        this.homeworkList = homeworkList;
         count++;
     }
 
-    public Homework[] getHomeworks() {
-        return homeworks;
-    }
-
-    public void setHomeworks(Homework[] homeworks) {
-        this.homeworks = homeworks;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Lecture() {
@@ -67,10 +73,6 @@ public class Lecture {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -86,7 +88,7 @@ public class Lecture {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", personId=" + personId +
-                ", homeworks=" + homeworks +
+                ", homeworkList=" + homeworkList +
                 '}';
     }
 }

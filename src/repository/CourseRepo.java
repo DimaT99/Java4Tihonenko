@@ -2,27 +2,20 @@ package repository;
 
 import entity.Course;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseRepo implements Repo {
-    private static Course[] courses;
-
-    public static Course[] getCourses() {
-        return courses;
-    }
-
-    public void createCourseMas() {
-        courses = new Course[Course.getCount()];
-    }
+    final private static List<Course> courseArrayList = new ArrayList<>();
 
     @Override
     public int size() {
-        return courses.length;
+        return courseArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (courses == null) {
+        if (courseArrayList == null) {
             return true;
         }
         return false;
@@ -30,47 +23,33 @@ public class CourseRepo implements Repo {
 
     @Override
     public Object get(int index) {
-        return courses[index];
-    }
-
-    @Override
-    public void addAll(Object[] element) {
-        courses = (Course[]) element;
+        return courseArrayList.get(index);
     }
 
     @Override
     public void add(Object element) {
-        if (isEmpty()) {
-            return;
-        } else {
-            Course[] courses1 = Arrays.copyOf(courses, (size() * 3) / 2 + 1);
-            courses1[size()] = (Course) element;
-            courses = courses1;
-        }
+        courseArrayList.add((Course) element);
     }
 
     @Override
     public void add(int index, Object element) {
-        courses[index] = (Course) element;
+        courseArrayList.set(index, (Course) element);
     }
 
     @Override
     public void remove(int index) {
-        if (index < courses.length) {
-            courses[index] = null;
-        } else {
-            System.out.println("This index does not exist");
-        }
+        courseArrayList.remove(courseArrayList.get(index));
     }
 
     @Override
     public void findAll() {
-        SimpleIterator simpleIterator = new SimpleIterator(getCourses());
+        SimpleIterator simpleIterator = new SimpleIterator(courseArrayList.toArray());
         Course course;
         while (simpleIterator.hasNext()) {
             course = (Course) simpleIterator.next();
             System.out.println(course);
         }
+        System.out.println("No course");
         return;
     }
 }

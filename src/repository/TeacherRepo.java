@@ -2,75 +2,57 @@ package repository;
 
 import entity.Teacher;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public class TeacherRepo implements Repo {
-    private static Teacher[] teachers;
+public class TeacherRepo implements Repo{
+    final private static List<Teacher> teacherArrayList = new ArrayList<>();
 
-    public static Teacher[] getTeachers() {
-        return teachers;
-    }
+    //private static Teacher[] teachers;
 
-    public void createTeacherMas() {
-        teachers = new Teacher[Teacher.getCount()];
-    }
 
-    @Override
     public int size() {
-        return teachers.length;
+        return teacherArrayList.size();
+    }
+
+    public Teacher get(int index) {
+        return teacherArrayList.get(index);
     }
 
     @Override
+    public void add(Object element) {
+        teacherArrayList.add((Teacher) element);
+    }
+
+    @Override
+    public void add(int index, Object element) {
+        teacherArrayList.set(index, (Teacher) element);
+    }
+
+    @Override
+    public void remove(int index) {
+        teacherArrayList.remove(teacherArrayList.get(index));
+    }
+
     public boolean isEmpty() {
-        if (teachers == null) {
+        if (teacherArrayList.isEmpty()) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public Teacher get(int index) {
-        return teachers[index];
+    public void remove(Teacher teacher) {
+        teacherArrayList.remove(teacher);
     }
 
-    @Override
-    public void addAll(Object[] element) {
-        teachers = (Teacher[]) element;
-    }
-
-    @Override
-    public void add(Object element) {
-        if (isEmpty()) {
-            return;
-        } else {
-            Teacher[] teachers1 = Arrays.copyOf(teachers, (size() * 3) / 2 + 1);
-            teachers1[size()] = (Teacher) element;
-            teachers = teachers1;
-        }
-    }
-
-    @Override
-    public void add(int index, Object element) {
-        teachers[index] = (Teacher) element;
-    }
-
-    @Override
-    public void remove(int index) {
-        if (index < teachers.length) {
-            teachers[index] = null;
-        } else {
-            System.out.println("This index does not exist");
-        }
-    }
-
-    @Override
     public void findAll() {
-        SimpleIterator simpleIterator = new SimpleIterator(getTeachers());
+        SimpleIterator simpleIterator = new SimpleIterator(teacherArrayList.toArray());
         Teacher teacher;
         while (simpleIterator.hasNext()) {
             teacher = (Teacher) simpleIterator.next();
             System.out.println(teacher);
         }
+        System.out.println("No teacher");
         return;
     }
 }

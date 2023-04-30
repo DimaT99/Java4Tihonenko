@@ -7,8 +7,6 @@ public interface Repo<E> {
 
     E get(int index);
 
-    void addAll(E[] element);
-
     void add(E element);
 
     void add(int index, E element);
