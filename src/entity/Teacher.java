@@ -1,10 +1,18 @@
 package entity;
 
-public class Teacher {
+public class Teacher implements Comparable<Teacher> {
     private Integer id;
     private String name;
     private static int count;
-    public Person person;
+    private Person person;
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
 
     public static int getCount() {
         return count;
@@ -44,5 +52,10 @@ public class Teacher {
                 ", name='" + name + '\'' +
                 ", person=" + person +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Teacher o) {
+        return this.getPerson().getLastName().compareTo(o.getPerson().getLastName());
     }
 }

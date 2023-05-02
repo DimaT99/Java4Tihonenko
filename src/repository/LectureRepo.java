@@ -50,7 +50,7 @@ public class LectureRepo implements Repo {
             lecture = (Lecture) simpleIterator.next();
             System.out.println(lecture);
         }
-        System.out.println("No lecture");
+        System.out.println("All lecture");
         return;
     }
 }

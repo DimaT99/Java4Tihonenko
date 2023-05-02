@@ -1,20 +1,13 @@
 package utils;
 
+import entity.Additional;
 import repository.*;
 
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class ConsoleUtils {
     public void ScannerWithSwitch() {
-
-        CourseUtils courseUtils1 = new CourseUtils();
-        courseUtils1.createCourse();
-
-        TeacherUtils teacherUtils1 = new TeacherUtils();
-        teacherUtils1.createTeacher();
-
-        LectureUtils lectureUtils1 = new LectureUtils();
-        lectureUtils1.createLecture();
 
         Scanner scanner = new Scanner(System.in);
         int category;
@@ -39,10 +32,13 @@ public class ConsoleUtils {
                         System.out.println(stackTraceElement);
                     }
                     System.out.println("Incorrect symbol. Choose the right category");
-                    scanner = new Scanner(System.in);
-                    category = scanner.nextInt();
+                    /*scanner = new Scanner(System.in);
+                    category = scanner.nextInt();*/
+                    ScannerWithSwitch();
+                    return;
                 }
-            } while (category < 1 || category > 8);
+            }
+            while (category < 1 || category > 8);
             switch (category) {
                 case 1:
                     System.out.println("Category Course");
@@ -66,8 +62,63 @@ public class ConsoleUtils {
                     break;
                 case 5:
                     System.out.println("Category Additional materials");
-                    AdditionalUtils additionalUtils = new AdditionalUtils();
-                    additionalUtils.createAdditional();
+
+                    int category1;
+                    do {
+                        Scanner scanner1 = new Scanner(System.in);
+                        System.out.println("Select a category to work with Additional materials, please use only numbers from 1 to 4");
+                        System.out.println("1. Created objects Additional materials");
+                        System.out.println("2. Sort by id");
+                        System.out.println("3. Sort by lecture");
+                        System.out.println("4. Sort by resource type");
+                        try {
+                            category1 = scanner1.nextInt();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("Incorrect symbol. Choose the right category");
+                            ScannerWithSwitch();
+                            return;
+                                /*scanner1 = new Scanner(System.in);
+                                category1 = scanner1.nextInt();*/
+                        }
+                    } while (category1 < 1 || category1 > 4);
+                    AdditionalRepo additionalRepo = new AdditionalRepo();
+                    switch (category1) {
+                        case 1:
+                            System.out.println("Created objects Additional materials");
+                            AdditionalUtils additionalUtils = new AdditionalUtils();
+                            additionalUtils.createAdditional();
+                            break;
+                        case 2:
+                            System.out.println("Sorted from id");
+                            AdditionalRepo.getAdditionals().sort(null);
+                            additionalRepo.findAll();
+                            break;
+                        case 3:
+                            System.out.println("Sort by lecture");
+                            Comparator<Additional> comparator = new Comparator<Additional>() {
+                                @Override
+                                public int compare(Additional o1, Additional o2) {
+                                    return o1.getLectureId() - o2.getLectureId();
+                                }
+                            };
+                            AdditionalRepo.getAdditionals().sort(comparator);
+                            additionalRepo.findAll();
+                            break;
+                        case 4:
+                            System.out.println("Sort by resource type");
+                            Comparator<Additional> comparator1 = new Comparator<Additional>() {
+                                @Override
+                                public int compare(Additional o1, Additional o2) {
+                                    return o1.getResourceType().compareTo(o2.getResourceType());
+                                }
+                            };
+                            AdditionalRepo.getAdditionals().sort(comparator1);
+                            additionalRepo.findAll();
+                            break;
+                        default:
+                            System.out.println("No such category exist");
+                    }
                     break;
                 case 6:
                     System.out.println("Output of created objects");

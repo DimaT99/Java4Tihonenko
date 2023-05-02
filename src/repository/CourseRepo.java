@@ -49,7 +49,7 @@ public class CourseRepo implements Repo {
             course = (Course) simpleIterator.next();
             System.out.println(course);
         }
-        System.out.println("No course");
+        System.out.println("All course");
         return;
     }
 }

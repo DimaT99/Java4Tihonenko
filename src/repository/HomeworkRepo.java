@@ -55,7 +55,7 @@ public class HomeworkRepo implements Repo {
             homework = (Homework) simpleIterator.next();
             System.out.println(homework);
         }
-        System.out.println("No homework");
+        System.out.println("All homework");
         return;
     }
 }
