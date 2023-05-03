@@ -52,7 +52,7 @@ public class TeacherRepo implements Repo{
             teacher = (Teacher) simpleIterator.next();
             System.out.println(teacher);
         }
-        System.out.println("No teacher");
+        System.out.println("All teacher");
         return;
     }
 }

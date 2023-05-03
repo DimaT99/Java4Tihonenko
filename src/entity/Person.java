@@ -134,13 +134,13 @@ public class Person {
 
     public String validFirstName(String firstName) {
         try {
-        if (Pattern.matches("\\D+", firstName)) {
-            System.out.println("First name ok");
-            return firstName;
-        } else {
-            System.out.println("Invalid First name, please enter a valid First name");
-            throw new ValidationException();
-        }
+            if (Pattern.matches("\\D+", firstName)) {
+                System.out.println("First name ok");
+                return firstName;
+            } else {
+                System.out.println("Invalid First name, please enter a valid First name");
+                throw new ValidationException();
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -148,17 +148,17 @@ public class Person {
     }
 
     public String validLastName(String lastName) {
-            try {
+        try {
             if (Pattern.matches("\\D+", lastName)) {
-            System.out.println("Last name ok");
-            return lastName;
-        } else {
-            System.out.println("Invalid Last name, please enter a valid Last name");
+                System.out.println("Last name ok");
+                return lastName;
+            } else {
+                System.out.println("Invalid Last name, please enter a valid Last name");
                 throw new ValidationException();
-        }
-            } catch (Exception e) {
-                System.out.println(e);
             }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return "Wrong Last name";
     }
 }

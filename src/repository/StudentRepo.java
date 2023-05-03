@@ -50,7 +50,7 @@ public class StudentRepo implements Repo {
             student = (Student) simpleIterator.next();
             System.out.println(student);
         }
-        System.out.println("No student");
+        System.out.println("All student");
         return;
     }
 }

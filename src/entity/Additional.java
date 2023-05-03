@@ -1,6 +1,8 @@
 package entity;
 
-public class Additional {
+import java.util.Objects;
+
+public class Additional implements Comparable<Additional> {
     private static int count;
     private Integer id;
     private String name;
@@ -63,5 +65,23 @@ public class Additional {
                 ", lectureId=" + lectureId +
                 ", resourceType=" + resourceType +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Additional o) {
+        return this.id.compareTo(o.id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Additional that = (Additional) o;
+        return lectureId == that.lectureId && Objects.equals(id, that.id) && Objects.equals(name, that.name) && resourceType == that.resourceType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lectureId, resourceType);
     }
 }

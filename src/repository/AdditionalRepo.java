@@ -9,6 +9,10 @@ public class AdditionalRepo implements Repo {
     final private static List<Additional> additionalArrayList = new ArrayList<>();
     private static Additional[] additionals;
 
+    public static List<Additional> getAdditionals() {
+        return additionalArrayList;
+    }
+
     @Override
     public int size() {
         return additionalArrayList.size();
@@ -50,7 +54,7 @@ public class AdditionalRepo implements Repo {
             additional = (Additional) simpleIterator.next();
             System.out.println(additional);
         }
-        System.out.println("No additional materials");
+        System.out.println("All additional materials");
         return;
     }
 }
