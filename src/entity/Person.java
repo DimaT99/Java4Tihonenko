@@ -25,6 +25,10 @@ public class Person {
         count++;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Person() {
         count++;
     }
@@ -35,10 +39,6 @@ public class Person {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCourseId() {

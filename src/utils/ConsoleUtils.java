@@ -26,9 +26,10 @@ public class ConsoleUtils {
                 System.out.println("2. Teacher");
                 System.out.println("3. Student");
                 System.out.println("4. Lecture");
-                System.out.println("5. Output of created objects");
-                System.out.println("6. Lecture menu");
-                System.out.println("7. Exit");
+                System.out.println("5. Additional materials");
+                System.out.println("6. Output of created objects");
+                System.out.println("7. Lecture menu");
+                System.out.println("8. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -41,7 +42,7 @@ public class ConsoleUtils {
                     scanner = new Scanner(System.in);
                     category = scanner.nextInt();
                 }
-            } while (category < 1 || category > 7);
+            } while (category < 1 || category > 8);
             switch (category) {
                 case 1:
                     System.out.println("Category Course");
@@ -64,14 +65,19 @@ public class ConsoleUtils {
                     lectureUtils.createLecture();
                     break;
                 case 5:
+                    System.out.println("Category Additional materials");
+                    AdditionalUtils additionalUtils = new AdditionalUtils();
+                    additionalUtils.createAdditional();
+                    break;
+                case 6:
                     System.out.println("Output of created objects");
                     outputObject();
                     break;
-                case 6:
+                case 7:
                     System.out.println("Lecture menu");
                     lectionJobs();
                     break;
-                case 7:
+                case 8:
                     stop = false;
                     break;
                 default:
@@ -116,27 +122,18 @@ public class ConsoleUtils {
                 break;
             case 5:
                 System.out.println("Created objects Homework");
-                if (HomeworkRepo.getHomeworks() == null) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < HomeworkRepo.getHomeworks().length; i++) {
-                        System.out.println(HomeworkRepo.getHomeworks()[i].getId());
-                    }
-                }
+                HomeworkRepo homeworkRepo = new HomeworkRepo();
+                homeworkRepo.findAll();
                 break;
             case 6:
                 System.out.println("Created objects Additional");
-                if (AdditionalRepo.getAdditionals() == null) {
-                    System.out.println(0);
-                } else {
-                    for (int i = 0; i < AdditionalRepo.getAdditionals().length; i++) {
-                        System.out.println(AdditionalRepo.getAdditionals()[i].getId());
-                    }
-                }
+                AdditionalRepo additionalRepo = new AdditionalRepo();
+                additionalRepo.findAll();
                 break;
             default:
                 System.out.println("Incorrect symbol");
         }
+
     }
 
     public void lectionJobs() {

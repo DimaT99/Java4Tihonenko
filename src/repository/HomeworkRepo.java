@@ -2,27 +2,26 @@ package repository;
 
 import entity.Homework;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeworkRepo implements Repo {
-    private static Homework[] homeworks;
+    final private static List<Homework> homeworkArrayList = new ArrayList<>();
 
-    public void createHomeworkMas() {
-        homeworks = new Homework[Homework.getCount()];
+    public static List<Homework> getHomeworkArrayList() {
+        return homeworkArrayList;
     }
 
-    public static Homework[] getHomeworks() {
-        return homeworks;
-    }
+    //private static Homework[] homeworks;
 
     @Override
     public int size() {
-        return homeworks.length;
+        return homeworkArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (homeworks == null) {
+        if (homeworkArrayList == null) {
             return true;
         }
         return false;
@@ -30,41 +29,33 @@ public class HomeworkRepo implements Repo {
 
     @Override
     public Object get(int index) {
-        return homeworks[index];
-    }
-
-    @Override
-    public void addAll(Object[] element) {
-        homeworks = (Homework[]) element;
+        return homeworkArrayList.get(index);
     }
 
     @Override
     public void add(Object element) {
-        if (isEmpty()) {
-            return;
-        } else {
-            Homework[] homeworks1 = Arrays.copyOf(homeworks, (size() * 3) / 2 + 1);
-            homeworks1[size()] = (Homework) element;
-            homeworks = homeworks1;
-        }
+        homeworkArrayList.add((Homework) element);
     }
 
     @Override
     public void add(int index, Object element) {
-        homeworks[index] = (Homework) element;
+        homeworkArrayList.set(index, (Homework) element);
     }
 
     @Override
     public void remove(int index) {
-        if (index < homeworks.length) {
-            homeworks[index] = null;
-        } else {
-            System.out.println("This index does not exist");
-        }
+        homeworkArrayList.remove(homeworkArrayList.get(index));
     }
 
     @Override
     public void findAll() {
+        SimpleIterator simpleIterator = new SimpleIterator(homeworkArrayList.toArray());
+        Homework homework;
+        while (simpleIterator.hasNext()) {
+            homework = (Homework) simpleIterator.next();
+            System.out.println(homework);
+        }
+        System.out.println("No homework");
         return;
     }
 }

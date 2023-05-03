@@ -2,27 +2,21 @@ package repository;
 
 import entity.Student;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentRepo implements Repo {
-    private static Student[] students;
-
-    public static Student[] getStudents() {
-        return students;
-    }
-
-    public void createStudentMas() {
-        students = new Student[Student.getCount()];
-    }
+    final private static List<Student> studentArrayList = new ArrayList<>();
+    //private static Student[] students;
 
     @Override
     public int size() {
-        return students.length;
+        return studentArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (students == null) {
+        if (studentArrayList == null) {
             return true;
         }
         return false;
@@ -30,47 +24,33 @@ public class StudentRepo implements Repo {
 
     @Override
     public Object get(int index) {
-        return students[index];
-    }
-
-    @Override
-    public void addAll(Object[] element) {
-        students = (Student[]) element;
+        return studentArrayList.get(index);
     }
 
     @Override
     public void add(Object element) {
-        if (isEmpty()) {
-            return;
-        } else {
-            Student[] students1 = Arrays.copyOf(students, (size() * 3) / 2 + 1);
-            students1[size()] = (Student) element;
-            students = students1;
-        }
+        studentArrayList.add((Student) element);
     }
 
     @Override
     public void add(int index, Object element) {
-        students[index] = (Student) element;
+        studentArrayList.set(index, (Student) element);
     }
 
     @Override
     public void remove(int index) {
-        if (index < students.length) {
-            students[index] = null;
-        } else {
-            System.out.println("This index does not exist");
-        }
+        studentArrayList.remove(studentArrayList.get(index));
     }
 
     @Override
     public void findAll() {
-        SimpleIterator simpleIterator = new SimpleIterator(getStudents());
+        SimpleIterator simpleIterator = new SimpleIterator(studentArrayList.toArray());
         Student student;
         while (simpleIterator.hasNext()) {
             student = (Student) simpleIterator.next();
             System.out.println(student);
         }
+        System.out.println("No student");
         return;
     }
 }

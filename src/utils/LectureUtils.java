@@ -4,9 +4,6 @@ import entity.*;
 import exception.EntityNotFoundException;
 import repository.HomeworkRepo;
 import repository.LectureRepo;
-import repository.TeacherRepo;
-
-import java.util.Arrays;
 
 public class LectureUtils {
     Homework homework;
@@ -27,17 +24,11 @@ public class LectureUtils {
             lecture.setDescription("Description" + Lecture.getCount());
             HomeworkUtils homeworkUtils = new HomeworkUtils();
             homeworkUtils.createHomework();
-            lecture.setHomeworks(HomeworkRepo.getHomeworks());
-            if (lectureRepo.isEmpty()) {
-                lectureRepo.createLectureMas();
-                lectureRepo.add(Teacher.getCount() - 1, lecture);
-            } else {
-                Lecture[] lectures1 = Arrays.copyOf(LectureRepo.getLectures(), (lectureRepo.size() * 3) / 2 + 1);
-                lectureRepo.addAll(lectures1);
-                lectureRepo.add(Lecture.getCount() - 1, lecture);
-            }
+            lecture.setHomeworkList(HomeworkRepo.getHomeworkArrayList());
+
+                lectureRepo.add(lecture);
         }
-        lectureRepo.remove(0);
+        //lectureRepo.remove(0);
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
@@ -58,7 +49,7 @@ public class LectureUtils {
         try {
             if (lectureRepo.get(idLection) != null && idLection < lectureRepo.size()) {
                 System.out.println(lectureRepo.get(idLection));
-                System.out.println(TeacherRepo.getTeachers()[idLection - 1]);
+                //System.out.println(TeacherRepo.getTeachers()[idLection - 1]);
             } else {
                 throw new EntityNotFoundException();
             }
@@ -76,9 +67,8 @@ public class LectureUtils {
             }
             lectures1[i] = (Lecture) lectureRepo.get(i);
         }
-        lectureRepo.addAll(lectures1);
-        for (int i = 0; i < lectureRepo.size(); i++) {
-            System.out.println(lectureRepo.get(i));
+        for (int i = 0; i < lectures1.length; i++) {
+            System.out.println(lectures1[i]);
         }
     }
 }
