@@ -14,6 +14,7 @@ public class TeacherRepo implements Repo {
     public void createTeacherMas() {
         teachers = new Teacher[Teacher.getCount()];
     }
+
     @Override
     public int size() {
         return teachers.length;
@@ -60,5 +61,16 @@ public class TeacherRepo implements Repo {
         } else {
             System.out.println("This index does not exist");
         }
+    }
+
+    @Override
+    public void findAll() {
+        SimpleIterator simpleIterator = new SimpleIterator(getTeachers());
+        Teacher teacher;
+        while (simpleIterator.hasNext()) {
+            teacher = (Teacher) simpleIterator.next();
+            System.out.println(teacher);
+        }
+        return;
     }
 }

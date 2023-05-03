@@ -3,7 +3,7 @@ package entity;
 public class Lecture {
     private int courseId;
     private static int count;
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private int personId;

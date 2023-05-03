@@ -1,7 +1,7 @@
 package entity;
 
 public class Additional {
-    private int id;
+    private Integer id;
 
     public Additional() {
     }
