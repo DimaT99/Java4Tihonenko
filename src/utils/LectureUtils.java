@@ -24,11 +24,12 @@ public class LectureUtils {
             lecture.setDescription("Description" + Lecture.getCount());
             HomeworkUtils homeworkUtils = new HomeworkUtils();
             homeworkUtils.createHomework();
+            AdditionalUtils additionalUtils = new AdditionalUtils();
+            additionalUtils.createAdditional();
             lecture.setHomeworkList(HomeworkRepo.getHomeworkArrayList());
 
                 lectureRepo.add(lecture);
         }
-        //lectureRepo.remove(0);
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
@@ -45,11 +46,10 @@ public class LectureUtils {
         lectureUtils.createLecture();
     }
 
-    public void getByld(int idLection) {
+    public void getByld(int idLecture) {
         try {
-            if (lectureRepo.get(idLection) != null && idLection < lectureRepo.size()) {
-                System.out.println(lectureRepo.get(idLection));
-                //System.out.println(TeacherRepo.getTeachers()[idLection - 1]);
+            if (lectureRepo.get(idLecture) != null && idLecture < lectureRepo.size()) {
+                System.out.println(lectureRepo.get(idLecture - 1));
             } else {
                 throw new EntityNotFoundException();
             }
@@ -58,10 +58,10 @@ public class LectureUtils {
         }
     }
 
-    public void deleteByld() {
-        Lecture[] lectures1 = new Lecture[lectureRepo.size() - 1];     //delete id2
+    public void deleteByld(int idLecture) {
+        Lecture[] lectures1 = new Lecture[lectureRepo.size() - 1];
         for (int i = 0; i < lectures1.length; i++) {
-            if (i >= 1) {
+            if (i >= idLecture - 1) {
                 lectures1[i] = (Lecture) lectureRepo.get(i + 1);
                 continue;
             }

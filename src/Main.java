@@ -1,3 +1,5 @@
+import repository.AdditionalRepo;
+import repository.HomeworkRepo;
 import utils.ConsoleUtils;
 import utils.CourseUtils;
 import utils.LectureUtils;
@@ -14,7 +16,7 @@ public class Main {
 
         LectureUtils lectureUtils1 = new LectureUtils();
         lectureUtils1.createLecture();
-
+        //System.out.println(HomeworkRepo.getHomeworksMap());
         ConsoleUtils consoleUtils = new ConsoleUtils();
         consoleUtils.ScannerWithSwitch();
 
