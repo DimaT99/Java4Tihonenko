@@ -14,6 +14,7 @@ public class HomeworkUtils {
         homework.setTask("Task" + Homework.getCount());
 
             homeworkRepo.add(homework);
+            homeworkRepo.addMap(homework);
 
         for (int i = 0; i < homeworkRepo.size(); i++) {
             //System.out.println("Index " + i + " " + homeworkRepo.get(i));

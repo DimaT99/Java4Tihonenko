@@ -1,18 +1,30 @@
 package repository;
 
 import entity.Additional;
+import entity.Homework;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdditionalRepo implements Repo {
-    final private static List<Additional> additionalArrayList = new ArrayList<>();
-    private static Additional[] additionals;
+    private static List<Additional> additionalArrayList = new ArrayList<>();
+    private static Map<Integer, ArrayList<Additional>> additionalMap = new HashMap<>();
 
-    public static List<Additional> getAdditionals() {
+    public static List<Additional> getAdditionalArrayList() {
         return additionalArrayList;
     }
 
+    public static Map<Integer, ArrayList<Additional>> getAdditionalMap() {
+        return additionalMap;
+    }
+    public void addMap(Additional additional) {
+        if (additionalMap.get(additional.getLectureId()) == null) {
+            additionalMap.put(additional.getLectureId(), new ArrayList<Additional>());
+        }
+        additionalMap.get(additional.getLectureId()).add(additional);
+    }
     @Override
     public int size() {
         return additionalArrayList.size();

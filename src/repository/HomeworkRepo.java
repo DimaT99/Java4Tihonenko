@@ -3,17 +3,31 @@ package repository;
 import entity.Homework;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeworkRepo implements Repo {
-    final private static List<Homework> homeworkArrayList = new ArrayList<>();
+    private static List<Homework> homeworkArrayList = new ArrayList<>();
+    private static Map<Integer, List<Homework>> homeworkMap = new HashMap<>();
+
+    public static Map<Integer, List<Homework>> getHomeworkMap() {
+        return homeworkMap;
+    }
+
+    public static void setHomeworkMap(Map<Integer, List<Homework>> homeworkMap) {
+        HomeworkRepo.homeworkMap = homeworkMap;
+    }
 
     public static List<Homework> getHomeworkArrayList() {
         return homeworkArrayList;
     }
-
-    //private static Homework[] homeworks;
-
+    public void addMap(Homework homework) {
+        if (homeworkMap.get(homework.getLectureId()) == null) {
+            homeworkMap.put(homework.getLectureId(), new ArrayList<Homework>());
+        }
+        homeworkMap.get(homework.getLectureId()).add(homework);
+    }
     @Override
     public int size() {
         return homeworkArrayList.size();

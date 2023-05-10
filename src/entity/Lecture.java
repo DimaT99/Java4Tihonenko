@@ -10,7 +10,6 @@ public class Lecture {
     private String description;
     private int personId;
     private List<Homework> homeworkList;
-
     public List<Homework> getHomeworkList() {
         return homeworkList;
     }
@@ -80,6 +79,7 @@ public class Lecture {
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return "Lecture{" +
