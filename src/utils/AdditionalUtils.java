@@ -17,9 +17,5 @@ public class AdditionalUtils {
 
         additionalRepo.add(additional);
         additionalRepo.addMap(additional);
-
-        for (int i = 0; i < additionalRepo.size(); i++) {
-            System.out.println("Index " + i + " " + additionalRepo.get(i));
-        }
     }
 }

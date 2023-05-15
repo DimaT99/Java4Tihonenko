@@ -2,9 +2,10 @@ package utils;
 
 import entity.Additional;
 import entity.Homework;
-import entity.Lecture;
 import entity.ResourceType;
 import repository.*;
+import workLog.LogService;
+import workLog.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,8 +13,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUtils {
-    public void ScannerWithSwitch() {
+    LogUtils logUtils = new LogUtils();
 
+
+    public void ScannerWithSwitch() {
+        LogUtils.className = ConsoleUtils.class;
         Scanner scanner = new Scanner(System.in);
         int category = 0;
         boolean stop = true;
@@ -27,18 +31,23 @@ public class ConsoleUtils {
                 System.out.println("5. Additional materials");
                 System.out.println("6. Output of created objects");
                 System.out.println("7. Lecture menu");
-                System.out.println("8. Exit");
+                System.out.println("8. View to Log");
+                System.out.println("9. Exit");
 
                 try {
                     category = scanner.nextInt();
                 } catch (Exception e) {
-                    StackTraceElement[] stackTrace = e.getStackTrace();
+                    /*StackTraceElement[] stackTrace = e.getStackTrace();
                     for (StackTraceElement stackTraceElement : stackTrace) {
-                        System.out.println(stackTraceElement);
-                    }
+                        System.out.println(stackTraceElement);}*/
+
+                    logUtils.error("Incorrect symbol", e.getStackTrace());
                     System.out.println("Incorrect symbol. Choose the right category");
+                    ScannerWithSwitch();
+                    return;
                 }
-            } while (category < 1 || category > 8);
+            } while (category < 1 || category > 9);
+            logUtils.debug("Select category");
             switch (category) {
                 case 1:
                     System.out.println("Category Course");
@@ -57,6 +66,8 @@ public class ConsoleUtils {
                     break;
                 case 4:
                     System.out.println("Category Lecture");
+                    LogUtils.className = LectureUtils.class;
+                    logUtils.info("Category Lecture");
                     LectureUtils lectureUtils = new LectureUtils();
                     lectureUtils.createLecture();
                     break;
@@ -125,6 +136,12 @@ public class ConsoleUtils {
                     lectionJobs();
                     break;
                 case 8:
+                    System.out.println("View to Log");
+                    LogService logService = new LogService();
+                    logService.WriteToFile();
+                    logService.ReadToFile();
+                    break;
+                case 9:
                     stop = false;
                     break;
                 default:

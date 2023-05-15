@@ -1,6 +1,8 @@
 package entity;
 
 import exception.ValidationException;
+import utils.LectureUtils;
+import workLog.LogUtils;
 
 import java.util.regex.Pattern;
 
@@ -123,8 +125,11 @@ public class Person {
                 System.out.println("phone ok");
                 return phone;
             } else {
+                LogUtils.className = Person.class;
                 System.out.println("Invalid phone, please enter a valid phone");
                 throw new ValidationException();
+
+
             }
         } catch (Exception e) {
             System.out.println(e);
