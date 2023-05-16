@@ -3,6 +3,7 @@ package utils;
 import entity.Additional;
 import entity.Homework;
 import entity.ResourceType;
+import examination.MyThreads;
 import repository.*;
 import workLog.LogService;
 import workLog.LogUtils;
@@ -32,7 +33,8 @@ public class ConsoleUtils {
                 System.out.println("6. Output of created objects");
                 System.out.println("7. Lecture menu");
                 System.out.println("8. View to Log");
-                System.out.println("9. Exit");
+                System.out.println("9. Start the exam");
+                System.out.println("10. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -46,7 +48,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 9);
+            } while (category < 1 || category > 10);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -142,6 +144,10 @@ public class ConsoleUtils {
                     logService.ReadToFile();
                     break;
                 case 9:
+                    System.out.println("Exam");
+                    MyThreads.myThreads();
+                    break;
+                case 10:
                     stop = false;
                     break;
                 default:

@@ -25,6 +25,11 @@ public class Student implements Comparable<Student>{
         count++;
     }
 
+    public Student(String name) {
+        this.name = name;
+        count++;
+    }
+
     public static int getCount() {
         return count;
     }
