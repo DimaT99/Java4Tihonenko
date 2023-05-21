@@ -17,7 +17,7 @@ public class LogUtils {
     }
 
     public void error(String message, StackTraceElement[] stackTrace) {
-        Log log = new Log(className.getName(), EnumLogLevel.ERROR, message, LocalDateTime.now(), stackTrace);
+        Log log = new Log(className.getName(),EnumLogLevel.ERROR, message, LocalDateTime.now(), stackTrace);
         saveLog(log);
     }
 

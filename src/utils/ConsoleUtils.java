@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class ConsoleUtils {
     LogUtils logUtils = new LogUtils();
 
-
     public void ScannerWithSwitch() {
+
         LogUtils.className = ConsoleUtils.class;
         Scanner scanner = new Scanner(System.in);
         int category = 0;
@@ -34,7 +34,8 @@ public class ConsoleUtils {
                 System.out.println("7. Lecture menu");
                 System.out.println("8. View to Log");
                 System.out.println("9. Start the exam");
-                System.out.println("10. Exit");
+                System.out.println("10. Select the LOG option");
+                System.out.println("11. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -48,7 +49,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 10);
+            } while (category < 1 || category > 11);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -139,16 +140,23 @@ public class ConsoleUtils {
                     break;
                 case 8:
                     System.out.println("View to Log");
+                    LogService.writeLog("src/workLog/Log.txt");
                     LogService logService = new LogService();
-                    logService.WriteToFile();
-                    logService.ReadToFile();
+                    //logService.WriteToFile();
+                    logService.readToFile();
                     break;
                 case 9:
                     System.out.println("Exam");
                     MyThreads.myThreads();
                     break;
                 case 10:
+                    //System.out.println("Select parameter LOG");
+                    parameterLog();
+                    break;
+                case 11:
                     stop = false;
+                    logUtils.info("Exit");
+                    LogService.writeLog("src/workLog/Log.txt");
                     break;
                 default:
                     System.out.println("No such category exist");
@@ -211,7 +219,6 @@ public class ConsoleUtils {
             default:
                 System.out.println("Incorrect symbol");
         }
-
     }
 
     public void lectionJobs() {
@@ -447,6 +454,50 @@ public class ConsoleUtils {
             default:
                 System.out.println("Incorrect symbol");
 
+        }
+    }
+
+    public void parameterLog() {
+
+        int category7 = 0;
+        final Scanner scanner8 = new Scanner(System.in);
+        do {
+            System.out.println("Select parameter LOG, please use only numbers from 1 to 5");
+            System.out.println("1. DEBUG");
+            System.out.println("2. INFO");
+            System.out.println("3. WARNING");
+            System.out.println("4. ERROR");
+            System.out.println("5. OFF");
+            try {
+                category7 = scanner8.nextInt();
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("Incorrect symbol. Choose the right category");
+            }
+        } while (category7 < 1 || category7 > 5);
+        switch (category7) {
+            case 1:
+                System.out.println("Level selected DEBUG");
+                LogService.writeLogSet("DEBUG", "src/workLog/LogSet.txt");
+                break;
+            case 2:
+                System.out.println("Level selected INFO");
+                LogService.writeLogSet("INFO", "src/workLog/LogSet.txt");
+                break;
+            case 3:
+                System.out.println("Level selected WARNING");
+                LogService.writeLogSet("WARNING", "src/workLog/LogSet.txt");
+                break;
+            case 4:
+                System.out.println("Level selected ERROR");
+                LogService.writeLogSet("ERROR", "src/workLog/LogSet.txt");
+                break;
+            case 5:
+                System.out.println("Level selected OFF");
+                LogService.writeLogSet("OFF", "src/workLog/LogSet.txt");
+                break;
+            default:
+                System.out.println("Incorrect symbol");
         }
     }
 }
