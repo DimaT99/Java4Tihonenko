@@ -43,17 +43,17 @@ public class Log {
     }
 
     public Log(String name, Enum level, String message, LocalDateTime date, StackTraceElement[] stackTrace) {
-        this.name = name;
+        this.name = name  + " ";
         this.level = level;
-        this.message = message;
+        this.message = message  + " ";
         this.date = date;
         this.stackTrace = stackTrace;
     }
 
     public Log(String name, Enum level, String message, LocalDateTime date) {
-        this.name = name;
+        this.name = name + " ";
         this.level = level;
-        this.message = message;
+        this.message = message  + " ";
         this.date = date;
     }
 

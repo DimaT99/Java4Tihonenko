@@ -7,5 +7,6 @@ public enum EnumLogLevel {
 
     INFO,
 
-    DEBUG;
+    DEBUG,
+    OFF;
 }

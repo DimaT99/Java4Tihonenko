@@ -2,9 +2,14 @@ import utils.ConsoleUtils;
 import utils.CourseUtils;
 import utils.LectureUtils;
 import utils.TeacherUtils;
+import workLog.LogService;
 
 public class Main {
     public static void main(String[] args) {
+
+        LogService.readText("src/workLog/LogSet.txt");
+        ConsoleUtils consoleUtils = new ConsoleUtils();
+        consoleUtils.parameterLog();
 
         CourseUtils courseUtils1 = new CourseUtils();
         courseUtils1.createCourse();
@@ -15,7 +20,7 @@ public class Main {
         LectureUtils lectureUtils1 = new LectureUtils();
         lectureUtils1.createLecture();
 
-        ConsoleUtils consoleUtils = new ConsoleUtils();
+        ConsoleUtils consoleUtils1 = new ConsoleUtils();
         consoleUtils.ScannerWithSwitch();
 
     }
