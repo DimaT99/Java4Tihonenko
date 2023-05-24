@@ -20,7 +20,6 @@ public class Main {
         LectureUtils lectureUtils1 = new LectureUtils();
         lectureUtils1.createLecture();
 
-        ConsoleUtils consoleUtils1 = new ConsoleUtils();
         consoleUtils.ScannerWithSwitch();
 
     }
