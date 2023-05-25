@@ -473,6 +473,8 @@ public class ConsoleUtils {
             } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Incorrect symbol. Choose the right category");
+                parameterLog();
+                return;
             }
         } while (category7 < 1 || category7 > 5);
         switch (category7) {
