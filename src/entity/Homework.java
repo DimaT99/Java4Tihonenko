@@ -1,6 +1,8 @@
 package entity;
 
-public class Homework {
+import java.io.Serializable;
+
+public class Homework implements Serializable {
     private Integer id;
     private int lectureId;
     private String task;

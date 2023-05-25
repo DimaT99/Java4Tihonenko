@@ -1,8 +1,11 @@
 package entity;
 
+import serialization.Serializer;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Additional implements Comparable<Additional> {
+public class Additional implements Comparable<Additional>, Serializable {
     private static int count;
     private Integer id;
     private String name;
