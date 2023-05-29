@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherRepo implements Repo{
-    final private static List<Teacher> teacherArrayList = new ArrayList<>();
+    private static List<Teacher> teacherArrayList = new ArrayList<>();
 
     //private static Teacher[] teachers;
 
+    public static List<Teacher> getTeacherArrayList() {
+        return teacherArrayList;
+    }
 
     public int size() {
         return teacherArrayList.size();

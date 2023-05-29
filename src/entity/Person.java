@@ -1,12 +1,12 @@
 package entity;
 
 import exception.ValidationException;
-import utils.LectureUtils;
 import workLog.LogUtils;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public class Person {
+public class Person implements Serializable {
     private static int count;
     private Integer id;
     private int courseId;

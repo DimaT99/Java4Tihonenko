@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepo implements Repo {
-    final private static List<Student> studentArrayList = new ArrayList<>();
+    private static List<Student> studentArrayList = new ArrayList<>();
     //private static Student[] students;
+
+    public static List<Student> getStudentArrayList() {
+        return studentArrayList;
+    }
 
     @Override
     public int size() {

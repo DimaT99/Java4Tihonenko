@@ -5,6 +5,7 @@ import entity.Homework;
 import entity.ResourceType;
 import examination.MyThreads;
 import repository.*;
+import serialization.Serializer;
 import workLog.LogService;
 import workLog.LogUtils;
 
@@ -35,7 +36,8 @@ public class ConsoleUtils {
                 System.out.println("8. View to Log");
                 System.out.println("9. Start the exam");
                 System.out.println("10. Select the LOG option");
-                System.out.println("11. Exit");
+                System.out.println("11. View deserialized data");
+                System.out.println("12. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -49,7 +51,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 11);
+            } while (category < 1 || category > 12);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -142,7 +144,6 @@ public class ConsoleUtils {
                     System.out.println("View to Log");
                     LogService.writeLog("src/workLog/Log.txt");
                     LogService logService = new LogService();
-                    //logService.WriteToFile();
                     logService.readToFile();
                     break;
                 case 9:
@@ -154,6 +155,11 @@ public class ConsoleUtils {
                     parameterLog();
                     break;
                 case 11:
+                    System.out.println("View deserialized data - course backup");
+                    Serializer.serialization("src/serialization/courseBackup.data");
+                    Serializer.deserialization("src/serialization/courseBackup.data");
+                    break;
+                case 12:
                     stop = false;
                     logUtils.info("Exit");
                     LogService.writeLog("src/workLog/Log.txt");

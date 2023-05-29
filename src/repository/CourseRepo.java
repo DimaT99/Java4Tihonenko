@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseRepo implements Repo {
-    final private static List<Course> courseArrayList = new ArrayList<>();
+    private static List<Course> courseArrayList = new ArrayList<>();
+
+    public static List<Course> getCourseArrayList() {
+        return courseArrayList;
+    }
 
     @Override
     public int size() {

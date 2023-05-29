@@ -1,7 +1,4 @@
-import utils.ConsoleUtils;
-import utils.CourseUtils;
-import utils.LectureUtils;
-import utils.TeacherUtils;
+import utils.*;
 import workLog.LogService;
 
 public class Main {
@@ -17,10 +14,12 @@ public class Main {
         TeacherUtils teacherUtils1 = new TeacherUtils();
         teacherUtils1.createTeacher();
 
+        StudentUtils studentUtils = new StudentUtils();
+        studentUtils.createStudent();
+
         LectureUtils lectureUtils1 = new LectureUtils();
         lectureUtils1.createLecture();
 
         consoleUtils.ScannerWithSwitch();
-
     }
 }

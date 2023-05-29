@@ -1,6 +1,8 @@
 package entity;
 
-public class Student implements Comparable<Student>{
+import java.io.Serializable;
+
+public class Student implements Comparable<Student>, Serializable {
     private Integer id;
     private String name;
     private static int count;
