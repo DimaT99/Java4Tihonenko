@@ -1,9 +1,13 @@
 package repository;
 
 import entity.Lecture;
+import utils.LectureUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class LectureRepo implements Repo {
     private static List<Lecture> lectureArrayList = new ArrayList<>();
@@ -56,5 +60,27 @@ public class LectureRepo implements Repo {
         }
         System.out.println("All lecture");
         return;
+    }
+    public static <T> List<T> filter(List<T> list, Predicate<T> func) {
+        List<T> result = new ArrayList<>();
+        for (T t : list) {
+            if (func.test(t))
+                result.add(t);
+        }
+        return result;
+    }
+    public void filterLectures() {
+        List<Lecture> result = filter(lectureArrayList, a -> a.getDate().isAfter(LocalDate.now().plusDays(3)));
+        System.out.println("\n" + "List of lectures from the specified date - " + LocalDate.now().plusDays(3));
+        result.forEach((s) -> System.out.println(s));
+        //System.out.println(result + "\n");
+        result = filter(lectureArrayList, a -> a.getDate().isBefore(LocalDate.now().plusDays(3)));
+        System.out.println("\n" + "List of lectures by the specified date - " + LocalDate.now().plusDays(3));
+        result.forEach((s) -> System.out.println(s));
+        Predicate<Lecture> func1 = a -> a.getDate().isAfter(LocalDate.now().plusDays(1));
+        Predicate<Lecture> func2 = a -> a.getDate().isBefore(LocalDate.now().plusDays(5));
+        result = filter(lectureArrayList, func1.and(func2));
+        System.out.println("\n" + "List of lectures between the specified dates " + LocalDate.now().plusDays(2) + " to " + LocalDate.now().plusDays(4));
+        result.forEach((s) -> System.out.println(s));
     }
 }

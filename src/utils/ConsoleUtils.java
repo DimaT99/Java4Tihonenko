@@ -2,6 +2,7 @@ package utils;
 
 import entity.Additional;
 import entity.Homework;
+import entity.Lecture;
 import entity.ResourceType;
 import examination.MyThreads;
 import repository.*;
@@ -9,10 +10,7 @@ import serialization.Serializer;
 import workLog.LogService;
 import workLog.LogUtils;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleUtils {
     LogUtils logUtils = new LogUtils();
@@ -108,13 +106,8 @@ public class ConsoleUtils {
                             break;
                         case 3:
                             System.out.println("Sort by lecture");
-                            Comparator<Additional> comparator = new Comparator<Additional>() {
-                                @Override
-                                public int compare(Additional o1, Additional o2) {
-                                    return o1.getLectureId() - o2.getLectureId();
-                                }
-                            };
-                            AdditionalRepo.getAdditionalArrayList().sort(comparator);
+                            AdditionalRepo.getAdditionalArrayList().sort((Additional o1, Additional o2) ->
+                                    o1.getLectureId() - o2.getLectureId());
                             additionalRepo.findAll();
                             break;
                         case 4:
@@ -242,14 +235,15 @@ public class ConsoleUtils {
             System.out.println("4. Delete the selected lecture");
             System.out.println("5. Watch homework from lecture");
             System.out.println("6. Watch additional materials from lecture");
-            System.out.println("7. Main menu");
+            System.out.println("7. List of lectures by date");
+            System.out.println("8. Main menu");
             try {
                 category4 = scanner2.nextInt();
             } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Incorrect symbol. Choose the right category");
             }
-        } while (category4 < 1 || category4 > 7);
+        } while (category4 < 1 || category4 > 8);
         switch (category4) {
             case 1:
                 System.out.println("Return an array");
@@ -456,6 +450,11 @@ public class ConsoleUtils {
                         return;
                 }
             case 7:
+                System.out.println("List of lectures by date");
+                lectureRepo.filterLectures();
+                lectionJobs();
+                break;
+            case 8:
                 break;
             default:
                 System.out.println("Incorrect symbol");

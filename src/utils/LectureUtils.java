@@ -5,6 +5,9 @@ import exception.EntityNotFoundException;
 import repository.HomeworkRepo;
 import repository.LectureRepo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class LectureUtils {
     Homework homework;
     Additional additional;
@@ -13,7 +16,7 @@ public class LectureUtils {
     public void createLecture() {
 
         for (int j = 0; j < 100; j++) {
-            if (j == 3) {
+            if (j == 5) {
                 break;
             }
             Lecture lecture = new Lecture();
@@ -22,6 +25,7 @@ public class LectureUtils {
             lecture.setPersonId(Teacher.getCount());
             lecture.setName("Lecture" + Lecture.getCount());
             lecture.setDescription("Description" + Lecture.getCount());
+            lecture.setDate(LocalDate.now().plusDays(Lecture.getCount()));
             HomeworkUtils homeworkUtils = new HomeworkUtils();
             homeworkUtils.createHomework();
             AdditionalUtils additionalUtils = new AdditionalUtils();
