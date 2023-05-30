@@ -1,6 +1,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Lecture implements Serializable {
@@ -11,6 +13,7 @@ public class Lecture implements Serializable {
     private String description;
     private int personId;
     private List<Homework> homeworkList;
+    LocalDate date;
     public List<Homework> getHomeworkList() {
         return homeworkList;
     }
@@ -23,13 +26,14 @@ public class Lecture implements Serializable {
         return count;
     }
 
-    public Lecture(int courseId, Integer id, String name, String description, int personId, List<Homework> homeworkList) {
+    public Lecture(int courseId, Integer id, String name, String description, int personId, List<Homework> homeworkList, LocalDate date) {
         this.courseId = courseId;
         this.id = id;
         this.name = name;
         this.description = description;
         this.personId = personId;
         this.homeworkList = homeworkList;
+        this.date = date;
         count++;
     }
 
@@ -81,6 +85,14 @@ public class Lecture implements Serializable {
         this.name = name;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Lecture{" +
@@ -90,6 +102,7 @@ public class Lecture implements Serializable {
                 ", description='" + description + '\'' +
                 ", personId=" + personId +
                 ", homeworkList=" + homeworkList +
+                ", date=" + date +
                 '}';
     }
 }
