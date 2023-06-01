@@ -7,6 +7,15 @@ public class Homework implements Serializable {
     private int lectureId;
     private String task;
     private static int count;
+    private String deadline;
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
 
     public static int getCount() {
         return count;
@@ -52,6 +61,7 @@ public class Homework implements Serializable {
                 "id=" + id +
                 ", lectureId=" + lectureId +
                 ", task='" + task + '\'' +
+                ", deadline='" + deadline + '\'' +
                 '}';
     }
 }
