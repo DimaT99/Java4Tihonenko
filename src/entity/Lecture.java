@@ -2,7 +2,6 @@ package entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class Lecture implements Serializable {
@@ -13,7 +12,10 @@ public class Lecture implements Serializable {
     private String description;
     private int personId;
     private List<Homework> homeworkList;
+    private String creationDate;
+    private String lectureDate;
     LocalDate date;
+
     public List<Homework> getHomeworkList() {
         return homeworkList;
     }
@@ -22,27 +24,47 @@ public class Lecture implements Serializable {
         this.homeworkList = homeworkList;
     }
 
-    public static int getCount() {
-        return count;
+    public Lecture() {
+        count++;
     }
-
-    public Lecture(int courseId, Integer id, String name, String description, int personId, List<Homework> homeworkList, LocalDate date) {
+    public Lecture(int courseId, Integer id, String name, String description, int personId) {
         this.courseId = courseId;
         this.id = id;
         this.name = name;
         this.description = description;
         this.personId = personId;
-        this.homeworkList = homeworkList;
-        this.date = date;
+        this.date = LocalDate.now();
         count++;
+    }
+    public static int getCount() {
+        return count;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public String getLectureDate() {
+        return lectureDate;
+    }
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setLectureDate(String lectureDate) {
+        this.lectureDate = lectureDate;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Lecture() {
-        count++;
     }
 
     public int getCourseId() {
@@ -85,14 +107,6 @@ public class Lecture implements Serializable {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
         return "Lecture{" +
@@ -101,8 +115,7 @@ public class Lecture implements Serializable {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", personId=" + personId +
-                ", homeworkList=" + homeworkList +
-                ", date=" + date +
+                ", lectureDate='" + lectureDate + '\'' +
                 '}';
     }
 }

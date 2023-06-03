@@ -1,14 +1,21 @@
 package workLog;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class Log {
     private String name;
     private Enum level;
     private String message;
-    LocalDateTime date;
+    private String dateLog;
     StackTraceElement[] stackTrace;
+
+    public String getDateLog() {
+        return dateLog;
+    }
+
+    public void setDateLog(String dateLog) {
+        this.dateLog = dateLog;
+    }
 
     public String getName() {
         return name;
@@ -34,27 +41,19 @@ public class Log {
         this.message = message;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Log(String name, Enum level, String message, LocalDateTime date, StackTraceElement[] stackTrace) {
+    public Log(String name, Enum level, String message, String dateLog, StackTraceElement[] stackTrace) {
         this.name = name  + " ";
         this.level = level;
         this.message = message  + " ";
-        this.date = date;
+        this.dateLog = dateLog;
         this.stackTrace = stackTrace;
     }
 
-    public Log(String name, Enum level, String message, LocalDateTime date) {
+    public Log(String name, Enum level, String message, String dateLog) {
         this.name = name + " ";
         this.level = level;
         this.message = message  + " ";
-        this.date = date;
+        this.dateLog = dateLog;
     }
 
     @Override
@@ -63,7 +62,7 @@ public class Log {
                 "name='" + name + '\'' +
                 ", level=" + level +
                 ", message='" + message + '\'' +
-                ", date=" + date +
+                ", dateLog=" + dateLog +
                 ", stackTrace=" + Arrays.toString(stackTrace) +
                 '}';
     }

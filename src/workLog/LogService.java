@@ -16,7 +16,7 @@ public class LogService {
             List<Log> logList = LogUtils.getLogList();
             for (Log log : logList) {
                 if (getText("src/workLog/LogSet.txt").equals("WARNING")) {
-                    bwriter.write(String.valueOf(log.date) + " ");
+                    bwriter.write(String.valueOf(log.getDateLog()) + " ");
                     bwriter.write(String.valueOf(log.getLevel()) + " ");
                     bwriter.write(String.valueOf(log.getName()) + " ");
                     bwriter.write(String.valueOf(log.getMessage()) + " ");
@@ -77,46 +77,51 @@ public class LogService {
             for (Log log : logList) {
                 if (getText("src/workLog/LogSet.txt").equals("DEBUG")) {
                     Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
-                    String date = log.getDate() + " ";
+                    String date = log.getDateLog() + " ";
                     Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
                     String level = String.valueOf(log.getLevel()) + " ";
                     Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, log.getName().toString().getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, log.getMessage().getBytes(), StandardOpenOption.APPEND);
-                    String stackTrace = Arrays.toString(log.stackTrace);
-                    Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
                 }
                 if (getText("src/workLog/LogSet.txt").equals("INFO")) {
                     if (log.getLevel().equals(EnumLogLevel.INFO) || log.getLevel().equals(EnumLogLevel.WARNING)
                             || log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
-                        String date = log.getDate() + " ";
+                        String date = log.getDateLog() + " ";
                         Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
                         String level = String.valueOf(log.getLevel()) + " ";
                         Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, log.getName().toString().getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, log.getMessage().getBytes(), StandardOpenOption.APPEND);
-                        String stackTrace = Arrays.toString(log.stackTrace);
-                        Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
                     }
                 }
                 if (getText("src/workLog/LogSet.txt").equals("WARNING")) {
                     if (log.getLevel().equals(EnumLogLevel.WARNING) || log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
-                        String date = log.getDate() + " ";
+                        String date = log.getDateLog() + " ";
                         Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
                         String level = String.valueOf(log.getLevel()) + " ";
                         Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, log.getName().toString().getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, log.getMessage().getBytes(), StandardOpenOption.APPEND);
-                        String stackTrace = Arrays.toString(log.stackTrace);
-                        Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
                     }
                 }
                 if (getText("src/workLog/LogSet.txt").equals("ERROR")) {
                     if (log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
-                        String date = log.getDate() + " ";
+                        String date = log.getDateLog() + " ";
+                        Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
+                        String level = String.valueOf(log.getLevel()) + " ";
+                        Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
+                        Files.write(p, log.getName().toString().getBytes(), StandardOpenOption.APPEND);
+                        Files.write(p, log.getMessage().getBytes(), StandardOpenOption.APPEND);
+                    }
+                }
+                if (getText("src/workLog/LogSet.txt").equals("OFF")) {
+                    if (log.getLevel().equals(EnumLogLevel.OFF)) {
+                        Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
+                        String date = log.getDateLog() + " ";
                         Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
                         String level = String.valueOf(log.getLevel()) + " ";
                         Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
@@ -126,18 +131,9 @@ public class LogService {
                         Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
                     }
                 }
-                if (getText("src/workLog/LogSet.txt").equals("OFF")) {
-                    if (log.getLevel().equals(EnumLogLevel.OFF)) {
-                        Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
-                        String date = log.getDate() + " ";
-                        Files.write(p, date.getBytes(), StandardOpenOption.APPEND);
-                        String level = String.valueOf(log.getLevel()) + " ";
-                        Files.write(p, level.getBytes(), StandardOpenOption.APPEND);
-                        Files.write(p, log.getName().toString().getBytes(), StandardOpenOption.APPEND);
-                        Files.write(p, log.getMessage().getBytes(), StandardOpenOption.APPEND);
-                        String stackTrace = Arrays.toString(log.stackTrace);
-                        Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
-                    }
+                if (log.getLevel().equals(EnumLogLevel.WARNING) || log.getLevel().equals(EnumLogLevel.ERROR)) {
+                    String stackTrace = Arrays.toString(log.stackTrace);
+                    Files.write(p, stackTrace.getBytes(), StandardOpenOption.APPEND);
                 }
             }
         } catch (IOException e) {

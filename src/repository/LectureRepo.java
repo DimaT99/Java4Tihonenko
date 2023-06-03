@@ -1,11 +1,9 @@
 package repository;
 
 import entity.Lecture;
-import utils.LectureUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -73,7 +71,6 @@ public class LectureRepo implements Repo {
         List<Lecture> result = filter(lectureArrayList, a -> a.getDate().isAfter(LocalDate.now().plusDays(3)));
         System.out.println("\n" + "List of lectures from the specified date - " + LocalDate.now().plusDays(3));
         result.forEach((s) -> System.out.println(s));
-        //System.out.println(result + "\n");
         result = filter(lectureArrayList, a -> a.getDate().isBefore(LocalDate.now().plusDays(3)));
         System.out.println("\n" + "List of lectures by the specified date - " + LocalDate.now().plusDays(3));
         result.forEach((s) -> System.out.println(s));
