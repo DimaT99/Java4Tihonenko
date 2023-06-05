@@ -2,14 +2,18 @@ package utils;
 
 import entity.Additional;
 import entity.Homework;
-import entity.Lecture;
 import entity.ResourceType;
+import entity.Student;
 import examination.MyThreads;
 import repository.*;
 import serialization.Serializer;
 import workLog.LogService;
 import workLog.LogUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class ConsoleUtils {
@@ -24,18 +28,19 @@ public class ConsoleUtils {
         while (stop) {
             do {
                 System.out.println("Select category:");
-                System.out.println("1. Course");
-                System.out.println("2. Teacher");
-                System.out.println("3. Student");
-                System.out.println("4. Lecture");
-                System.out.println("5. Additional materials");
+                System.out.println("1. Create Course");
+                System.out.println("2. Create Teacher");
+                System.out.println("3. Create Student");
+                System.out.println("4. Create Lecture");
+                System.out.println("5. Additional materials menu");
                 System.out.println("6. Output of created objects");
                 System.out.println("7. Lecture menu");
                 System.out.println("8. View to Log");
                 System.out.println("9. Start the exam");
                 System.out.println("10. Select the LOG option");
                 System.out.println("11. View deserialized data");
-                System.out.println("12. Exit");
+                System.out.println("12. Teacher sort list");
+                System.out.println("13. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -49,7 +54,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 12);
+            } while (category < 1 || category > 13);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -66,6 +71,7 @@ public class ConsoleUtils {
                     System.out.println("Category Student");
                     StudentUtils studentUtils = new StudentUtils();
                     studentUtils.createStudent();
+                    studentUtils.addStudent();               //optional wrapper lesson 29
                     break;
                 case 4:
                     System.out.println("Category Lecture");
@@ -135,9 +141,41 @@ public class ConsoleUtils {
                     break;
                 case 8:
                     System.out.println("View to Log");
-                    LogService.writeLog("src/workLog/Log.txt");
+                    int category7 = 0;
+                    do {
+                        Scanner scanner1 = new Scanner(System.in);
+                        System.out.println("Select a category to work with Log, please use only numbers from 1 to 2");
+                        System.out.println("1. View to Log");
+                        System.out.println("2. View to message from Log");
+                        try {
+                            category7 = scanner1.nextInt();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("Incorrect symbol. Choose the right category");
+                        }
+                    } while (category7 < 1 || category7 > 2);
                     LogService logService = new LogService();
-                    logService.readToFile();
+                    switch (category7) {
+                        case 1:
+                            System.out.println("View to Log");
+                            LogService.writeLog("src/workLog/Log.txt");
+                            logService.readToFile();
+                            break;
+                        case 2:
+                            System.out.println("View to message from Log");
+                            LogService.writeToFile();
+                            try {
+                                List<String> logList = Files.readAllLines(Path.of("src/workLog/Log.txt"));
+                                logList.stream()
+                                        .filter(log -> log.contains("Message"))
+                                        .forEach(System.out::println);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            break;
+                        default:
+                            System.out.println("No such category exist");
+                    }
                     break;
                 case 9:
                     System.out.println("Exam");
@@ -153,9 +191,14 @@ public class ConsoleUtils {
                     Serializer.deserialization("src/serialization/courseBackup.data");
                     break;
                 case 12:
+                    System.out.println("Teacher sort list");
+                    TeacherUtils teacherUtils1 = new TeacherUtils();
+                    teacherUtils1.teacherListLastname();
+                    break;
+                case 13:
                     stop = false;
                     logUtils.info("Exit");
-                    LogService.writeLog("src/workLog/Log.txt");
+                    LogService.writeToFile();
                     break;
                 default:
                     System.out.println("No such category exist");

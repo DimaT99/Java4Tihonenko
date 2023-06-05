@@ -6,8 +6,11 @@ import entity.Person;
 import entity.Student;
 import repository.StudentRepo;
 
+import java.util.Optional;
+
 public class StudentUtils {
     StudentRepo studentRepo = new StudentRepo();
+
 
     public void createStudent() {
         Student student = new Student();
@@ -23,10 +26,17 @@ public class StudentUtils {
         person.setEmail(person.validEmail("email33@gmail.com"));
         student.setPerson(person);
 
-            studentRepo.add(student);
+        studentRepo.add(student);
 
         for (int i = 0; i < studentRepo.size(); i++) {
             System.out.println("Index " + i + " " + studentRepo.get(i));
         }
+    }
+
+    public void addStudent() {              //optional wrapper lesson 29
+        Student student;
+        student = (Student) Optional.ofNullable(null).orElseGet(() -> new Student(Student.getCount() + 1, "Excellent", new Person()));
+        System.out.println(student.getName());
+        studentRepo.add(student);
     }
 }
