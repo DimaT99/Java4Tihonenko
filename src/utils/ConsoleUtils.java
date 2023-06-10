@@ -3,7 +3,6 @@ package utils;
 import entity.Additional;
 import entity.Homework;
 import entity.ResourceType;
-import entity.Student;
 import examination.MyThreads;
 import repository.*;
 import serialization.Serializer;
@@ -13,8 +12,8 @@ import workLog.LogUtils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ConsoleUtils {
     LogUtils logUtils = new LogUtils();
@@ -144,16 +143,17 @@ public class ConsoleUtils {
                     int category7 = 0;
                     do {
                         Scanner scanner1 = new Scanner(System.in);
-                        System.out.println("Select a category to work with Log, please use only numbers from 1 to 2");
+                        System.out.println("Select a category to work with Log, please use only numbers from 1 to 3");
                         System.out.println("1. View to Log");
                         System.out.println("2. View to message from Log");
+                        System.out.println("3. View the number of messages from the log");
                         try {
                             category7 = scanner1.nextInt();
                         } catch (Exception e) {
                             System.out.println(e);
                             System.out.println("Incorrect symbol. Choose the right category");
                         }
-                    } while (category7 < 1 || category7 > 2);
+                    } while (category7 < 1 || category7 > 3);
                     LogService logService = new LogService();
                     switch (category7) {
                         case 1:
@@ -169,6 +169,28 @@ public class ConsoleUtils {
                                 logList.stream()
                                         .filter(log -> log.contains("Message"))
                                         .forEach(System.out::println);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            break;
+                        case 3:
+                            System.out.println("View the number of messages from the log");
+                            LogService.writeToFile();
+                            try {
+                                List<String> logList = Files.readAllLines(Path.of("src/workLog/Log.txt"));
+                                long info = logList.stream()
+                                        .filter(s -> s.contains("INFO"))
+                                        .count();
+                                List<String> logList2 = new ArrayList<>();
+                                for (int i = logList.size() / 2; i < logList.size(); i++) {
+                                    logList2.add(logList.get(i));
+                                }
+                                long info1 = logList2.stream()
+                                        .filter(s -> s.contains("INFO"))
+                                        .count();
+
+                                System.out.println("All logs with level INFO = " + info);
+                                System.out.println("The number of messages from half the loglevel INFO = " + info1);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -279,14 +301,15 @@ public class ConsoleUtils {
             System.out.println("5. Watch homework from lecture");
             System.out.println("6. Watch additional materials from lecture");
             System.out.println("7. List of lectures by date");
-            System.out.println("8. Main menu");
+            System.out.println("8. Filter lecture");
+            System.out.println("9. Main menu");
             try {
                 category4 = scanner2.nextInt();
             } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Incorrect symbol. Choose the right category");
             }
-        } while (category4 < 1 || category4 > 8);
+        } while (category4 < 1 || category4 > 9);
         switch (category4) {
             case 1:
                 System.out.println("Return an array");
@@ -498,6 +521,11 @@ public class ConsoleUtils {
                 lectionJobs();
                 break;
             case 8:
+                System.out.println("Filter lecture");
+                lectureUtils.lectureSearch();
+                lectionJobs();
+                break;
+            case 9:
                 break;
             default:
                 System.out.println("Incorrect symbol");

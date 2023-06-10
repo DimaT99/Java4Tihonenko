@@ -26,14 +26,20 @@ public class Person implements Serializable {
         this.email = email;
         count++;
     }
+    public Person() {
+        count++;
+    }
+
+    public Person(String email) {
+        this.email = email;
+        count++;
+    }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Person() {
-        count++;
-    }
+
 
     public static int getCount() {
         return count;
