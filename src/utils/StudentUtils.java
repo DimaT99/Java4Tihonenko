@@ -23,7 +23,7 @@ public class StudentUtils {
         person.setFirstName(person.validFirstName("First name") + Person.getCount());
         person.setLastName(person.validLastName("Last name") + Person.getCount());
         person.setPhone(person.validPhone("000 000 00 00"));
-        person.setEmail(person.validEmail(emailDuplicate("email33@gmail.com" + Person.getCount())));
+        person.setEmail(person.validEmail(emailDuplicate("email" + Person.getCount() + "@gmail.com")));
         student.setPerson(person);
 
         studentRepo.add(student);
@@ -35,7 +35,8 @@ public class StudentUtils {
 
     public void addStudent() {              //optional wrapper lesson 29
         Student student;
-        student = (Student) Optional.ofNullable(null).orElseGet(() -> new Student(Student.getCount() + 1, "Excellent", new Person(emailDuplicate("email33@gmail.com3"))));
+        student = (Student) Optional.ofNullable(null).orElseGet(() -> new Student(Student.getCount() + 1,
+                "Excellent", new Person(emailDuplicate("email33@gmail.com3"))));
         //System.out.println(student.getName());
         studentRepo.add(student);
     }

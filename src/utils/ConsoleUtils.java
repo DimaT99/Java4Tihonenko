@@ -2,6 +2,7 @@ package utils;
 
 import entity.Additional;
 import entity.Homework;
+import entity.Lecture;
 import entity.ResourceType;
 import examination.MyThreads;
 import repository.*;
@@ -9,7 +10,10 @@ import serialization.Serializer;
 import workLog.LogService;
 import workLog.LogUtils;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -39,7 +43,9 @@ public class ConsoleUtils {
                 System.out.println("10. Select the LOG option");
                 System.out.println("11. View deserialized data");
                 System.out.println("12. Teacher sort list");
-                System.out.println("13. Exit");
+                System.out.println("13. Print Teacher Map");
+                System.out.println("14. Write e-mail of students in a file");
+                System.out.println("15. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -53,7 +59,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 13);
+            } while (category < 1 || category > 15);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -70,7 +76,7 @@ public class ConsoleUtils {
                     System.out.println("Category Student");
                     StudentUtils studentUtils = new StudentUtils();
                     studentUtils.createStudent();
-                    studentUtils.addStudent();               //optional wrapper lesson 29
+                    //studentUtils.addStudent();               //optional wrapper lesson 29
                     break;
                 case 4:
                     System.out.println("Category Lecture");
@@ -85,18 +91,19 @@ public class ConsoleUtils {
                     int category1 = 0;
                     do {
                         Scanner scanner1 = new Scanner(System.in);
-                        System.out.println("Select a category to work with Additional materials, please use only numbers from 1 to 4");
+                        System.out.println("Select a category to work with Additional materials, please use only numbers from 1 to 5");
                         System.out.println("1. Create object Additional materials");
                         System.out.println("2. Sort by id");
                         System.out.println("3. Sort by lecture");
                         System.out.println("4. Sort by resource type");
+                        System.out.println("5. Sort by lecture (stream)");
                         try {
                             category1 = scanner1.nextInt();
                         } catch (Exception e) {
                             System.out.println(e);
                             System.out.println("Incorrect symbol. Choose the right category");
                         }
-                    } while (category1 < 1 || category1 > 4);
+                    } while (category1 < 1 || category1 > 5);
                     AdditionalRepo additionalRepo = new AdditionalRepo();
                     switch (category1) {
                         case 1:
@@ -125,6 +132,14 @@ public class ConsoleUtils {
                             };
                             AdditionalRepo.getAdditionalArrayList().sort(comparator1);
                             additionalRepo.findAll();
+                            break;
+                        case 5:
+                            System.out.println("Sort by lecture (stream)");
+                            Map<String, List<Additional>> additionalByLecture = LectureRepo.getLectureArrayList().stream()
+                                    .collect(Collectors.toMap(
+                                            lecture -> lecture.getName(),
+                                            lecture -> AdditionalRepo.getAdditionalMap().get(lecture.getId())));
+                            additionalByLecture.entrySet().forEach(System.out::println);
                             break;
                         default:
                             System.out.println("No such category exist");
@@ -159,7 +174,7 @@ public class ConsoleUtils {
                         case 1:
                             System.out.println("View to Log");
                             LogService.writeLog("src/workLog/Log.txt");
-                            logService.readToFile();
+                            logService.readToFile("src/workLog/Log.txt");
                             break;
                         case 2:
                             System.out.println("View to message from Log");
@@ -218,6 +233,36 @@ public class ConsoleUtils {
                     teacherUtils1.teacherListLastname();
                     break;
                 case 13:
+                    System.out.println("Print Teacher Map");
+                    Map<String, String> teacherMap = TeacherRepo.getTeacherArrayList().stream()
+                            .collect(Collectors.toMap(
+                                    teacher -> teacher.getPerson().getEmail(),
+                                    teacher -> teacher.getPerson().getFirstName() + " " + teacher.getPerson().getLastName()
+                            ));
+                    teacherMap.entrySet().forEach(System.out::println);
+                    break;
+                case 14:
+                    System.out.println("Write e-mail of students in a file");
+
+                    String fileName = "src/email.txt";
+                    try (FileOutputStream fos = new FileOutputStream(fileName, false)) { }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    StudentRepo.getStudentArrayList().stream()
+                            .map(student -> student.getPerson().getEmail())
+                            .sorted(String::compareTo)
+                            .forEach(s -> {
+                                try (FileOutputStream out = new FileOutputStream(fileName, true);
+                                     Writer file = new OutputStreamWriter(out)) {
+                                    file.append(s + "\n");
+                                } catch (IOException e) {
+                                }
+                            });
+                    LogService logService1 = new LogService();
+                    logService1.readToFile("src/email.txt");
+                    break;
+                case 15:
                     stop = false;
                     logUtils.info("Exit");
                     LogService.writeToFile();
@@ -293,7 +338,7 @@ public class ConsoleUtils {
         LectureRepo lectureRepo = new LectureRepo();
         do {
             Scanner scanner2 = new Scanner(System.in);
-            System.out.println("Select the category, please use only numbers from 1 to 6");
+            System.out.println("Select the category, please use only numbers from 1 to 10");
             System.out.println("1. Return an array");
             System.out.println("2. Add a new lecture");
             System.out.println("3. Open the selected lecture");
@@ -302,14 +347,15 @@ public class ConsoleUtils {
             System.out.println("6. Watch additional materials from lecture");
             System.out.println("7. List of lectures by date");
             System.out.println("8. Filter lecture");
-            System.out.println("9. Main menu");
+            System.out.println("9. Sort lecture by teacher");
+            System.out.println("10. Main menu");
             try {
                 category4 = scanner2.nextInt();
             } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Incorrect symbol. Choose the right category");
             }
-        } while (category4 < 1 || category4 > 9);
+        } while (category4 < 1 || category4 > 10);
         switch (category4) {
             case 1:
                 System.out.println("Return an array");
@@ -526,6 +572,20 @@ public class ConsoleUtils {
                 lectionJobs();
                 break;
             case 9:
+                System.out.println("Sort lecture by teacher");
+                Map<String, List<Lecture>> lectureByTeacher = LectureRepo.getLectureArrayList().stream()
+                        .collect(Collectors.groupingBy(lecture -> TeacherRepo.getTeacherArrayList().get(lecture.getPersonId() - 1).getName()));
+                lectureByTeacher = lectureByTeacher.entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (oldValue, newValue) -> oldValue,
+                                LinkedHashMap::new));
+                lectureByTeacher.entrySet().forEach(System.out::println);
+                lectionJobs();
+                break;
+            case 10:
                 break;
             default:
                 System.out.println("Incorrect symbol");
