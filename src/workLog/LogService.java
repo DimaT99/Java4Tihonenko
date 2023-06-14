@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,9 +55,9 @@ public class LogService {
         }
     }
 
-    public void readToFile() {
+    public void readToFile(final String path) {
         try (Reader reader = new BufferedReader(
-                new FileReader("src/workLog/Log.txt"));
+                new FileReader(path));
              PushbackReader pushbackReader = new PushbackReader(reader)) {
 
             StringBuilder newText = new StringBuilder();

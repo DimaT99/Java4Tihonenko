@@ -25,7 +25,7 @@ public class TeacherUtils {
             person.setLastName(person.validLastName("Pythonworker") + Person.getCount());
         }
         person.setPhone(person.validPhone("null"));   //"000 000 00 00"
-        person.setEmail(person.validEmail(emailDuplicate("email33@gmail.com")));
+        person.setEmail(person.validEmail(emailDuplicate("email" + Person.getCount() + "@gmail.com")));
         teacher.setPerson(person);
 
         teacherRepo.add(teacher);
