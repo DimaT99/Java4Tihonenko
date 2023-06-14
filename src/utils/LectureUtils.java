@@ -2,6 +2,7 @@ package utils;
 
 import entity.*;
 import exception.EntityNotFoundException;
+import repository.AdditionalRepo;
 import repository.LectureRepo;
 import workLog.LogUtils;
 
@@ -39,7 +40,7 @@ public class LectureUtils {
             additionalUtils.createAdditional();
             //lecture.setHomeworkList(HomeworkRepo.getHomeworkArrayList());
             logUtils.info("Lecture created", lecture.getCreationDate());
-                lectureRepo.add(lecture);
+            lectureRepo.add(lecture);
         }
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
@@ -81,6 +82,23 @@ public class LectureUtils {
         for (int i = 0; i < lectures1.length; i++) {
             System.out.println(lectures1[i]);
         }
+    }
+
+    public void lectureSearch() {
+        int maxAdditional = LectureRepo.getLectureArrayList().stream()
+                .map(lecture -> AdditionalRepo.getAdditionalMap().get(lecture.getId()).size())
+                .max(Integer::compareTo)
+                .orElseThrow();
+        String minDate = LectureRepo.getLectureArrayList().stream()
+                .filter(lecture -> AdditionalRepo.getAdditionalMap().get(lecture.getId()).size() == maxAdditional)
+                .map(Lecture::getLectureDate)
+                .min(String::compareTo)
+                .orElseThrow();
+        LectureRepo.getLectureArrayList().stream()
+                .filter(lecture -> lecture.getLectureDate() == minDate)
+                .forEach(System.out::println);
+
+        System.out.println("Amount of additional materials = " + maxAdditional);
     }
 }
 

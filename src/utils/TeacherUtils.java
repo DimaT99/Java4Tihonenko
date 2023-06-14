@@ -25,7 +25,7 @@ public class TeacherUtils {
             person.setLastName(person.validLastName("Pythonworker") + Person.getCount());
         }
         person.setPhone(person.validPhone("null"));   //"000 000 00 00"
-        person.setEmail(person.validEmail("email33@gmail.com"));
+        person.setEmail(person.validEmail(emailDuplicate("email33@gmail.com")));
         teacher.setPerson(person);
 
         teacherRepo.add(teacher);
@@ -38,5 +38,14 @@ public class TeacherUtils {
     public void teacherListLastname() {
         TeacherRepo.getTeacherArrayList().stream().filter(teach -> teach.getPerson().getLastName().substring(0, 1).compareTo("N") < 0)
                 .forEach(teacher -> System.out.println(teacher.getPerson().getLastName()));
+    }
+
+    String emailDuplicate(String email) {
+        if (TeacherRepo.getTeacherArrayList().stream()
+                .noneMatch(e -> e.getPerson().getEmail().equals(email))) {
+            return email;
+        }
+        System.out.println("This email already exists");
+        return "This email already exists";
     }
 }
