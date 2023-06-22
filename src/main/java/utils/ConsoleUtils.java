@@ -173,14 +173,14 @@ public class ConsoleUtils {
                     switch (category7) {
                         case 1:
                             System.out.println("View to Log");
-                            LogService.writeLog("src/workLog/Log.txt");
-                            logService.readToFile("src/workLog/Log.txt");
+                            LogService.writeLog("src/main/java/workLog/Log.txt");
+                            logService.readToFile("src/main/java/workLog/Log.txt");
                             break;
                         case 2:
                             System.out.println("View to message from Log");
                             LogService.writeToFile();
                             try {
-                                List<String> logList = Files.readAllLines(Path.of("src/workLog/Log.txt"));
+                                List<String> logList = Files.readAllLines(Path.of("src/main/java/workLog/Log.txt"));
                                 logList.stream()
                                         .filter(log -> log.contains("Message"))
                                         .forEach(System.out::println);
@@ -192,7 +192,7 @@ public class ConsoleUtils {
                             System.out.println("View the number of messages from the log");
                             LogService.writeToFile();
                             try {
-                                List<String> logList = Files.readAllLines(Path.of("src/workLog/Log.txt"));
+                                List<String> logList = Files.readAllLines(Path.of("src/main/java/workLog/Log.txt"));
                                 long info = logList.stream()
                                         .filter(s -> s.contains("INFO"))
                                         .count();
@@ -224,8 +224,8 @@ public class ConsoleUtils {
                     break;
                 case 11:
                     System.out.println("View deserialized data - course backup");
-                    Serializer.serialization("src/serialization/courseBackup.data");
-                    Serializer.deserialization("src/serialization/courseBackup.data");
+                    Serializer.serialization("src/main/java/serialization/courseBackup.data");
+                    Serializer.deserialization("src/main/java/serialization/courseBackup.data");
                     break;
                 case 12:
                     System.out.println("Teacher sort list");
@@ -244,7 +244,7 @@ public class ConsoleUtils {
                 case 14:
                     System.out.println("Write e-mail of students in a file");
 
-                    String fileName = "src/email.txt";
+                    String fileName = "src/main/java/email.txt";
                     try (FileOutputStream fos = new FileOutputStream(fileName, false)) { }
                     catch (IOException e) {
                         e.printStackTrace();
@@ -260,7 +260,7 @@ public class ConsoleUtils {
                                 }
                             });
                     LogService logService1 = new LogService();
-                    logService1.readToFile("src/email.txt");
+                    logService1.readToFile("src/main/java/email.txt");
                     break;
                 case 15:
                     stop = false;
@@ -616,23 +616,23 @@ public class ConsoleUtils {
         switch (category7) {
             case 1:
                 System.out.println("Level selected DEBUG");
-                LogService.writeLogSet("DEBUG", "src/workLog/LogSet.txt");
+                LogService.writeLogSet("DEBUG", "src/main/java/workLog/LogSet.txt");
                 break;
             case 2:
                 System.out.println("Level selected INFO");
-                LogService.writeLogSet("INFO", "src/workLog/LogSet.txt");
+                LogService.writeLogSet("INFO", "src/main/java/workLog/LogSet.txt");
                 break;
             case 3:
                 System.out.println("Level selected WARNING");
-                LogService.writeLogSet("WARNING", "src/workLog/LogSet.txt");
+                LogService.writeLogSet("WARNING", "src/main/java/workLog/LogSet.txt");
                 break;
             case 4:
                 System.out.println("Level selected ERROR");
-                LogService.writeLogSet("ERROR", "src/workLog/LogSet.txt");
+                LogService.writeLogSet("ERROR", "src/main/java/workLog/LogSet.txt");
                 break;
             case 5:
                 System.out.println("Level selected OFF");
-                LogService.writeLogSet("OFF", "src/workLog/LogSet.txt");
+                LogService.writeLogSet("OFF", "src/main/java/workLog/LogSet.txt");
                 break;
             default:
                 System.out.println("Incorrect symbol");

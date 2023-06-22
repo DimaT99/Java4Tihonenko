@@ -14,6 +14,9 @@ public class LogUtils {
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
     public void saveLog(Log log) {
+        if(className == null){
+            throw new IllegalArgumentException();
+        }
         logList.add(log);
     }
 

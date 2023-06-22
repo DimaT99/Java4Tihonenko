@@ -1,0 +1,93 @@
+
+Date 2023-06-21 00:38:30.835
+Level WARNING
+Class entity.Person 
+Message The data is entered incorrectly 
+Stacktrace[Ljava.lang.StackTraceElement;@cac736f
+
+Date 2023-06-21 00:38:30.864
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-06-21 00:38:30.868
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-06-21 00:38:30.868
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-06-21 00:38:30.868
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-06-21 00:38:30.869
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-06-21 00:38:37.491
+Level DEBUG
+Class utils.ConsoleUtils 
+Message Select category 
+
+Date 2023-06-21 00:39:37.119
+Level DEBUG
+Class utils.ConsoleUtils 
+Message Select category 
+
+Date 2023-06-21 00:39:37.119
+Level WARNING
+Class entity.Person 
+Message The data is entered incorrectly 
+Stacktrace[Ljava.lang.StackTraceElement;@5e265ba4
+
+Date 2023-06-21 00:40:01.682
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:40:01.683
+Level WARNING
+Class entity.Person 
+Message The data is entered incorrectly 
+Stacktrace[Ljava.lang.StackTraceElement;@156643d4
+
+Date 2023-06-21 00:40:29.612
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:40:53.675
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:41:19.948
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:41:55.568
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:42:23.699
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:43:36.198
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-06-21 00:43:36.198
+Level INFO
+Class entity.Person 
+Message Exit 

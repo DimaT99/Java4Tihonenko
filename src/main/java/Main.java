@@ -4,7 +4,7 @@ import workLog.LogService;
 public class Main {
     public static void main(String[] args) {
 
-        LogService.readText("src/workLog/LogSet.txt");
+        LogService.readText("src/main/java/workLog/LogSet.txt");
         ConsoleUtils consoleUtils = new ConsoleUtils();
         consoleUtils.parameterLog();
 
