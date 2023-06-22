@@ -1,20 +1,16 @@
 package entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
+
+@Data
 
 public class Teacher implements Comparable<Teacher>, Serializable {
     private Integer id;
     private String name;
     private static int count;
     private Person person;
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
 
     public static int getCount() {
         return count;
@@ -27,33 +23,8 @@ public class Teacher implements Comparable<Teacher>, Serializable {
         count++;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Teacher() {
         count++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", person=" + person +
-                '}';
     }
 
     @Override

@@ -10,36 +10,36 @@ import java.util.List;
 
 public class LogService {
     public static void writeToFile() {
-        File file = new File("src/workLog", "Log.txt");
+        File file = new File("src/main/java/workLog", "Log.txt");
 
         try (BufferedWriter bwriter = new BufferedWriter(new FileWriter(file))) {
             List<Log> logList = LogUtils.getLogList();
             for (Log log : logList) {
-                if (getText("src/workLog/LogSet.txt").equals("DEBUG")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("DEBUG")) {
                     bwriter.write("\n" + "Date " + String.valueOf(log.getDateLog()) + "\n");
                     bwriter.write("Level " + String.valueOf(log.getLevel()) + "\n");
                     bwriter.write("Class " + String.valueOf(log.getName()) + "\n");
                     bwriter.write("Message " + String.valueOf(log.getMessage()) + "\n");
                 }
-                if (getText("src/workLog/LogSet.txt").equals("INFO")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("INFO")) {
                     bwriter.write("\n" + "Date " + String.valueOf(log.getDateLog()) + "\n");
                     bwriter.write("Level " + String.valueOf(log.getLevel()) + "\n");
                     bwriter.write("Class " + String.valueOf(log.getName()) + "\n");
                     bwriter.write("Message " + String.valueOf(log.getMessage()) + "\n");
                 }
-                if (getText("src/workLog/LogSet.txt").equals("WARNING")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("WARNING")) {
                     bwriter.write("\n" + "Date " + String.valueOf(log.getDateLog()) + "\n");
                     bwriter.write("Level " + String.valueOf(log.getLevel()) + "\n");
                     bwriter.write("Class " + String.valueOf(log.getName()) + "\n");
                     bwriter.write("Message " + String.valueOf(log.getMessage()) + "\n");
                 }
-                if (getText("src/workLog/LogSet.txt").equals("ERROR")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("ERROR")) {
                     bwriter.write("\n" + "Date " + String.valueOf(log.getDateLog()) + "\n");
                     bwriter.write("Level " + String.valueOf(log.getLevel()) + "\n");
                     bwriter.write("Class " + String.valueOf(log.getName()) + "\n");
                     bwriter.write("Message " + String.valueOf(log.getMessage()) + "\n");
                 }
-                if (getText("src/workLog/LogSet.txt").equals("OFF")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("OFF")) {
                     bwriter.write("\n" + "Date " + String.valueOf(log.getDateLog()) + "\n");
                     bwriter.write("Level " + String.valueOf(log.getLevel()) + "\n");
                     bwriter.write("Class " + String.valueOf(log.getName()) + "\n");
@@ -102,14 +102,14 @@ public class LogService {
             }
             List<Log> logList = LogUtils.getLogList();
             for (Log log : logList) {
-                if (getText("src/workLog/LogSet.txt").equals("DEBUG")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("DEBUG")) {
                     Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, ("Date " + log.getDateLog() + "\n").getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, ("Level " + log.getLevel().toString() + "\n").getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, ("Class " + log.getName().toString() + "\n").getBytes(), StandardOpenOption.APPEND);
                     Files.write(p, ("Message " + log.getMessage() + "\n").getBytes(), StandardOpenOption.APPEND);
                 }
-                if (getText("src/workLog/LogSet.txt").equals("INFO")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("INFO")) {
                     if (log.getLevel().equals(EnumLogLevel.INFO) || log.getLevel().equals(EnumLogLevel.WARNING)
                             || log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
@@ -119,7 +119,7 @@ public class LogService {
                         Files.write(p, ("Message " + log.getMessage() + "\n").getBytes(), StandardOpenOption.APPEND);
                     }
                 }
-                if (getText("src/workLog/LogSet.txt").equals("WARNING")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("WARNING")) {
                     if (log.getLevel().equals(EnumLogLevel.WARNING) || log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, ("Date " + log.getDateLog() + "\n").getBytes(), StandardOpenOption.APPEND);
@@ -128,7 +128,7 @@ public class LogService {
                         Files.write(p, ("Message " + log.getMessage() + "\n").getBytes(), StandardOpenOption.APPEND);
                     }
                 }
-                if (getText("src/workLog/LogSet.txt").equals("ERROR")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("ERROR")) {
                     if (log.getLevel().equals(EnumLogLevel.ERROR) || log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, ("Date " + log.getDateLog() + "\n").getBytes(), StandardOpenOption.APPEND);
@@ -137,7 +137,7 @@ public class LogService {
                         Files.write(p, ("Message " + log.getMessage() + "\n").getBytes(), StandardOpenOption.APPEND);
                     }
                 }
-                if (getText("src/workLog/LogSet.txt").equals("OFF")) {
+                if (getText("src/main/java/workLog/LogSet.txt").equals("OFF")) {
                     if (log.getLevel().equals(EnumLogLevel.OFF)) {
                         Files.write(p, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
                         Files.write(p, ("Date " + log.getDateLog() + "\n").getBytes(), StandardOpenOption.APPEND);
