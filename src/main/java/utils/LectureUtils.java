@@ -16,6 +16,13 @@ public class LectureUtils {
     Additional additional;
     LectureRepo lectureRepo = new LectureRepo();
 
+    public LectureUtils() {
+    }
+
+    public LectureUtils(LectureRepo lectureRepo) {
+        this.lectureRepo = lectureRepo;
+    }
+
     public void createLecture() {
         LogUtils logUtils = new LogUtils();
         LogUtils.className = Lecture.class;
@@ -99,6 +106,12 @@ public class LectureUtils {
                 .forEach(System.out::println);
 
         System.out.println("Amount of additional materials = " + maxAdditional);
+    }
+
+    public boolean checkLecturePresence (Lecture lecture) throws Exception {
+        Lecture lectureToFind = lectureRepo.getLectureByLectureName(lecture.getName());
+
+        return lectureToFind != null;
     }
 }
 

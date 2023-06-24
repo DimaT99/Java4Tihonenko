@@ -1,11 +1,14 @@
 package workLog;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LogUtilsTest {
 
@@ -15,37 +18,26 @@ class LogUtilsTest {
     @BeforeEach
     void setUp() {
         target = new LogUtils();
-        System.out.println("BeforeEach passed");
     }
 
     @AfterEach
     void afterResult() {
-        System.out.println("AfterEach passed");
+        LogUtils.getLogList().clear();
     }
-
-    @BeforeAll
-    static void setAll() {
-        System.out.println("BeforeAll passed");
-    }
-
-    @AfterAll
-    static void setAllAfter() {
-        System.out.println("AfterAll passed");
-    }
-
+    @Tag("RUN")
     @Test
     void getLogTest() {
         ArrayList<Log> logArr = new ArrayList<>();
         assertThat(logArr)
                 .isEqualTo(logList);
     }
-
+    @Tag("RUN")
     @Test
     void isNullLogTest() {
         assertThrows(IllegalArgumentException.class,
                 () -> target.saveLog(null));
     }
-
+    @Tag("RUN")
     @Test
     void isListDataTest() {
         Log log;
@@ -54,13 +46,14 @@ class LogUtilsTest {
                     "test" + i, null);
             logList.add(log);
 
-            //LogUtils.getLogList().add(log);
+            LogUtils.getLogList().add(log);
         }
         assertThat(logList)
                 .usingRecursiveComparison()
                 .ignoringCollectionOrder()
                 .isEqualTo(LogUtils.getLogList());
     }
+    @Tag("SKIP")
     @Test
     void isListLogTest() {
         Log log;

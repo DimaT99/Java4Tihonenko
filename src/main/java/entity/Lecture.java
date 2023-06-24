@@ -32,6 +32,10 @@ public class Lecture implements Serializable {
         return count;
     }
 
+    public Lecture(String name) {
+        this.name = name;
+    }
+
     public Lecture() {
         count++;
     }
