@@ -80,4 +80,10 @@ public class LectureRepo implements Repo {
         System.out.println("\n" + "List of lectures between the specified dates " + LocalDate.now().plusDays(2) + " to " + LocalDate.now().plusDays(4));
         result.forEach((s) -> System.out.println(s));
     }
+    public Lecture getLectureByLectureName(String lectureName) throws Exception{
+        return lectureArrayList.stream()
+                .filter(lecture -> lecture.getName().equals(lectureName))
+                .findAny()
+                .orElse(null);
+    }
 }
