@@ -27,6 +27,11 @@ public class Teacher implements Comparable<Teacher>, Serializable {
         count++;
     }
 
+    public Teacher(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Override
     public int compareTo(Teacher o) {
         return this.getPerson().getLastName().compareTo(o.getPerson().getLastName());
