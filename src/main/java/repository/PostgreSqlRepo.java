@@ -5,8 +5,8 @@ import entity.Lecture;
 import entity.Teacher;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +15,8 @@ public class PostgreSqlRepo extends AbstractRepository {
         try {
             final String sql = "SELECT * FROM lecture";
             try (Connection conn = createConnect();
-                 Statement statement = conn.createStatement()) {
-                final ResultSet resultSet = statement.executeQuery(sql);
+                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
                 final List<Lecture> lectureList = new ArrayList<>();
                 while (resultSet.next()) {
                     Lecture lecture = new Lecture(resultSet.getInt("course_id"),
@@ -38,8 +38,8 @@ public class PostgreSqlRepo extends AbstractRepository {
         try {
             final String sql = "SELECT * FROM course";
             try (Connection conn = createConnect();
-                 Statement statement = conn.createStatement()) {
-                final ResultSet resultSet = statement.executeQuery(sql);
+                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
                 final List<Course> courseList = new ArrayList<>();
                 while (resultSet.next()) {
                     Course course = new Course(resultSet.getInt("id"),
@@ -58,8 +58,8 @@ public class PostgreSqlRepo extends AbstractRepository {
         try {
             final String sql = "SELECT * FROM teacher";
             try (Connection conn = createConnect();
-                 Statement statement = conn.createStatement()) {
-                final ResultSet resultSet = statement.executeQuery(sql);
+                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
                 final List<Teacher> courseList = new ArrayList<>();
                 while (resultSet.next()) {
                     Teacher teacher = new Teacher(resultSet.getInt("id"),
@@ -72,5 +72,34 @@ public class PostgreSqlRepo extends AbstractRepository {
             System.out.println("Connection failed..." + ex);
         }
         throw new IllegalArgumentException();
+    }
+
+    public static void insertColumns() {
+        try {
+            String insertQuery = "INSERT INTO public.homework( id, task, lecture_id) VALUES (?, ?, ?);";
+
+            try (Connection conn = createConnect();
+                 PreparedStatement preparedStatement = conn.prepareStatement(insertQuery)) {
+                conn.setAutoCommit(false);
+
+                preparedStatement.setInt(1, (int) (Math.random() * 100));
+                preparedStatement.setString(2, "Homework2");
+                preparedStatement.setInt(3, 1);
+                preparedStatement.addBatch();
+
+                preparedStatement.setInt(1, (int) (Math.random() * 100));
+                preparedStatement.setString(2, "Homework3");
+                preparedStatement.setInt(3, 3);
+                preparedStatement.addBatch();
+
+                int[] result = preparedStatement.executeBatch();
+
+                conn.commit();
+
+                System.out.println("add Lines Device: " + result);
+            }
+        } catch (Exception ex) {
+            System.out.println("Connection failed..." + ex);
+        }
     }
 }
