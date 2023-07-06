@@ -49,6 +49,14 @@ public class Lecture implements Serializable {
         count++;
     }
 
+    public Lecture(int courseId, Integer id, String name, String description, String lectureDate) {
+        this.courseId = courseId;
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.lectureDate = lectureDate;
+    }
+
     public static void sayCount() {
         System.out.println(count);
     }
