@@ -1,0 +1,125 @@
+.flex-container {
+    display: flex;
+    border: 1px solid #ccc;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.column-reverse {
+    flex-direction: column-reverse;
+}
+
+.flex-item {
+    text-align: left;
+    font-size: 1.1em;
+    padding: 1.5em;
+    color: white;
+}
+
+.color1 {
+
+}
+
+.color2 {
+
+}
+
+.color3 {
+
+}
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.menu {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    width: 200px;
+    float: left;
+}
+
+.main-content {
+    width: 600px;
+    float: left;
+    padding-left: 20px;
+    background-color: #ffffff;
+}
+
+a:link {
+    color: blue;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #2B2B2B;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e31515;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+    text-decoration: underline;
+}
+
+:enabled {
+    border: 2px black solid;
+    color: red;
+}
+
+:checked+span {
+    color: red;
+    font-weight: bold;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input:valid {
+    border: 2px solid green;
+}
+
+:optional {
+    border: 2px solid blue;
+}
+
+:required {
+    border: 2px solid red;
+}
+
+h1 {
+    color: rgb(47, 53, 228);
+}
+
+h2 {
+    font-family: Montsrrat, Verdana, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 18px;
+}
+
+h3 {
+    font-family: Montsrrat, Verdana, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16px;
+}

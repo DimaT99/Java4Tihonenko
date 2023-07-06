@@ -57,6 +57,11 @@ public class Lecture implements Serializable {
         this.lectureDate = lectureDate;
     }
 
+    public Lecture(String name, Integer id) {
+        this.id = id;
+        this.name = name;
+    }
+
     public static void sayCount() {
         System.out.println(count);
     }

@@ -1,17 +1,26 @@
 package entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Objects;
-
+@Data
 public class Additional implements Comparable<Additional>, Serializable {
     private static int count;
     private Integer id;
     private String name;
     private int lectureId;
     private ResourceType resourceType;
+    private String resourseType;
+    private Integer sum;
 
     public Additional() {
         count++;
+    }
+
+    public Additional(String resourseType, Integer sum) {
+        this.sum = sum;
+        this.resourseType = resourseType;
     }
 
     public static int getCount() {
