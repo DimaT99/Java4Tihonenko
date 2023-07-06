@@ -10,6 +10,7 @@ public class Student implements Comparable<Student>, Serializable {
     private static int count;
     private Person person;
     private Integer courseId;
+    private Integer sum;
 
     public void setPerson(Person person) {
         this.person = person;
@@ -24,6 +25,10 @@ public class Student implements Comparable<Student>, Serializable {
         this.name = name;
         this.person = person;
         count++;
+    }
+    public Student(String name, Integer sum) {
+        this.name = name;
+        this.sum = sum;
     }
 
     public Student() {

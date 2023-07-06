@@ -163,7 +163,9 @@ public class PostgreSqlRepo extends AbstractRepository {
             System.out.println("Connection failed..." + ex);
         }
         throw new IllegalArgumentException();
-    }public static List<Additional> sort3() {
+    }
+
+    public static List<Additional> sort3() {
         try {
             final String sql = "SELECT resource_type, COUNT (resource_type) FROM additionals GROUP BY resource_type;";
             try (Connection conn = createConnect();
@@ -171,11 +173,54 @@ public class PostgreSqlRepo extends AbstractRepository {
                 final ResultSet resultSet = preparedStatement.executeQuery();
                 final List<Additional> additionalList = new ArrayList<>();
                 while (resultSet.next()) {
-                    Additional additional= new Additional(resultSet.getString("resource_type"),
+                    Additional additional = new Additional(resultSet.getString("resource_type"),
                             resultSet.getInt("count"));
                     additionalList.add(additional);
                 }
                 return additionalList;
+            }
+        } catch (Exception ex) {
+            System.out.println("Connection failed..." + ex);
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static List<Teacher> sort4() {
+        try {
+            final String sql = "SELECT * FROM teacher WHERE (last_name >= 'A' AND last_name < 'N') OR (last_name >= 'А' AND last_name < 'Н');";
+            try (Connection conn = createConnect();
+                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
+                final List<Teacher> teacherList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Teacher teacher = new Teacher(resultSet.getInt("id"),
+                            (resultSet.getString("first_name") + " " + resultSet.getString("last_name")));
+                    teacherList.add(teacher);
+                }
+                return teacherList;
+            }
+        } catch (Exception ex) {
+            System.out.println("Connection failed..." + ex);
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static List<Student> sort5() {
+        try {
+            final String sql = "SELECT first_name, last_name, COUNT (course_id)\n" +
+                    "FROM students\n" +
+                    "GROUP BY first_name, last_name\n" +
+                    "ORDER BY last_name;";
+            try (Connection conn = createConnect();
+                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
+                final List<Student> studentList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Student student = new Student((resultSet.getString("first_name") + " " + resultSet.getString("last_name")),
+                    resultSet.getInt("count"));
+                    studentList.add(student);
+                }
+                return studentList;
             }
         } catch (Exception ex) {
             System.out.println("Connection failed..." + ex);
