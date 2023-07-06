@@ -1,7 +1,5 @@
 package entity;
 
-import serialization.Serializer;
-
 import java.io.Serializable;
 import java.util.Objects;
 
