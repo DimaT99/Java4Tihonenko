@@ -1,12 +1,16 @@
 package entity;
 
-import java.io.Serializable;
+import lombok.Data;
 
+import java.io.Serializable;
+@Data
 public class Student implements Comparable<Student>, Serializable {
     private Integer id;
     private String name;
     private static int count;
     private Person person;
+    private Integer courseId;
+    private Integer sum;
 
     public void setPerson(Person person) {
         this.person = person;
@@ -22,6 +26,10 @@ public class Student implements Comparable<Student>, Serializable {
         this.person = person;
         count++;
     }
+    public Student(String name, Integer sum) {
+        this.name = name;
+        this.sum = sum;
+    }
 
     public Student() {
         count++;
@@ -30,6 +38,12 @@ public class Student implements Comparable<Student>, Serializable {
     public Student(String name) {
         this.name = name;
         count++;
+    }
+
+    public Student(Integer id, String name, Integer courseId) {
+        this.id = id;
+        this.name = name;
+        this.courseId = courseId;
     }
 
     public static int getCount() {
