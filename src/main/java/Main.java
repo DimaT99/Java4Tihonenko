@@ -1,3 +1,4 @@
+import entity.Lecture;
 import repository.PostgreSqlRepo;
 import utils.*;
 import workLog.LogService;
@@ -5,14 +6,14 @@ import workLog.LogService;
 public class Main {
     public static void main(String[] args) {
 
-        //Data from PostgreSQL base, lesson 47
+        /*//Data from PostgreSQL base, lesson 47
         PostgreSqlRepo.getAllCourse().forEach(System.out::println);
         PostgreSqlRepo.getAllLecture().forEach(System.out::println);
         PostgreSqlRepo.getAllTeacher().forEach(System.out::println);
 
-        PostgreSqlRepo.insertColumns();
+        PostgreSqlRepo.insertColumns();*/
 
-        /*LogService.readText("src/main/java/workLog/LogSet.txt");
+        LogService.readText("src/main/java/workLog/LogSet.txt");
         ConsoleUtils consoleUtils = new ConsoleUtils();
         consoleUtils.parameterLog();
 
@@ -28,6 +29,6 @@ public class Main {
         LectureUtils lectureUtils1 = new LectureUtils();
         lectureUtils1.createLecture();
 
-        consoleUtils.ScannerWithSwitch();*/
+        consoleUtils.ScannerWithSwitch();
     }
 }

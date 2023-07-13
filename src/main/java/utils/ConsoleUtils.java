@@ -5,6 +5,7 @@ import entity.Homework;
 import entity.Lecture;
 import entity.ResourceType;
 import examination.MyThreads;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import repository.*;
 import serialization.Serializer;
 import workLog.LogService;
@@ -45,7 +46,8 @@ public class ConsoleUtils {
                 System.out.println("12. Teacher sort list");
                 System.out.println("13. Print Teacher Map");
                 System.out.println("14. Write e-mail of students in a file");
-                System.out.println("15. Exit");
+                System.out.println("15. Test Spring (lesson 54)");
+                System.out.println("16. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -59,7 +61,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 15);
+            } while (category < 1 || category > 16);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -263,6 +265,13 @@ public class ConsoleUtils {
                     logService1.readToFile("src/main/java/email.txt");
                     break;
                 case 15:
+                    System.out.println("Test Spring");
+                    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+                    Lecture lecture = context.getBean("testBean", Lecture.class);
+                    System.out.println(lecture.getName());
+                    context.close();
+                    break;
+                case 16:
                     stop = false;
                     logUtils.info("Exit");
                     LogService.writeToFile();
