@@ -1,12 +1,13 @@
 package repository;
 
 import entity.Homework;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class HomeworkRepo implements Repo {
     private static List<Homework> homeworkArrayList = new ArrayList<>();
     private static Map<Integer, List<Homework>> homeworkMap = new HashMap<>();

@@ -1,46 +1,92 @@
 
-Date 2023-07-14 02:30:07.115
+Date 2023-07-16 05:50:16.118
 Level WARNING
 Class entity.Person 
 Message The data is entered incorrectly 
-Stacktrace[Ljava.lang.StackTraceElement;@43195e57
+Stacktrace[Ljava.lang.StackTraceElement;@672872e1
 
-Date 2023-07-14 02:30:07.144
+Date 2023-07-16 05:50:16.141
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-14 02:30:07.146
+Date 2023-07-16 05:50:16.142
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-14 02:30:07.147
+Date 2023-07-16 05:50:16.142
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-14 02:30:07.147
+Date 2023-07-16 05:50:16.143
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-14 02:30:07.147
+Date 2023-07-16 05:50:16.143
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-14 02:30:10.108
+Date 2023-07-16 05:50:21.199
 Level DEBUG
 Class utils.ConsoleUtils 
 Message Select category 
 
-Date 2023-07-14 02:30:25.922
+Date 2023-07-16 05:50:21.199
+Level WARNING
+Class entity.Person 
+Message The data is entered incorrectly 
+Stacktrace[Ljava.lang.StackTraceElement;@32910148
+
+Date 2023-07-16 05:50:23.495
 Level DEBUG
-Class utils.ConsoleUtils 
+Class entity.Person 
 Message Select category 
 
-Date 2023-07-14 02:30:25.922
+Date 2023-07-16 05:50:30.652
+Level DEBUG
+Class entity.Person 
+Message Select category 
+
+Date 2023-07-16 05:50:30.652
 Level INFO
-Class utils.ConsoleUtils 
+Class utils.LectureUtils 
+Message Category Lecture 
+
+Date 2023-07-16 05:50:30.652
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-07-16 05:50:30.652
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-07-16 05:50:30.652
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-07-16 05:50:30.653
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-07-16 05:50:30.653
+Level INFO
+Class entity.Lecture 
+Message Lecture created 
+
+Date 2023-07-16 05:50:36.572
+Level DEBUG
+Class entity.Lecture 
+Message Select category 
+
+Date 2023-07-16 05:50:36.572
+Level INFO
+Class entity.Lecture 
 Message Exit 

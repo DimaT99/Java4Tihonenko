@@ -5,7 +5,10 @@ import entity.Homework;
 import entity.Lecture;
 import entity.ResourceType;
 import examination.MyThreads;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import repository.*;
 import serialization.Serializer;
 import workLog.LogService;
@@ -19,10 +22,36 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
-
+@Component
 public class ConsoleUtils {
-    LogUtils logUtils = new LogUtils();
-
+    ApplicationContext context = new AnnotationConfigApplicationContext(AdditionalUtils.class);
+    AdditionalUtils additionalUtils = context.getBean(AdditionalUtils.class);
+    ApplicationContext context2 = new AnnotationConfigApplicationContext(LectureRepo.class);
+    LectureRepo lectureRepo = context2.getBean(LectureRepo.class);
+    ApplicationContext context3 = new AnnotationConfigApplicationContext(HomeworkUtils.class);
+    HomeworkUtils homeworkUtils = context3.getBean(HomeworkUtils.class);
+    ApplicationContext context4 = new AnnotationConfigApplicationContext(LogUtils.class);
+    LogUtils logUtils = context4.getBean(LogUtils.class);
+    ApplicationContext context5 = new AnnotationConfigApplicationContext(CourseUtils.class);
+    CourseUtils courseUtils = context5.getBean(CourseUtils.class);
+    ApplicationContext context6 = new AnnotationConfigApplicationContext(StudentUtils.class);
+    StudentUtils studentUtils = context6.getBean(StudentUtils.class);
+    ApplicationContext context7 = new AnnotationConfigApplicationContext(TeacherUtils.class);
+    TeacherUtils teacherUtils = context7.getBean(TeacherUtils.class);
+    ApplicationContext context8 = new AnnotationConfigApplicationContext(LectureUtils.class);
+    LectureUtils lectureUtils = context8.getBean(LectureUtils.class);
+    ApplicationContext context9 = new AnnotationConfigApplicationContext(LogService.class);
+    LogService logService = context9.getBean(LogService.class);
+    ApplicationContext context10 = new AnnotationConfigApplicationContext(AdditionalRepo.class);
+    AdditionalRepo additionalRepo = context10.getBean(AdditionalRepo.class);
+    ApplicationContext context11 = new AnnotationConfigApplicationContext(CourseRepo.class);
+    CourseRepo courseRepo = context11.getBean(CourseRepo.class);
+    ApplicationContext context12 = new AnnotationConfigApplicationContext(HomeworkRepo.class);
+    HomeworkRepo homeworkRepo = context12.getBean(HomeworkRepo.class);
+    ApplicationContext context13 = new AnnotationConfigApplicationContext(StudentRepo.class);
+    StudentRepo studentRepo = context13.getBean(StudentRepo.class);
+    ApplicationContext context14 = new AnnotationConfigApplicationContext(TeacherRepo.class);
+    TeacherRepo teacherRepo = context14.getBean(TeacherRepo.class);
     public void ScannerWithSwitch() {
 
         LogUtils.className = ConsoleUtils.class;
@@ -66,17 +95,14 @@ public class ConsoleUtils {
             switch (category) {
                 case 1:
                     System.out.println("Category Course");
-                    CourseUtils courseUtils = new CourseUtils();
                     courseUtils.createCourse();
                     break;
                 case 2:
                     System.out.println("Category Teacher");
-                    TeacherUtils teacherUtils = new TeacherUtils();
                     teacherUtils.createTeacher();
                     break;
                 case 3:
                     System.out.println("Category Student");
-                    StudentUtils studentUtils = new StudentUtils();
                     studentUtils.createStudent();
                     //studentUtils.addStudent();               //optional wrapper lesson 29
                     break;
@@ -84,7 +110,6 @@ public class ConsoleUtils {
                     System.out.println("Category Lecture");
                     LogUtils.className = LectureUtils.class;
                     logUtils.info("Category Lecture");
-                    LectureUtils lectureUtils = new LectureUtils();
                     lectureUtils.createLecture();
                     break;
                 case 5:
@@ -106,11 +131,9 @@ public class ConsoleUtils {
                             System.out.println("Incorrect symbol. Choose the right category");
                         }
                     } while (category1 < 1 || category1 > 5);
-                    AdditionalRepo additionalRepo = new AdditionalRepo();
                     switch (category1) {
                         case 1:
                             System.out.println("Create object Additional materials");
-                            AdditionalUtils additionalUtils = new AdditionalUtils();
                             additionalUtils.createAdditional();
                             break;
                         case 2:
@@ -171,7 +194,6 @@ public class ConsoleUtils {
                             System.out.println("Incorrect symbol. Choose the right category");
                         }
                     } while (category7 < 1 || category7 > 3);
-                    LogService logService = new LogService();
                     switch (category7) {
                         case 1:
                             System.out.println("View to Log");
@@ -231,8 +253,7 @@ public class ConsoleUtils {
                     break;
                 case 12:
                     System.out.println("Teacher sort list");
-                    TeacherUtils teacherUtils1 = new TeacherUtils();
-                    teacherUtils1.teacherListLastname();
+                    teacherUtils.teacherListLastname();
                     break;
                 case 13:
                     System.out.println("Print Teacher Map");
@@ -261,8 +282,7 @@ public class ConsoleUtils {
                                 } catch (IOException e) {
                                 }
                             });
-                    LogService logService1 = new LogService();
-                    logService1.readToFile("src/main/java/email.txt");
+                    logService.readToFile("src/main/java/email.txt");
                     break;
                 case 15:
                     System.out.println("Test Spring");
@@ -298,27 +318,22 @@ public class ConsoleUtils {
         switch (category3) {
             case 1:
                 System.out.println("Created objects Course");
-                CourseRepo courseRepo = new CourseRepo();
                 courseRepo.findAll();
                 break;
             case 2:
                 System.out.println("Created objects Teacher");
-                TeacherRepo teacherRepo = new TeacherRepo();
                 teacherRepo.findAll();
                 break;
             case 3:
                 System.out.println("Created objects Student");
-                StudentRepo studentRepo = new StudentRepo();
                 studentRepo.findAll();
                 break;
             case 4:
                 System.out.println("Created objects Lecture");
-                LectureRepo lectureRepo = new LectureRepo();
                 lectureRepo.findAll();
                 break;
             case 5:
                 System.out.println("Created objects Homework");
-                HomeworkRepo homeworkRepo = new HomeworkRepo();
                 homeworkRepo.findAll();
                 HomeworkRepo.getHomeworkMap();
                 for (int i = 1; i < HomeworkRepo.getHomeworkMap().size() + 1; i++) {
@@ -327,7 +342,6 @@ public class ConsoleUtils {
                 break;
             case 6:
                 System.out.println("Created objects Additional");
-                AdditionalRepo additionalRepo = new AdditionalRepo();
                 additionalRepo.findAll();
                 AdditionalRepo.getAdditionalMap();
                 for (int i = 1; i < AdditionalRepo.getAdditionalMap().size() + 1; i++) {
@@ -343,8 +357,6 @@ public class ConsoleUtils {
 
         int category4 = 0;
         int idLecture = 0;
-        LectureUtils lectureUtils = new LectureUtils();
-        LectureRepo lectureRepo = new LectureRepo();
         do {
             Scanner scanner2 = new Scanner(System.in);
             System.out.println("Select the category, please use only numbers from 1 to 10");
@@ -438,7 +450,6 @@ public class ConsoleUtils {
                     case 1:
                         System.out.println("Add new homework");
                         Homework homework = new Homework(Homework.getCount() + 1, idLecture, "Task" + (Homework.getCount() + 1));
-                        HomeworkRepo homeworkRepo = new HomeworkRepo();
                         homeworkRepo.add(homework);
                         homeworkRepo.addMap(homework);
                         List<Homework> homework1 = HomeworkRepo.getHomeworkMap().get(idLecture);
@@ -523,7 +534,6 @@ public class ConsoleUtils {
                         System.out.println("Add new additional materials");
                         Additional additional = new Additional(Additional.getCount() + 1, "Additional" + (Additional.getCount() + 1),
                                 idLecture, (ResourceType) ResourceType.resourceType());
-                        AdditionalRepo additionalRepo = new AdditionalRepo();
                         additionalRepo.add(additional);
                         additionalRepo.addMap(additional);
                         ArrayList<Additional> additionals = AdditionalRepo.getAdditionalMap().get(idLecture);

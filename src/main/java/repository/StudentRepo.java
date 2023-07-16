@@ -1,10 +1,11 @@
 package repository;
 
 import entity.Student;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class StudentRepo implements Repo {
     private static List<Student> studentArrayList = new ArrayList<>();
     //private static Student[] students;

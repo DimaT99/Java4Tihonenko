@@ -1,17 +1,24 @@
 package repository;
 
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+@Component
 public class AbstractRepository {
+    @Value("${database.connectionUrl}")
+    private static String url;
+    @Value("${database.user}")
+    private static String username;
+    @Value("${database.password}")
+    private static String password;
+    @Value("${database.driver}")
+    private static String dataBaseDriver;
     @SneakyThrows
     public static Connection createConnect() {
-        final String url = "jdbc:postgresql://localhost:5432/school_online";
-        final String username = "postgres";
-        final String password = "210994";
-        Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
+        Class.forName(dataBaseDriver).getDeclaredConstructor().newInstance();
         return DriverManager.getConnection(url, username, password);
     }
 }

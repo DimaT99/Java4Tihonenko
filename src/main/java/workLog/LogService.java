@@ -1,5 +1,7 @@
 package workLog;
 
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
-
+@Component
 public class LogService {
     public static void writeToFile() {
         File file = new File("src/main/java/workLog", "Log.txt");

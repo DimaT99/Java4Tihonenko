@@ -1,5 +1,8 @@
 package repository;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface Repo<E> {
     int size();
 
