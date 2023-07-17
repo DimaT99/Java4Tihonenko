@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="additionalUtils"
+          class="utils.AdditionalUtils">
+    </bean>
+
+    <bean id="courseUtils"
+          class="utils.CourseUtils">
+    </bean>
+
+    <bean id="homeworkUtils"
+          class="utils.HomeworkUtils">
+    </bean>
+
+    <bean id="lectureUtils"
+          class="utils.LectureUtils">
+    </bean>
+
+    <bean id="studentUtils"
+          class="utils.StudentUtils">
+    </bean>
+
+    <bean id="teacherUtils"
+          class="utils.TeacherUtils">
+    </bean>
+
+    <bean id="additionalRepo"
+          class="repository.AdditionalRepo">
+    </bean>
+
+    <bean id="courseRepo"
+          class="repository.CourseRepo">
+    </bean>
+
+    <bean id="homeworkRepo"
+          class="repository.HomeworkRepo">
+    </bean>
+
+    <bean id="lectureRepo"
+          class="repository.LectureRepo">
+    </bean>
+
+    <bean id="studentRepo"
+          class="repository.StudentRepo">
+    </bean>
+
+    <bean id="teacherRepo"
+          class="repository.TeacherRepo">
+    </bean>
+
+    <bean id="testBean"
+          class="entity.Lecture">
+        <constructor-arg value="Online school - lesson 54"/>
+    </bean>
+
+</beans>
