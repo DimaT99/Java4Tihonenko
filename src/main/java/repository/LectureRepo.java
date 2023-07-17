@@ -1,12 +1,13 @@
 package repository;
 
 import entity.Lecture;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-
+@Component
 public class LectureRepo implements Repo {
     private static List<Lecture> lectureArrayList = new ArrayList<>();
     //private static Lecture[] lectures;

@@ -2,19 +2,28 @@ package utils;
 
 import entity.*;
 import exception.EntityNotFoundException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 import repository.AdditionalRepo;
 import repository.LectureRepo;
 import workLog.LogUtils;
 
+import java.io.ObjectInputFilter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+@Component
 public class LectureUtils {
     Homework homework;
     Additional additional;
-    LectureRepo lectureRepo = new LectureRepo();
+    ApplicationContext context = new AnnotationConfigApplicationContext(AdditionalUtils.class);
+    AdditionalUtils additionalUtils = context.getBean(AdditionalUtils.class);
+    ApplicationContext context2 = new AnnotationConfigApplicationContext(LectureRepo.class);
+    LectureRepo lectureRepo = context2.getBean(LectureRepo.class);
+    ApplicationContext context3 = new AnnotationConfigApplicationContext(HomeworkUtils.class);
+    HomeworkUtils homeworkUtils = context3.getBean(HomeworkUtils.class);
 
     public LectureUtils() {
     }
@@ -41,9 +50,7 @@ public class LectureUtils {
             lecture.setLectureDate(formatter.format(LocalDateTime.now()));
             DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
             lecture.setCreationDate(formatter1.format(LocalDateTime.now()));
-            HomeworkUtils homeworkUtils = new HomeworkUtils();
             homeworkUtils.createHomework();
-            AdditionalUtils additionalUtils = new AdditionalUtils();
             additionalUtils.createAdditional();
             //lecture.setHomeworkList(HomeworkRepo.getHomeworkArrayList());
             logUtils.info("Lecture created", lecture.getCreationDate());

@@ -4,12 +4,17 @@ import entity.Course;
 import entity.EnumRole;
 import entity.Person;
 import entity.Student;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 import repository.StudentRepo;
 
 import java.util.Optional;
 
+@Component
 public class StudentUtils {
-    StudentRepo studentRepo = new StudentRepo();
+    ApplicationContext context = new AnnotationConfigApplicationContext(StudentRepo.class);
+    StudentRepo studentRepo = context.getBean(StudentRepo.class);
 
 
     public void createStudent() {
@@ -40,6 +45,7 @@ public class StudentUtils {
         //System.out.println(student.getName());
         studentRepo.add(student);
     }
+
     String emailDuplicate(String email) {
         if (StudentRepo.getStudentArrayList().stream()
                 .noneMatch(e -> e.getPerson().getEmail().equals(email))) {

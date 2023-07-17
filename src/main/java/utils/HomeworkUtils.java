@@ -2,14 +2,18 @@ package utils;
 
 import entity.Homework;
 import entity.Lecture;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 import repository.HomeworkRepo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+@Component
 public class HomeworkUtils {
-    HomeworkRepo homeworkRepo = new HomeworkRepo();
+    ApplicationContext context = new AnnotationConfigApplicationContext(HomeworkRepo.class);
+    HomeworkRepo homeworkRepo = context.getBean(HomeworkRepo.class);
 
     public void createHomework() {
         Homework homework = new Homework();

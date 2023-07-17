@@ -1,10 +1,12 @@
 package workLog;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class LogUtils {
     private static List<Log> logList = new ArrayList<>();
     public static Class<?> className;

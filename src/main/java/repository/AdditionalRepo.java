@@ -1,12 +1,14 @@
 package repository;
 
 import entity.Additional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class AdditionalRepo implements Repo {
     private static List<Additional> additionalArrayList = new ArrayList<>();
     private static Map<Integer, ArrayList<Additional>> additionalMap = new HashMap<>();

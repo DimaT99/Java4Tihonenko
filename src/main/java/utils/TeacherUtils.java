@@ -4,10 +4,14 @@ import entity.Course;
 import entity.EnumRole;
 import entity.Person;
 import entity.Teacher;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 import repository.TeacherRepo;
-
+@Component
 public class TeacherUtils {
-    private TeacherRepo teacherRepo = new TeacherRepo();
+    ApplicationContext context = new AnnotationConfigApplicationContext(TeacherRepo.class);
+    TeacherRepo teacherRepo = context.getBean(TeacherRepo.class);
 
     public void createTeacher() {
 
