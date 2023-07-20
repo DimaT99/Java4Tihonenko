@@ -1,92 +1,41 @@
 
-Date 2023-07-16 05:50:16.118
+Date 2023-07-19 02:16:46.407
 Level WARNING
 Class entity.Person 
 Message The data is entered incorrectly 
-Stacktrace[Ljava.lang.StackTraceElement;@672872e1
+Stacktrace[Ljava.lang.StackTraceElement;@36d585c
 
-Date 2023-07-16 05:50:16.141
+Date 2023-07-19 02:16:46.431
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-16 05:50:16.142
+Date 2023-07-19 02:16:46.432
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-16 05:50:16.142
+Date 2023-07-19 02:16:46.432
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-16 05:50:16.143
+Date 2023-07-19 02:16:46.432
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-16 05:50:16.143
+Date 2023-07-19 02:16:46.432
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-16 05:50:21.199
+Date 2023-07-19 02:16:48.861
 Level DEBUG
 Class utils.ConsoleUtils 
 Message Select category 
 
-Date 2023-07-16 05:50:21.199
-Level WARNING
-Class entity.Person 
-Message The data is entered incorrectly 
-Stacktrace[Ljava.lang.StackTraceElement;@32910148
-
-Date 2023-07-16 05:50:23.495
-Level DEBUG
-Class entity.Person 
-Message Select category 
-
-Date 2023-07-16 05:50:30.652
-Level DEBUG
-Class entity.Person 
-Message Select category 
-
-Date 2023-07-16 05:50:30.652
+Date 2023-07-19 02:16:48.862
 Level INFO
-Class utils.LectureUtils 
-Message Category Lecture 
-
-Date 2023-07-16 05:50:30.652
-Level INFO
-Class entity.Lecture 
-Message Lecture created 
-
-Date 2023-07-16 05:50:30.652
-Level INFO
-Class entity.Lecture 
-Message Lecture created 
-
-Date 2023-07-16 05:50:30.652
-Level INFO
-Class entity.Lecture 
-Message Lecture created 
-
-Date 2023-07-16 05:50:30.653
-Level INFO
-Class entity.Lecture 
-Message Lecture created 
-
-Date 2023-07-16 05:50:30.653
-Level INFO
-Class entity.Lecture 
-Message Lecture created 
-
-Date 2023-07-16 05:50:36.572
-Level DEBUG
-Class entity.Lecture 
-Message Select category 
-
-Date 2023-07-16 05:50:36.572
-Level INFO
-Class entity.Lecture 
+Class utils.ConsoleUtils 
 Message Exit 

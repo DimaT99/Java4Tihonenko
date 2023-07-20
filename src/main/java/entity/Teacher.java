@@ -2,14 +2,17 @@ package entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity
 @Data
-
 public class Teacher implements Comparable<Teacher>, Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private static int count;
+    @Transient
     private Person person;
 
     public static int getCount() {

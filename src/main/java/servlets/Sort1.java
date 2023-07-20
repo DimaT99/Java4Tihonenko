@@ -4,12 +4,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import repository.AbstractRepository;
 import repository.PostgreSqlRepo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet(value = "/sort1")
 public class Sort1 extends HttpServlet {
+    ApplicationContext context = new AnnotationConfigApplicationContext(AbstractRepository.class);
+    PostgreSqlRepo postgreSqlRepo = context.getBean(PostgreSqlRepo.class);
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -28,7 +33,7 @@ public class Sort1 extends HttpServlet {
                 "}\n" +
                 "</style>\n" +
                 "<body>\n");
-        PostgreSqlRepo.sort1().forEach(lecture -> out.println("<h2>" + lecture.getName() + "  " + lecture.getId() + "</h2>"));
+        postgreSqlRepo.sort1().forEach(lecture -> out.println("<h2>" + lecture.getName() + "  " + lecture.getId() + "</h2>"));
         out.println("<br/><a href=\"http://localhost:63342/Java4Tihonenko/servlets/html/start.html\">Return to main</a>");
         out.println("<br/><a href=\"getAll\">All information from online school</a>");
         out.println("</body></html>");

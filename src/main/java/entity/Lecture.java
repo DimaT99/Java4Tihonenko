@@ -2,22 +2,26 @@ package entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-
+@Entity
 @Data
-
 public class Lecture implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int courseId;
     private static int count;
     private Integer id;
     private String name;
     private String description;
     private int personId;
+    @Transient
     private List<Homework> homeworkList;
     private String creationDate;
     private String lectureDate;
+    @Transient
     LocalDate date;
 
     public List<Homework> getHomeworkList() {
