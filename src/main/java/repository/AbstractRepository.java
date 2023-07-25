@@ -2,22 +2,28 @@ package repository;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-@Component
+@Repository
+@Configuration
+@ComponentScan()
+@PropertySource("classpath:database.properties")
 public class AbstractRepository {
     @Value("${database.connectionUrl}")
-    private static String url;
+    private String url;
     @Value("${database.user}")
-    private static String username;
+    private String username;
     @Value("${database.password}")
-    private static String password;
+    private String password;
     @Value("${database.driver}")
-    private static String dataBaseDriver;
+    private String dataBaseDriver;
     @SneakyThrows
-    public static Connection createConnect() {
+    public Connection createConnect() {
         Class.forName(dataBaseDriver).getDeclaredConstructor().newInstance();
         return DriverManager.getConnection(url, username, password);
     }

@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
+
 @Component
 public class ConsoleUtils {
     ApplicationContext context = new AnnotationConfigApplicationContext(AdditionalUtils.class);
@@ -52,6 +53,7 @@ public class ConsoleUtils {
     StudentRepo studentRepo = context13.getBean(StudentRepo.class);
     ApplicationContext context14 = new AnnotationConfigApplicationContext(TeacherRepo.class);
     TeacherRepo teacherRepo = context14.getBean(TeacherRepo.class);
+
     public void ScannerWithSwitch() {
 
         LogUtils.className = ConsoleUtils.class;
@@ -76,7 +78,8 @@ public class ConsoleUtils {
                 System.out.println("13. Print Teacher Map");
                 System.out.println("14. Write e-mail of students in a file");
                 System.out.println("15. Test Spring (lesson 54)");
-                System.out.println("16. Exit");
+                System.out.println("16. HQL query (lesson 57)");
+                System.out.println("17. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -90,7 +93,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 16);
+            } while (category < 1 || category > 17);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -268,8 +271,8 @@ public class ConsoleUtils {
                     System.out.println("Write e-mail of students in a file");
 
                     String fileName = "src/main/java/email.txt";
-                    try (FileOutputStream fos = new FileOutputStream(fileName, false)) { }
-                    catch (IOException e) {
+                    try (FileOutputStream fos = new FileOutputStream(fileName, false)) {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                     StudentRepo.getStudentArrayList().stream()
@@ -292,6 +295,13 @@ public class ConsoleUtils {
                     context.close();
                     break;
                 case 16:
+                    System.out.println("HQL query (lesson 57)");
+                    System.out.println("getLecture");
+                    HQLQuery.getLecture(2);
+                    System.out.println("getTeacher");
+                    HQLQuery.getTeacher(1);
+                    break;
+                case 17:
                     stop = false;
                     logUtils.info("Exit");
                     LogService.writeToFile();
