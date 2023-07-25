@@ -24,6 +24,7 @@ public class CourseUtils {
         course.setName("Course" + Course.getCount());
 
         courseRepo.add(course);
+        courseRepo.save(course);
 
         for (int i = 0; i < courseRepo.size(); i++) {
             System.out.println("Index " + i + " " + courseRepo.get(i));

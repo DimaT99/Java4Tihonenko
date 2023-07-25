@@ -1,8 +1,12 @@
 package repository;
 
 import entity.Lecture;
+import entity.Teacher;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,5 +90,53 @@ public class LectureRepo implements Repo {
                 .filter(lecture -> lecture.getName().equals(lectureName))
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public boolean save(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save((Lecture) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public Object getById(Integer id) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Query usersQuery = session.createQuery("from Lecture where id =:id", Lecture.class);
+            usersQuery.setParameter("id", id);
+            final Lecture singleResult = (Lecture) usersQuery.getSingleResult();
+            return singleResult;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean update(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.update((Lecture) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean delete(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete((Lecture) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

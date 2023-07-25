@@ -15,5 +15,14 @@ public interface Repo<E> {
     void add(int index, E element);
 
     void remove(int index);
+
     void findAll();
+
+    boolean save(E element);
+
+    E getById(Integer id);
+
+    boolean update(E element);
+
+    boolean delete(E element);
 }

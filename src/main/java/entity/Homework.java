@@ -1,20 +1,27 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+import lombok.ToString;
+import net.bytebuddy.build.ToStringPlugin;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
 public class Homework implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private int lectureId;
     private String task;
     private static int count;
     private String deadline;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecture_id", referencedColumnName = "id")
+    @ToString.Exclude
+    private Lecture lecture;
 
     public String getDeadline() {
         return deadline;
@@ -37,30 +44,6 @@ public class Homework implements Serializable {
         this.lectureId = lectureId;
         this.task = task;
         count++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getLectureId() {
-        return lectureId;
-    }
-
-    public void setLectureId(int lectureId) {
-        this.lectureId = lectureId;
-    }
-
-    public String getTask() {
-        return task;
-    }
-
-    public void setTask(String task) {
-        this.task = task;
     }
 
     @Override

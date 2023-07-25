@@ -1,7 +1,8 @@
 package repository;
 
-import entity.Course;
+import entity.Person;
 import entity.Teacher;
+import lombok.Data;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
@@ -10,21 +11,18 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class CourseRepo implements Repo {
-    private static List<Course> courseArrayList = new ArrayList<>();
-
-    public static List<Course> getCourseArrayList() {
-        return courseArrayList;
-    }
+@Data
+public class PersonRepo implements Repo{
+    private static List<Person> personArrayList = new ArrayList<>();
 
     @Override
     public int size() {
-        return courseArrayList.size();
+        return personArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (courseArrayList == null) {
+        if (personArrayList == null) {
             return true;
         }
         return false;
@@ -32,33 +30,33 @@ public class CourseRepo implements Repo {
 
     @Override
     public Object get(int index) {
-        return courseArrayList.get(index);
+        return personArrayList.get(index);
     }
 
     @Override
     public void add(Object element) {
-        courseArrayList.add((Course) element);
+        personArrayList.add((Person) element);
     }
 
     @Override
     public void add(int index, Object element) {
-        courseArrayList.set(index, (Course) element);
+        personArrayList.set(index, (Person) element);
     }
 
     @Override
     public void remove(int index) {
-        courseArrayList.remove(courseArrayList.get(index));
+        personArrayList.remove(personArrayList.get(index));
     }
 
     @Override
     public void findAll() {
-        SimpleIterator simpleIterator = new SimpleIterator(courseArrayList.toArray());
-        Course course;
+        SimpleIterator simpleIterator = new SimpleIterator(personArrayList.toArray());
+        Person person;
         while (simpleIterator.hasNext()) {
-            course = (Course) simpleIterator.next();
-            System.out.println(course);
+            person = (Person) simpleIterator.next();
+            System.out.println(person);
         }
-        System.out.println("All course");
+        System.out.println("All persons");
         return;
     }
 
@@ -66,7 +64,7 @@ public class CourseRepo implements Repo {
     public boolean save(Object element) {
         try (final Session session = SessionCreator.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();
-            session.save((Course) element);
+            session.save((Person) element);
             transaction.commit();
             return true;
         } catch (final Exception e) {
@@ -77,9 +75,9 @@ public class CourseRepo implements Repo {
     @Override
     public Object getById(Integer id) {
         try (final Session session = SessionCreator.getSessionFactory().openSession()) {
-            final Query usersQuery = session.createQuery("from Course where id =:id", Course.class);
+            final Query usersQuery = session.createQuery("from Teacher where id =:id", Teacher.class);
             usersQuery.setParameter("id", id);
-            final Course singleResult = (Course) usersQuery.getSingleResult();
+            final Person singleResult = (Person) usersQuery.getSingleResult();
             return singleResult;
         } catch (final Exception e) {
             throw new IllegalStateException(e);
@@ -90,7 +88,7 @@ public class CourseRepo implements Repo {
     public boolean update(Object element) {
         try (final Session session = SessionCreator.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();
-            session.update((Course) element);
+            session.update((Person) element);
             transaction.commit();
             return true;
         } catch (final Exception e) {
@@ -102,7 +100,7 @@ public class CourseRepo implements Repo {
     public boolean delete(Object element) {
         try (final Session session = SessionCreator.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();
-            session.delete((Course) element);
+            session.delete((Person) element);
             transaction.commit();
             return true;
         } catch (final Exception e) {

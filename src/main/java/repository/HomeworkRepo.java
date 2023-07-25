@@ -1,12 +1,17 @@
 package repository;
 
 import entity.Homework;
+import entity.Teacher;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Component
 public class HomeworkRepo implements Repo {
     private static List<Homework> homeworkArrayList = new ArrayList<>();
@@ -23,12 +28,14 @@ public class HomeworkRepo implements Repo {
     public static List<Homework> getHomeworkArrayList() {
         return homeworkArrayList;
     }
+
     public void addMap(Homework homework) {
         if (homeworkMap.get(homework.getLectureId()) == null) {
             homeworkMap.put(homework.getLectureId(), new ArrayList<Homework>());
         }
         homeworkMap.get(homework.getLectureId()).add(homework);
     }
+
     @Override
     public int size() {
         return homeworkArrayList.size();
@@ -72,5 +79,53 @@ public class HomeworkRepo implements Repo {
         }
         System.out.println("All homework");
         return;
+    }
+
+    @Override
+    public boolean save(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save((Homework) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public Object getById(Integer id) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Query usersQuery = session.createQuery("from Homework where id =:id", Homework.class);
+            usersQuery.setParameter("id", id);
+            final Homework singleResult = (Homework) usersQuery.getSingleResult();
+            return singleResult;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean update(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.update((Homework) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean delete(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete((Homework) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

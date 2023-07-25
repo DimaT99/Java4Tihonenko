@@ -1,41 +1,46 @@
 
-Date 2023-07-19 02:16:46.407
+Date 2023-07-25 05:16:37.225
 Level WARNING
 Class entity.Person 
 Message The data is entered incorrectly 
-Stacktrace[Ljava.lang.StackTraceElement;@36d585c
+Stacktrace[Ljava.lang.StackTraceElement;@52354202
 
-Date 2023-07-19 02:16:46.431
+Date 2023-07-25 05:16:37.252
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-19 02:16:46.432
+Date 2023-07-25 05:16:37.261
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-19 02:16:46.432
+Date 2023-07-25 05:16:37.266
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-19 02:16:46.432
+Date 2023-07-25 05:16:37.271
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-19 02:16:46.432
+Date 2023-07-25 05:16:37.278
 Level INFO
 Class entity.Lecture 
 Message Lecture created 
 
-Date 2023-07-19 02:16:48.861
+Date 2023-07-25 05:16:39.631
 Level DEBUG
 Class utils.ConsoleUtils 
 Message Select category 
 
-Date 2023-07-19 02:16:48.862
+Date 2023-07-25 05:19:14.933
+Level DEBUG
+Class utils.ConsoleUtils 
+Message Select category 
+
+Date 2023-07-25 05:19:14.933
 Level INFO
 Class utils.ConsoleUtils 
 Message Exit 

@@ -24,6 +24,8 @@ public class LectureUtils {
     LectureRepo lectureRepo = context2.getBean(LectureRepo.class);
     ApplicationContext context3 = new AnnotationConfigApplicationContext(HomeworkUtils.class);
     HomeworkUtils homeworkUtils = context3.getBean(HomeworkUtils.class);
+    ApplicationContext context4 = new AnnotationConfigApplicationContext(LogUtils.class);
+    LogUtils logUtils = context4.getBean(LogUtils.class);
 
     public LectureUtils() {
     }
@@ -33,17 +35,17 @@ public class LectureUtils {
     }
 
     public void createLecture() {
-        LogUtils logUtils = new LogUtils();
         LogUtils.className = Lecture.class;
         for (int j = 0; j < 100; j++) {
             if (j == 5) {
                 break;
             }
             Lecture lecture = new Lecture();
+            System.out.println(Lecture.getCount());
             lecture.setCourseId(Course.getCount());
             lecture.setId(Lecture.getCount());
             lecture.setPersonId(Teacher.getCount());
-            lecture.setName("Lecture" + Lecture.getCount());
+            lecture.setName("Lecture%d".formatted(Lecture.getCount()));
             lecture.setDescription("Description" + Lecture.getCount());
             lecture.setDate(LocalDate.now().plusDays(Lecture.getCount())); //for the task filterLectures (lesson 27)
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, EEEE HH:mm:ss", Locale.ENGLISH);
@@ -55,6 +57,7 @@ public class LectureUtils {
             //lecture.setHomeworkList(HomeworkRepo.getHomeworkArrayList());
             logUtils.info("Lecture created", lecture.getCreationDate());
             lectureRepo.add(lecture);
+            lectureRepo.save(lecture);
         }
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
@@ -68,8 +71,7 @@ public class LectureUtils {
     }
 
     public void add() {
-        LectureUtils lectureUtils = new LectureUtils();
-        lectureUtils.createLecture();
+        createLecture();
     }
 
     public void getByld(int idLecture) {

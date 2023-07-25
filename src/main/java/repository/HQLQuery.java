@@ -9,16 +9,6 @@ import org.hibernate.Transaction;
 import javax.persistence.Query;
 
 public class HQLQuery {
-    /*public static void getLecture(Integer integer) {
-        Session session = SessionCreator.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        Query usersQuery = session.createQuery("from Lecture where id = :id", Lecture.class);
-        usersQuery.setParameter("id", integer);
-        System.out.println(usersQuery.getSingleResult());
-        transaction.commit();
-        session.close();
-    }*/
-
     public static Boolean saveLecture(final Lecture lecture) {
         try (final Session session = SessionCreator.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();

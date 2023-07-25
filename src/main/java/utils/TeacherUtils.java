@@ -7,11 +7,14 @@ import entity.Teacher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import repository.PersonRepo;
 import repository.TeacherRepo;
 @Component
 public class TeacherUtils {
     ApplicationContext context = new AnnotationConfigApplicationContext(TeacherRepo.class);
     TeacherRepo teacherRepo = context.getBean(TeacherRepo.class);
+    ApplicationContext context2 = new AnnotationConfigApplicationContext(PersonRepo.class);
+    PersonRepo personRepo = context2.getBean(PersonRepo.class);
 
     public void createTeacher() {
 
@@ -31,8 +34,11 @@ public class TeacherUtils {
         person.setPhone(person.validPhone("null"));   //"000 000 00 00"
         person.setEmail(person.validEmail(emailDuplicate("email" + Person.getCount() + "@gmail.com")));
         teacher.setPerson(person);
+        personRepo.add(person);
+        personRepo.save(person);
 
         teacherRepo.add(teacher);
+        teacherRepo.save(teacher);
 
         for (int i = 0; i < teacherRepo.size(); i++) {
             System.out.println("Index " + i + " " + teacherRepo.get(i));

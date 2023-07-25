@@ -1,12 +1,14 @@
 package entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 public class Course implements Comparable<Course>, Serializable {
@@ -15,6 +17,8 @@ public class Course implements Comparable<Course>, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+    private Set<Student> students = new HashSet<>();
 
     public Course() {
         count++;
@@ -33,6 +37,14 @@ public class Course implements Comparable<Course>, Serializable {
     @Override
     public int compareTo(Course o) {
         return this.name.compareTo(o.name);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
 
