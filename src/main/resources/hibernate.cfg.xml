@@ -29,6 +29,12 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">jcache</property>
+        <property name="hibernate.javax.cache.provider">
+            org.ehcache.jsr107.EhcacheCachingProvider
+        </property>
+
         <mapping class="entity.Additional"/>
         <mapping class="entity.Course"/>
         <mapping class="entity.Homework"/>

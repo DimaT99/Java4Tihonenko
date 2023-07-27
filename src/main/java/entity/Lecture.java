@@ -2,6 +2,8 @@ package entity;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class Lecture implements Serializable {
     @OneToMany(mappedBy = "lecture",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
+    @BatchSize(size = 3)
     @ToString.Exclude
     private List<Homework> homeworkList;
     private String creationDate;
