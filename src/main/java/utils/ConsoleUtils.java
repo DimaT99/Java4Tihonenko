@@ -76,7 +76,8 @@ public class ConsoleUtils {
                 System.out.println("14. Write e-mail of students in a file");
                 System.out.println("15. Test Spring (lesson 54)");
                 System.out.println("16. HQL query (lesson 57)");
-                System.out.println("17. Exit");
+                System.out.println("17. Query (lesson 59)");
+                System.out.println("18. Exit");
 
                 try {
                     category = scanner.nextInt();
@@ -90,7 +91,7 @@ public class ConsoleUtils {
                     ScannerWithSwitch();
                     return;
                 }
-            } while (category < 1 || category > 17);
+            } while (category < 1 || category > 18);
             logUtils.debug("Select category");
             switch (category) {
                 case 1:
@@ -307,6 +308,18 @@ public class ConsoleUtils {
                     System.out.println(studentRepo.getById(1));
                     break;
                 case 17:
+                    System.out.println("Query (lesson 59)");
+                    System.out.println("getLecture");
+                    System.out.println(lectureUtils.getLectures());
+                    System.out.println(lectureUtils.getLecture("Lecture2"));
+                    Lecture lecture3 = new Lecture();
+                    lecture3.setName("Lesson 59");
+                    lectureRepo.save(lecture3);
+
+                    System.out.printf("my Lecture updated %s%n", lectureUtils.updateLecture(lecture3));
+                    System.out.printf("my Lecture deleted %s%n", lectureUtils.deleteLecture(lecture3));
+                    break;
+                case 18:
                     stop = false;
                     logUtils.info("Exit");
                     LogService.writeToFile();

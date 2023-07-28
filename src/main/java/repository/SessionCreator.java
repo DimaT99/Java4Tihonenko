@@ -2,8 +2,14 @@ package repository;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.Cacheable;
+
+@Cacheable
+@org.hibernate.annotations.Cache(
+        usage = CacheConcurrencyStrategy.READ_WRITE)
 public class SessionCreator {
     private static final SessionFactory sessionFactory = configureSessionFactory();
 

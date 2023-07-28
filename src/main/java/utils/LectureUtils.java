@@ -2,17 +2,23 @@ package utils;
 
 import entity.*;
 import exception.EntityNotFoundException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import repository.AdditionalRepo;
 import repository.LectureRepo;
+import repository.SessionCreator;
 import workLog.LogUtils;
 
+import javax.persistence.criteria.*;
 import java.io.ObjectInputFilter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 @Component
 public class LectureUtils {
@@ -121,6 +127,83 @@ public class LectureUtils {
         Lecture lectureToFind = lectureRepo.getLectureByLectureName(lecture.getName());
 
         return lectureToFind != null;
+    }
+    public List<Lecture> getLectures() {
+        final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            final CriteriaQuery<Lecture> criteriaQuery = criteriaBuilder.createQuery(Lecture.class);
+
+            Root<Lecture> root = criteriaQuery.from(Lecture.class);
+            criteriaQuery.select(root);
+            final org.hibernate.query.Query<Lecture> query = session.createQuery(criteriaQuery);
+
+            return query.getResultList();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Lecture getLecture(final String name) {
+        final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            final CriteriaQuery<Lecture> criteriaQuery = criteriaBuilder.createQuery(Lecture.class);
+
+            Root<Lecture> root = criteriaQuery.from(Lecture.class);
+            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("name"), name));
+            final org.hibernate.query.Query<Lecture> query = session.createQuery(criteriaQuery);
+            return query.getSingleResult();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public int updateLecture(final Lecture lecture) {
+        final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+            final Transaction transaction = session.beginTransaction();
+
+            final CriteriaUpdate<Lecture> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Lecture.class);
+            Root<Lecture> root = criteriaUpdate.from(Lecture.class);
+            criteriaUpdate.set("name", lecture.getName());
+            criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), lecture.getId()));
+
+            final int i = session.createQuery(criteriaUpdate).executeUpdate();
+
+            transaction.commit();
+
+            return i;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int deleteLecture(final Lecture lecture) {
+        final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+            final Transaction transaction = session.beginTransaction();
+
+            final CriteriaDelete<Lecture> criteriaDelete = criteriaBuilder.createCriteriaDelete(Lecture.class);
+            Root<Lecture> root = criteriaDelete.from(Lecture.class);
+            criteriaDelete.where(criteriaBuilder.equal(root.get("id"), lecture.getId()));
+
+            final int i = session.createQuery(criteriaDelete).executeUpdate();
+
+            transaction.commit();
+
+            return i;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
