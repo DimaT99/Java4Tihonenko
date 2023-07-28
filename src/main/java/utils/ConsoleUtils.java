@@ -1,9 +1,6 @@
 package utils;
 
-import entity.Additional;
-import entity.Homework;
-import entity.Lecture;
-import entity.ResourceType;
+import entity.*;
 import examination.MyThreads;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -297,9 +294,17 @@ public class ConsoleUtils {
                 case 16:
                     System.out.println("HQL query (lesson 57)");
                     System.out.println("getLecture");
-                    HQLQuery.getLecture(2);
+                    Lecture lecture1 = new Lecture();
+                    lecture1.setName("Lecture1");
+                    HQLQuery.saveLecture(lecture1);
+                    Lecture lecture2 = new Lecture();
+                    lecture2.setName("Lecture2");
+                    HQLQuery.saveLecture(lecture2);
+                    System.out.println(HQLQuery.getLecture(2));
                     System.out.println("getTeacher");
-                    HQLQuery.getTeacher(1);
+                    System.out.println(HQLQuery.getTeacher(1));
+                    System.out.println(courseRepo.getById(1));
+                    System.out.println(studentRepo.getById(1));
                     break;
                 case 17:
                     stop = false;

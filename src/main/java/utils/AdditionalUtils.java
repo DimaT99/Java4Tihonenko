@@ -21,5 +21,6 @@ public class AdditionalUtils {
         additional.setResourceType((ResourceType) ResourceType.resourceType());
         additionalRepo.add(additional);
         additionalRepo.addMap(additional);
+        additionalRepo.save(additional);
     }
 }

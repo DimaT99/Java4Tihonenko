@@ -25,6 +25,7 @@ public class HomeworkUtils {
 
             homeworkRepo.add(homework);
             homeworkRepo.addMap(homework);
+            homeworkRepo.save(homework);
 
         for (int i = 0; i < homeworkRepo.size(); i++) {
             //System.out.println("Index " + i + " " + homeworkRepo.get(i));

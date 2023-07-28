@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,15 +10,18 @@ import java.util.List;
 @Entity
 @Data
 public class Lecture implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int courseId;
     private static int count;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
     private int personId;
-    @Transient
+    @OneToMany(mappedBy = "lecture",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @ToString.Exclude
     private List<Homework> homeworkList;
     private String creationDate;
     private String lectureDate;

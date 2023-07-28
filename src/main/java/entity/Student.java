@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 public class Student implements Comparable<Student>, Serializable {
@@ -12,11 +15,16 @@ public class Student implements Comparable<Student>, Serializable {
     private Integer id;
     private String name;
     private static int count;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "person_id")
     private Person person;
     private Integer courseId;
     private Integer sum;
-
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> courses = new HashSet<>();
     public void setPerson(Person person) {
         this.person = person;
     }

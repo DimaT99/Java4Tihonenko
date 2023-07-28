@@ -12,7 +12,8 @@ public class Teacher implements Comparable<Teacher>, Serializable {
     private Integer id;
     private String name;
     private static int count;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "person_id")
     private Person person;
 
     public static int getCount() {

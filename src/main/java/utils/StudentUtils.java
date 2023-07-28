@@ -7,6 +7,7 @@ import entity.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import repository.PersonRepo;
 import repository.StudentRepo;
 
 import java.util.Optional;
@@ -15,7 +16,8 @@ import java.util.Optional;
 public class StudentUtils {
     ApplicationContext context = new AnnotationConfigApplicationContext(StudentRepo.class);
     StudentRepo studentRepo = context.getBean(StudentRepo.class);
-
+    ApplicationContext context2 = new AnnotationConfigApplicationContext(PersonRepo.class);
+    PersonRepo personRepo = context2.getBean(PersonRepo.class);
 
     public void createStudent() {
         Student student = new Student();
@@ -30,8 +32,11 @@ public class StudentUtils {
         person.setPhone(person.validPhone("000 000 00 00"));
         person.setEmail(person.validEmail(emailDuplicate("email" + Person.getCount() + "@gmail.com")));
         student.setPerson(person);
+        personRepo.add(person);
+        personRepo.save(person);
 
         studentRepo.add(student);
+        studentRepo.save(student);
 
         for (int i = 0; i < studentRepo.size(); i++) {
             System.out.println("Index " + i + " " + studentRepo.get(i));

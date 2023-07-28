@@ -1,9 +1,13 @@
 package repository;
 
 import entity.Additional;
+import entity.Teacher;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,5 +73,53 @@ public class AdditionalRepo implements Repo {
         }
         System.out.println("All additional materials");
         return;
+    }
+
+    @Override
+    public boolean save(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save((Additional) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public Object getById(Integer id) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Query usersQuery = session.createQuery("from Additional where id =:id", Additional.class);
+            usersQuery.setParameter("id", id);
+            final Additional singleResult = (Additional) usersQuery.getSingleResult();
+            return singleResult;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean update(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.update((Additional) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean delete(Object element) {
+        try (final Session session = SessionCreator.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete((Additional) element);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
