@@ -68,25 +68,6 @@ public class LectureUtils {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
     }
-    /*public void saveLecture(final Lecture lecture) {
-        lectureRepo.save(lecture);
-    }*/
-
-    /*public List<Mouse> findAll() {
-        return mouseRepo.findAll();
-    }
-
-    public Optional<Mouse> getMouse(final Long id) {
-        return mouseRepo.findById(id);
-    }
-
-    public List<Mouse> getMouseList() {
-        return mouseRepo.findAllByAge(10);
-    }
-
-    public void updateMouse(final Mouse mouse) {
-        mouseRepo.updateMouse(mouse);
-    }*/
     public void getAll() {
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println(lectureRepo.get(i));
