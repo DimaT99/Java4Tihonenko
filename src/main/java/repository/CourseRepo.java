@@ -5,11 +5,12 @@ import entity.Teacher;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-@Component
+@Repository
 public class CourseRepo implements Repo {
     private static List<Course> courseArrayList = new ArrayList<>();
 
