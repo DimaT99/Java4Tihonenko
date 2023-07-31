@@ -2,18 +2,16 @@ package repository;
 
 import entity.Person;
 import entity.Teacher;
-import lombok.Data;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-@Data
-public class PersonRepo implements Repo{
-    private static List<Person> personArrayList = new ArrayList<>();
+public class PersonRepo implements Repo {
+    static List<Person> personArrayList = new ArrayList<>();
 
     @Override
     public int size() {
