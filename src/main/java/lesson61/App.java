@@ -1,5 +1,6 @@
 package lesson61;
 
+import config.JpaConfig;
 import lesson61.entity.Person;
 import lesson61.service.PersonService;
 import org.springframework.context.ApplicationContext;
@@ -27,8 +28,6 @@ public class App {
         person.setCourseId(100);
         person.setFirstName("Star");
         person.setLastName("Patric");
-
-        /*mouseService.updateMouse(mouse);*/
 
         personService.savePerson(person);
 

@@ -17,6 +17,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/ApplicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/java/lesson61/JpaConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/config/SpringConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -35,8 +36,11 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Java4Tihonenko" value="eb15d991-bffc-470f-b2c6-ecc0b8655a7f" />
+          <factory-entry name="entityManagerFactory" value="24207b22-29e0-4bcb-88ab-7d4e14737e46" />
         </datasource-mapping>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="entityManagerFactory" />
+        </naming-strategy-map>
       </configuration>
     </facet>
   </component>
@@ -51,7 +55,24 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: jakarta.servlet:jakarta.servlet-api:5.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.31" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-observation:1.10.4" level="project" />
+    <orderEntry type="library" name="Maven: io.micrometer:micrometer-commons:1.10.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.0.5" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:6.0.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.servlet:jakarta.servlet-api:5.0.0" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.el:jakarta.el-api:5.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.containers:jersey-container-servlet:3.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.containers:jersey-container-servlet-core:3.0.4" level="project" />
     <orderEntry type="library" name="Maven: jakarta.inject:jakarta.inject-api:2.0.0" level="project" />
@@ -64,14 +85,14 @@
     <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-json-jackson:3.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.ext:jersey-entity-filtering:3.0.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jakarta-xmlbind-annotations:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:3.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:jakarta.activation:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:4.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.15.0-rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.15.0-rc3" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.inject:jersey-cdi2-se:3.0.4" level="project" />
     <orderEntry type="library" name="Maven: jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.el:jakarta.el-api:4.0.0" level="project" />
     <orderEntry type="library" name="Maven: jakarta.interceptor:jakarta.interceptor-api:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.weld.se:weld-se-core:4.0.3.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.weld.environment:weld-environment-common:4.0.3.Final" level="project" />
@@ -100,12 +121,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-launcher:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.3.3" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.16" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:6.0.5" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.6.3.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.4.2.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
@@ -130,13 +146,10 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.antlr:antlr4-runtime:4.10.1" level="project" />
     <orderEntry type="library" name="Maven: javax.cache:cache-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.ehcache:ehcache:3.9.7" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:3.0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:6.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:6.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:6.0.6" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-dbcp2:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.8.1" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />

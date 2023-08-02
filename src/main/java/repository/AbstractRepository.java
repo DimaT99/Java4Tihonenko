@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 @Repository
 @Configuration
 @ComponentScan()
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:application.properties")
 public class AbstractRepository {
     @Value("${database.connectionUrl}")
     private String url;

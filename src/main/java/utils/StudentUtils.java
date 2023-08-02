@@ -4,16 +4,22 @@ import entity.Course;
 import entity.EnumRole;
 import entity.Person;
 import entity.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import repository.PersonRepo;
 import repository.StudentRepo;
+import repository.StudentRepo2;
 
+import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class StudentUtils {
+    //@Autowired
+    private StudentRepo2 studentRepo2;
     ApplicationContext context = new AnnotationConfigApplicationContext(StudentRepo.class);
     StudentRepo studentRepo = context.getBean(StudentRepo.class);
     ApplicationContext context2 = new AnnotationConfigApplicationContext(PersonRepo.class);
@@ -58,5 +64,13 @@ public class StudentUtils {
         }
         System.out.println("This email already exists");
         return "This email already exists";
+    }
+
+    public void save(Student student) {
+        studentRepo2.save(student);
+    }
+
+    public List<Student> findAll() {
+        return studentRepo2.findAll();
     }
 }

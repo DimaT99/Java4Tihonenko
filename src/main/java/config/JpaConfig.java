@@ -1,4 +1,4 @@
-package lesson61;
+package config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -16,15 +16,15 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"lesson61"})
-@ComponentScan("lesson61")
+@EnableJpaRepositories(basePackages = {"java"})
+@ComponentScan()
 public class JpaConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
-        emf.setPackagesToScan("lesson61");
+        emf.setPackagesToScan("/");
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setJpaProperties(jpaProperties());
         return emf;
