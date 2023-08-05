@@ -311,7 +311,7 @@ public class ConsoleUtils {
                     System.out.println("Query (lesson 59)");
                     System.out.println("getLecture");
                     System.out.println(lectureUtils.getLectures());
-                    System.out.println(lectureUtils.getLecture("Lecture2"));
+                    System.out.println(lectureUtils.getLecture("Lecture5"));
                     Lecture lecture3 = new Lecture();
                     lecture3.setName("Lesson 59");
                     lectureRepo.save(lecture3);

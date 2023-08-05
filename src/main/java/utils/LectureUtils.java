@@ -14,12 +14,12 @@ import repository.SessionCreator;
 import workLog.LogUtils;
 
 import javax.persistence.criteria.*;
-import java.io.ObjectInputFilter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+
 @Component
 public class LectureUtils {
     Homework homework;
@@ -35,7 +35,6 @@ public class LectureUtils {
 
     public LectureUtils() {
     }
-
     public LectureUtils(LectureRepo lectureRepo) {
         this.lectureRepo = lectureRepo;
     }
@@ -69,7 +68,6 @@ public class LectureUtils {
             System.out.println("Index " + i + " " + lectureRepo.get(i));
         }
     }
-
     public void getAll() {
         for (int i = 0; i < lectureRepo.size(); i++) {
             System.out.println(lectureRepo.get(i));
@@ -123,11 +121,12 @@ public class LectureUtils {
         System.out.println("Amount of additional materials = " + maxAdditional);
     }
 
-    public boolean checkLecturePresence (Lecture lecture) throws Exception {
+    public boolean checkLecturePresence(Lecture lecture) throws Exception {
         Lecture lectureToFind = lectureRepo.getLectureByLectureName(lecture.getName());
 
         return lectureToFind != null;
     }
+
     public List<Lecture> getLectures() {
         final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
 
@@ -145,6 +144,7 @@ public class LectureUtils {
             throw new RuntimeException(e);
         }
     }
+
     public Lecture getLecture(final String name) {
         final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
 
@@ -161,6 +161,7 @@ public class LectureUtils {
             throw new RuntimeException(e);
         }
     }
+
     public int updateLecture(final Lecture lecture) {
         final SessionFactory sessionFactory = SessionCreator.getSessionFactory();
 
